@@ -33,7 +33,7 @@ Register user with ATOMIC - creating a Private Collateral address
 
 `PUT /api/v1/users/{user-id}`
 
-> Body parameter
+> Body parameters
 
 ```json
 {
@@ -80,7 +80,7 @@ print r.json()
     }
 }
 ```
-### Return codes
+### Return Codes
 Status|Meaning|Description
 ---|---|---
 201 | OK  | User created succesfully
@@ -134,7 +134,7 @@ print r.json()
   ]
 }
 ```
-### Return codes
+### Return Codes
 Status|Meaning|Description
 ---|---|---
 200 | OK | OK
@@ -152,7 +152,7 @@ NOTE: An on demand unlock cannot be processed during ongoing transactions
 </aside>
 
 
-> Body parameter
+> Body parameters
 
 ```json
 {
@@ -192,7 +192,7 @@ print r.json()
 }
 ```
 
-### Return codes
+### Return Codes
 Status|Meaning|Description
 ---|---|---
 200 | OK | On demand unlock transaction created
@@ -212,7 +212,7 @@ NOTE: An on demand unlock cannot be processed during ongoing transactions
 </aside>
 
 
-> Body parameter
+> Body parameters
 
 ```json
 {
@@ -245,7 +245,7 @@ print r.json()
 
 > 201 Response -  Unlock command recieved
 
-### Return codes
+### Return Codes
 Status|Meaning|Description|
 --------- |  ----------- | -----------
 201| Created|Unlock command recieved
@@ -265,7 +265,7 @@ Get a timed unlock transaction from the user's Private Coilateral address at the
 Transactions will not be allowed near the target unlock time
 </aside>
 
-> Body parameter
+> Body parameters
 
 ```json
 {
@@ -305,7 +305,7 @@ print r.json()
   "raw-transaction": "02000000018e62016f5fe7fad1f7f343cdf900f8c6aad4cd1bef9c2a274334291c3999551c0000000000feffffff0118c69a3b0000000017a91455f415046dfb9e578426fbcbfb480a66b0782480876e000000"
 }
 ```
-### Return codes
+### Return Codes
 Status|Meaning|Description
 ---|---|---
 200 | OK | Transaction created
@@ -326,7 +326,7 @@ The timed transaction will be stored by the user, and submitted when the lock ti
 `PUT /api/v1/users/{user-id}/unlock/timed`
 
 
-> Body parameter
+> Body parameters
 
 ```json
 {
@@ -356,7 +356,7 @@ print r.json()
 
 ``` -->
 
-### Return codes
+### Return Codes
 Status|Meaning|Description
 ---|---|---
 201| Created | Unlock command received
@@ -423,7 +423,7 @@ print r.json()
 }
 ```
 
-### Return codes
+### Return Codes
 Status|Meaning|Description
 ---|---|---
 200| OK | Payment found
@@ -441,7 +441,7 @@ Providing ATOMIC with the signed escrow transactions which was obtained from the
 `PUT /api/v1/users/{user-id}/payments/{payment-id}`
 
 
-> Body parameter
+> Body parameters
 
 ```json
 {
@@ -476,7 +476,7 @@ print r.json()
 
 ``` -->
 
-### Return codes
+### Return Codes
 Status|Meaning|Description
 ---|---|---
 201| Created | Payment received 
@@ -522,8 +522,258 @@ print r.json()
 }
 ```
 
-### Return codes
+### Return Codes
 Status|Meaning|Description
 ---|---|---
 200 |OK | OK
 400|Bad Request | Bad input parameter
+
+
+# Trade Platform APIs
+ 
+ This section will detail the APIs from an ATOMIC powered wallet to an ATOMIC powered Trading Platform
+ 
+## Create Order
+ 
+ Place a new trade order
+
+ `PUT /api/trades/v1/users/{user-id}/orders/{order-id}`
+
+> Body parameters
+
+```json
+{
+    "source-coin": "BTC",
+    "source-amount": 1010000000,
+    "destination-coin": "ETH",
+    "destination-amount": 300500000000000000000,
+    "destination-address": "0xe8e49e84480edd95aaae50a340422cb30057963b",
+    "escrow-coin": "BTC",
+    "escrow-amount": 1010000000,
+    "escrow-address": "2NF1qc9L4j1tyfqzzLdRzRqoVftHznSeC6K"
+}
+```
+
+ > Code samples
+ 
+ ```shell
+ curl -request PUT https://atomic.org/api/trades/v1/users/{user-id}/orders/{order-id} 
+ --data '{
+     "source-coin": "BTC",
+     "source-amount": 1010000000,
+     "destination-coin": "ETH",
+     "destination-amount": 300500000000000000000,
+     "destination-address": "0xe8e49e84480edd95aaae50a340422cb30057963b",
+     "escrow-coin": "BTC",
+     "escrow-amount": 1010000000,
+     "escrow-address": "2NF1qc9L4j1tyfqzzLdRzRqoVftHznSeC6K"
+     }'
+ ```
+### Return Codes
+ Status|Meaning|Description
+ ---|---|---
+ 201 | Created | Order created succesfully 
+ 400 | Bad Request | Invalid input
+ 409 | Conflict | Order already exists
+
+
+## Get Order Details
+
+Retrieves the existing information for a specific order.
+
+If the order is currently in an active deal - will also return the payment ID
+
+`GET /api/trades/v1/users/{user-id}/orders/{order-id}`
+
+> Code samples
+
+```shell
+curl -request GET https://atomic.org/api/trades/v1/users/{user-id}/orders/{order-id} 
+```
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+    "order-id": "d290f1ee-6c54-4b01-90e6-d701748f0100",
+    "user-id": "d290f1ee-6c54-4b01-90e6-d701748f0200",
+    "status": "Pending match",
+    "payment-id": "d290f1ee-6c54-4b01-90e6-d701748f0300"
+}
+```
+### Return Codes
+Status|Meaning|Description
+---|---|---
+200 | OK | Order found
+404 | Not Found | Order not found
+
+## Cancel Order
+
+Deletes a given order, if allowed
+
+`DELETE /api/trades/v1/users/{user-id}/orders/{order-id}`
+
+> Code samples
+
+```shell
+curl -request DELETE https://atomic.org/api/trades/v1/users/{user-id}/orders/{order-id}
+
+```
+### Return Codes
+Status|Meaning|Description
+---|---|---
+200 | OK | Order canceled
+400 | Bad Request | Invalid input
+403 | Forbidden | Order is currently being executed, unable to cancel 
+404 | Not Found | Order not found
+
+## Get Supported Coins
+
+List of supported coins - by default all pairs are supported
+
+`GET /api/trades/v1/coins`
+
+> Code samples
+
+```shell
+curl -request GET https://atomic.org/api/trades/v1/coins'
+```
+
+> Example responses
+
+> 200 Response
+```json
+{
+   [BTC, LTC, DASH, BSV, DOGE, BCH, ETC, ETH] 
+}
+```
+
+## Get Generic Info
+
+Generic info from the trading platform
+
+`GET /api/trades/v1/info`
+
+> Code samples
+
+```shell
+curl -request https://atomic.org/api/trades/v1/info'
+```
+
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+    "business-name": "Bestrade - P2P trading",
+    "business-id": "d290f1ee-6c54-4b01-90e6-d701748f0400",
+    "api-version": "v1"
+}
+```
+
+# Credit Line Platforms APIs
+
+## Request Credit Line
+
+
+Request/Update Credit Line amount.
+
+<aside class="success">
+Returns a payment ID in case such is required
+</aside>
+
+`PUT /api/credit-line/v1/users/{user-id}/credits/{credit-id}`
+
+
+> Body parameters
+
+```json
+{
+    "coin-type": "BTC",
+    "amount": 1050000000
+}
+```
+
+> Code samples
+
+```shell
+curl -request PUT  PUT https://atomic.org/api/credit-line/v1/users/{user-id}/credits/{credit-id} \
+--data '{ "coin-type": "BTC", "amount": 1050000000}'
+```
+
+> Example responses
+
+> 201 Response
+
+```json
+{
+    "user-id": "d290f1ee-6c54-4b01-90e6-d701748f0200",
+    "amount": 1050000000,
+    "coin-type": "BTC",
+    "payment-id": "d290f1ee-6c54-4b01-90e6-d701748f0300"
+}
+```
+### Return Codes
+Status|Meaning|Description
+---|---|---
+201 | Created | Credit Line updated - escrow required
+400 | Bad Request | Invalid input
+403 | Forbidden  | Can't update Credit Line to be lower than existing
+409 | Conflict | Credit Line up to date - no additional escrow required
+
+
+## Get Credit Line Details
+
+Gets the user's credit-line information - with the current payment ID if requried
+
+`GET /api/credit-line/v1/users/{user-id}/credits/{credit-id}`
+
+> Code samples
+
+```shell
+curl -request GET  PUT https://atomic.org/api/credit-line/v1/users/{user-id}/credits/{credit-id}
+```
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+    "user-id": "d290f1ee-6c54-4b01-90e6-d701748f0200",
+    "amount": 1050000000,
+    "coin-type": "BTC",
+    "payment-id": "d290f1ee-6c54-4b01-90e6-d701748f0300"
+}
+```
+
+### Return Codes
+Status|Meaning|Description
+---|---|---
+200| OK | Credit Line found
+404| Not Found | User/Credit Line not found
+
+
+## Delete Credit Line
+
+Request to remove a specific credit-line
+
+`DELETE /api/credit-line/v1/users/{user-id}/credits/{credit-id}`
+
+> Code samples
+
+```shell
+curl -request DELETE  PUT https://atomic.org/api/credit-line/v1/users/{user-id}/credits/{credit-id}
+
+```
+### Return Codes
+Status|Meaning|Description|Schema|
+---|---|---|---|
+200| OK | Credit Line deleted succesfully
+403| Forbidden | Credit Line not yet settled - delete not allowed
+404| Not Found | User/Credit Line not found
+
