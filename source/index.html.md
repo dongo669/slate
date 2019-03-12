@@ -3,7 +3,7 @@ title: Wallet to ATOMIC APIs
 language_tabs:
   - shell: cURL
 toc_footers:
-- <a href='https://www.atomic.org'>Visit ATOMIC home page</a>
+- <a href='https://www.atomic.org'>Visit ATOMIC Home Page</a>
 includes:
   []
 search: true
@@ -25,13 +25,13 @@ This page details the APIs from an ATOMIC powered wallet towards ATOMIC P2P coll
 
 User management related APIs
 
-## Create new user
+## Create New User
 
 
 Register user with ATOMIC - creating a Private Collateral address
 
 
-`PUT /api/v1/users/{user-id}`
+`PUT /api/general/v1/users/{user-id}`
 
 > Body parameters
 
@@ -45,26 +45,11 @@ Register user with ATOMIC - creating a Private Collateral address
 > Code samples
 
 ```shell
-curl -request PUT https://atomic.org/wallet-to-atomic/api/v1/users/{user-id} 
---data '{"public-key": "027a478fd4a7c3b8e43cfd2eaf0e439158b2b874dace2b598c585e88f67eeb8655", "refund-address": "2NF1qc9L4j1tyfqzzLdRzRqoVftHznSeC6K"}'
+curl -request PUT https://atomic.org/api/general/v1/users/{user-id} \
+-H 'Content-Type: application/json' \
+--data '{"public-key": "027a478fd4a7c3b8e43cfd2eaf0e439158b2b874dace2b598c585e88f67eeb8655", \
+         "refund-address": "2NF1qc9L4j1tyfqzzLdRzRqoVftHznSeC6K"}'
 ```
-
-<!-- 
-```python
-import requests
-headers = {
-'Content-Type': 'application/json',
-'Accept': 'application/json'
-}
-
-r = requests.put('https://virtserver.swaggerhub.com/Atomicbox/Wallet-to-ATOMIC-APIs/1.0/api/v1/users/{user-id}', params={
-
-}, headers = headers)
-
-print r.json()
-
-``` -->
-
 
 > Example responses
 
@@ -73,13 +58,14 @@ print r.json()
 ```json
 {
     "private-collateral-info": {
-    "atomic-public-key": "022d4a565aa6845c72bd2a732d3d4971704e8403942766b59d68e0dcf62713443c",
-    "private-collateral-address": "2Mx1EM2Bsd8qzV2yFv3XxemKaqW7ZfCKAFN",
-    "private-collateral-redeem-script": "5221022d4a565aa6845c72bd2a732d3d4971704e8403942766b59d68e0dcf62713443c21027a478fd4a7c3b8e43cfd2eaf0e439158b2b874dace2b598c585e88f67eeb865552ae",
-    "private-collateral-script-pub-key": "a91434331a9a1282cb1f58a383eb3d74bbbe671161ba87"
-    }
+        "atomic-public-key": "022d4a565aa6845c72bd2a732d3d4971704e8403942766b59d68e0dcf62713443c",
+        "private-collateral-address": "2Mx1EM2Bsd8qzV2yFv3XxemKaqW7ZfCKAFN",
+        "private-collateral-redeem-script": "5221022d4a565aa6845c72bd2a732d3d4971704e8403942766b59d68e0dcf62713443c21027a478fd4a7c3b8e43cfd2eaf0e439158b2b874dace2b598c585e88f67eeb865552ae",
+        "private-collateral-script-pub-key": "a91434331a9a1282cb1f58a383eb3d74bbbe671161ba87"
+        }
 }
 ```
+
 ### Return Codes
 Status|Meaning|Description
 ---|---|---
@@ -87,30 +73,16 @@ Status|Meaning|Description
 400 | Bad Request | Invalid request or conflict with existing user
 409 | Already Exist | User already exists
 
-## Get user's information
+## Get User's Information
 Retrieves existing information for a specific user
 
-`GET /api/v1/users/{user-id}`
+`GET /api/general/v1/users/{user-id}`
 
 > Code samples
 
 ```shell
-curl -request GET https://atomic.org/wallet-to-atomic/api/v1/users/{user-id}
+curl -request GET https://atomic.org/api/general/v1/users/{user-id}
 ```
-<!--
-```python
-import requests
-headers = {
-'Accept': 'application/json'
-}
-
-r = requests.get('https://virtserver.swaggerhub.com/Atomicbox/Wallet-to-ATOMIC-APIs/1.0/api/v1/users/{user-id}', params={
-
-}, headers = headers)
-
-print r.json()
-
-``` -->
 
 > Example responses
 
@@ -134,6 +106,7 @@ print r.json()
   ]
 }
 ```
+
 ### Return Codes
 Status|Meaning|Description
 ---|---|---
@@ -142,10 +115,10 @@ Status|Meaning|Description
 
 # Unlock Operations
 
-## Get on-demand unlock
+## Get On-Demand Unlock
 Get an on-demand unlock transaction from the user's private-collateral address
 
-`GET /api/v1/users/{user-id}/unlock`
+`GET /api/general/v1/users/{user-id}/unlock`
 
 <aside class="warning">
 NOTE: An on demand unlock cannot be processed during ongoing transactions
@@ -163,24 +136,9 @@ NOTE: An on demand unlock cannot be processed during ongoing transactions
 > Code samples
 
 ```shell
-curl -request GET https://atomic.org/wallet-to-atomic/api/v1/users/{user-id}/unlock 
---data '{"amount": 498000000 }'
+curl -request GET https://atomic.org/api/general/v1/users/{user-id}/unlock \
+ -H 'Content-Type: application/json' --data '{"amount": 498000000 }'
 ```
-<!--
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json'
-}
-
-r = requests.get('https://virtserver.swaggerhub.com/Atomicbox/Wallet-to-ATOMIC-APIs/1.0/api/v1/users/{user-id}/unlock', params={
-
-}, headers = headers)
-
-print r.json()
-
-``` -->
 
 > Example responses
 
@@ -199,13 +157,13 @@ Status|Meaning|Description
 403 | Forbidden | Cannot perform on-demand unlock at this time
 404 | Not Found | User not found
 
-## Submit an on-demand unlock
+## Submit An On-Demand Unlock
 
 Perform an unlock of funds from the user's private-collateral address.
 
 Should supply a signed unlock transaction which was obtained from the "GET" command, or created manually
 
-`PUT /api/v1/users/{user-id}/unlock`
+`PUT /api/general/v1/users/{user-id}/unlock`
 
 <aside class="warning">
 NOTE: An on demand unlock cannot be processed during ongoing transactions
@@ -222,24 +180,9 @@ NOTE: An on demand unlock cannot be processed during ongoing transactions
 
 > Code samples
 ```shell
-curl -request PUT https://atomic.org/wallet-to-atomic/api/v1/users/{user-id}/unlock 
---data '{"partially-signed-unlock-tx":      "02000000018e62016f5fe7fad1f7f343cdf900f8c6aad4cd1bef9c2a274334291c3999551c00000000b400483045022100de328bf0550164f0b6f1ae3bae78c6d417140808fa82f0da67be00cd8df41816022024b2fc2182789488fcca4984e7af3123bd3e680e4f4be8eaeb3e547f24ca31ea01004c675241043af1ba0a3429d7890d91a7f9ff280b7130c3b5edd1c02613e9f770a05ec1977a76646d7223ff17f3881f07e08a15f31cb23e79a7871202e52c678f5b9af6823021033f1654d3187087ad5f7f220814c94232945825663d55431345aca8a82746780552aefeffffff0118c69a3b0000000017a91455f415046dfb9e578426fbcbfb480a66b0782480876e000000"}'
+curl -request PUT https://atomic.org/api/general/v1/users/{user-id}/unlock 
+-H 'Content-Type: application/json' --data '{"partially-signed-unlock-tx": \ "02000000018e62016f5fe7fad1f7f343cdf900f8c6aad4cd1bef9c2a274334291c3999551c00000000b400483045022100de328bf0550164f0b6f1ae3bae78c6d417140808fa82f0da67be00cd8df41816022024b2fc2182789488fcca4984e7af3123bd3e680e4f4be8eaeb3e547f24ca31ea01004c675241043af1ba0a3429d7890d91a7f9ff280b7130c3b5edd1c02613e9f770a05ec1977a76646d7223ff17f3881f07e08a15f31cb23e79a7871202e52c678f5b9af6823021033f1654d3187087ad5f7f220814c94232945825663d55431345aca8a82746780552aefeffffff0118c69a3b0000000017a91455f415046dfb9e578426fbcbfb480a66b0782480876e000000"}'
 ```
-
-<!--
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json'
-}
-
-r = requests.put('https://virtserver.swaggerhub.com/Atomicbox/Wallet-to-ATOMIC-APIs/1.0/api/v1/users/{user-id}/unlock', params={
-
-}, headers = headers)
-
-print r.json()
-
-``` -->
 
 > Example responses
 
@@ -255,11 +198,11 @@ Status|Meaning|Description|
 409| Conflict | Another unlock already in progress
 
 
-## Get timed unlock
+## Get Timed Unlock
 
 Get a timed unlock transaction from the user's Private Coilateral address at the given lock time
 
-`GET /api/v1/users/{user-id}/unlock/timed`
+`GET /api/general/v1/users/{user-id}/unlock/timed`
 
 <aside class="warning">
 Transactions will not be allowed near the target unlock time
@@ -277,24 +220,9 @@ Transactions will not be allowed near the target unlock time
 > Code samples
 
 ```shell
-curl -request GET https://atomic.org/wallet-to-atomic/api/v1/users/{user-id}/unlock/timed 
---data '{"amount": 498000000, "nLockTime": 1548885799}'  
+curl -request GET https://atomic.org/api/general/v1/users/{user-id}/unlock/timed \
+-H 'Content-Type: application/json' --data '{"amount": 498000000, "nLockTime": 1548885799}'  
 ```
-<!--
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json'
-}
-
-r = requests.get('https://virtserver.swaggerhub.com/Atomicbox/Wallet-to-ATOMIC-APIs/1.0/api/v1/users/{user-id}/unlock/timed', params={
-
-}, headers = headers)
-
-print r.json()
-
-``` -->
 
 > Example responses
 
@@ -314,7 +242,7 @@ Status|Meaning|Description
 404|  Not Found | User not found 
 
 
-## Submit timed unlock
+## Submit Timed Unlock
 
 Requests ATOMIC to sign the user-signed timed unlock transaction.
 
@@ -323,7 +251,7 @@ The timed transaction will be stored by the user, and submitted when the lock ti
 </aside>
 
 
-`PUT /api/v1/users/{user-id}/unlock/timed`
+`PUT /api/general/v1/users/{user-id}/unlock/timed`
 
 
 > Body parameters
@@ -337,24 +265,9 @@ The timed transaction will be stored by the user, and submitted when the lock ti
 > Code samples
 
 ```shell
-curl -request PUT https://atomic.org/wallet-to-atomic/api/v1/users/{user-id}/unlock/timed 
---data '{"partially-signed-tx": "02000000018e62016f5fe7fad1f7f343cdf900f8c6aad4cd1bef9c2a274334291c3999551c00000000b400483045022100de328bf0550164f0b6f1ae3bae78c6d417140808fa82f0da67be00cd8df41816022024b2fc2182789488fcca4984e7af3123bd3e680e4f4be8eaeb3e547f24ca31ea01004c675241043af1ba0a3429d7890d91a7f9ff280b7130c3b5edd1c02613e9f770a05ec1977a76646d7223ff17f3881f07e08a15f31cb23e79a7871202e52c678f5b9af6823021033f1654d3187087ad5f7f220814c94232945825663d55431345aca8a82746780552aefeffffff0118c69a3b0000000017a91455f415046dfb9e578426fbcbfb480a66b0782480876e000000"}'  
+curl -request PUT https://atomic.org/api/general/v1/users/{user-id}/unlock/timed \
+-H 'Content-Type: application/json' --data '{"partially-signed-tx": \ "02000000018e62016f5fe7fad1f7f343cdf900f8c6aad4cd1bef9c2a274334291c3999551c00000000b400483045022100de328bf0550164f0b6f1ae3bae78c6d417140808fa82f0da67be00cd8df41816022024b2fc2182789488fcca4984e7af3123bd3e680e4f4be8eaeb3e547f24ca31ea01004c675241043af1ba0a3429d7890d91a7f9ff280b7130c3b5edd1c02613e9f770a05ec1977a76646d7223ff17f3881f07e08a15f31cb23e79a7871202e52c678f5b9af6823021033f1654d3187087ad5f7f220814c94232945825663d55431345aca8a82746780552aefeffffff0118c69a3b0000000017a91455f415046dfb9e578426fbcbfb480a66b0782480876e000000"}'  
 ```
-<!--
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': '*/*'
-}
-
-r = requests.put('https://virtserver.swaggerhub.com/Atomicbox/Wallet-to-ATOMIC-APIs/1.0/api/v1/users/{user-id}/unlock/timed', params={
-
-}, headers = headers)
-
-print r.json()
-
-``` -->
 
 ### Return Codes
 Status|Meaning|Description
@@ -369,11 +282,11 @@ Status|Meaning|Description
 # Payments
 
 
-## Get payment details
+## Get Payment Details
 
 Gets the required information for payment confirmation.
 
-`GET /api/v1/users/{user-id}/payments/{payment-id}`
+`GET /api/general/v1/users/{user-id}/payments/{payment-id}`
 
 <aside class="success">
 ATOMIC will provide the raw escrow transaction, as well as the required details for the payment transaction
@@ -383,21 +296,8 @@ ATOMIC will provide the raw escrow transaction, as well as the required details 
 > Code samples
 
 ```shell
-curl -request GET https://atomic.org/wallet-to-atomic/api/v1/users/{user-id}/payments/{payment-id} 
+curl -request GET https://atomic.org/api/general/v1/users/{user-id}/payments/{payment-id} 
 ```
-<!--
-```python
-import requests
-headers = {
-  'Accept': 'application/json'
-}
-
-r = requests.get('https://virtserver.swaggerhub.com/Atomicbox/Wallet-to-ATOMIC-APIs/1.0/api/v1/users/{user-id}/payments/{payment-id}', params={
-}, headers = headers)
-
-print r.json()
-
-``` -->
 
 > Example responses
 
@@ -432,13 +332,13 @@ Status|Meaning|Description
 409| Conflict | Payment already performed
 
 
-## Confirm payment
+## Confirm Payment
 
 Confirms the payment.
 
 Providing ATOMIC with the signed escrow transactions which was obtained from the "GET" command, and the created and signed pay transaction
 
-`PUT /api/v1/users/{user-id}/payments/{payment-id}`
+`PUT /api/general/v1/users/{user-id}/payments/{payment-id}`
 
 
 > Body parameters
@@ -454,27 +354,11 @@ Providing ATOMIC with the signed escrow transactions which was obtained from the
 > Code samples
 
 ```shell
-curl -request PUT https://atomic.org/wallet-to-atomic/api/v1/users/{user-id}/payments/{payment-id} 
---data '{"fully-signed-pay-transaction": "02000000000101fea70fbb492e7814ce3a31639c64a7819a95ee43580867cc751a3e83438289fb01000000232200200818c20455783996fd6c4d753751f4c3f49d9a474fed9a65c3ddb31a48afa7f8ffffffff0200e1f5050000000017a9144f22a11a711f126454fd24e9d589529ed592c93387b800a3350000000017a914e90e71bb600bb67ac5c67b0f512c521dc1d7eceb87030047304402206f67c13ae9c8ad897090f8660993adabec91c1a221558f7a0fd46fe5054d911d02205c28139ab369be614588923742ea9b3922701240c1e19ab27983a1755ca8653c01255121032cea817f794f4afa7061a1187bb8108bfff0096c61f69468ce800629cebec87951ae00000000",
-
-"partially-signed-escrow-transaction": "0200000001fea70fbb492e7814ce3a31639c64a7819a95ee43580867cc751a3e83438289fb00000000b400483045022100c37d9f6bef9575be912e1963815f50efaa269779d7edcc72333044f14b3c52500220785d9bb8636125e30ca20a3b300b02f9566b33e0d5610b49393187a9c9ea603d01004c675241041256ae5095da25836abbe95f06f54ec27a745d66df3baa98f7ca1c54bfd12e26b279680220f779d059c3f168a7bbbc35344f5ff82b58d8329e920daba2586b3121032cea817f794f4afa7061a1187bb8108bfff0096c61f69468ce800629cebec87952aeffffffff0200c2eb0b0000000017a9144f22a11a711f126454fd24e9d589529ed592c93387dc13ae2f0000000017a914119cd81d4e3c2fab3e7edb5556ddaf5d1df893248700000000"
-}'
+curl -request PUT https://atomic.org/api/general/v1/users/{user-id}/payments/{payment-id} \ 
+-H 'Content-Type: application/json' --data '{
+    "fully-signed-pay-transaction": \ "02000000000101fea70fbb492e7814ce3a31639c64a7819a95ee43580867cc751a3e83438289fb01000000232200200818c20455783996fd6c4d753751f4c3f49d9a474fed9a65c3ddb31a48afa7f8ffffffff0200e1f5050000000017a9144f22a11a711f126454fd24e9d589529ed592c93387b800a3350000000017a914e90e71bb600bb67ac5c67b0f512c521dc1d7eceb87030047304402206f67c13ae9c8ad897090f8660993adabec91c1a221558f7a0fd46fe5054d911d02205c28139ab369be614588923742ea9b3922701240c1e19ab27983a1755ca8653c01255121032cea817f794f4afa7061a1187bb8108bfff0096c61f69468ce800629cebec87951ae00000000", \
+    "partially-signed-escrow-transaction": \ "0200000001fea70fbb492e7814ce3a31639c64a7819a95ee43580867cc751a3e83438289fb00000000b400483045022100c37d9f6bef9575be912e1963815f50efaa269779d7edcc72333044f14b3c52500220785d9bb8636125e30ca20a3b300b02f9566b33e0d5610b49393187a9c9ea603d01004c675241041256ae5095da25836abbe95f06f54ec27a745d66df3baa98f7ca1c54bfd12e26b279680220f779d059c3f168a7bbbc35344f5ff82b58d8329e920daba2586b3121032cea817f794f4afa7061a1187bb8108bfff0096c61f69468ce800629cebec87952aeffffffff0200c2eb0b0000000017a9144f22a11a711f126454fd24e9d589529ed592c93387dc13ae2f0000000017a914119cd81d4e3c2fab3e7edb5556ddaf5d1df893248700000000" }'
 ```
-
-<!--
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json'
-}
-
-r = requests.put('https://virtserver.swaggerhub.com/Atomicbox/Wallet-to-ATOMIC-APIs/1.0/api/v1/users/{user-id}/payments/{payment-id}', params={
-
-}, headers = headers)
-
-print r.json()
-
-``` -->
 
 ### Return Codes
 Status|Meaning|Description
@@ -486,31 +370,17 @@ Status|Meaning|Description
 
 # General Information
 
-## Get ATOMIC generic information
+## Get ATOMIC Generic Ißnformation
 
 Get general ATOMIC information
 
-`GET /api/v1/info`
+`GET /api/general/v1/info`
 
 > Code samples
 
 ```shell
-curl -request GET https://atomic.org/wallet-to-atomic/api/v1/info 
+curl -request GET https://atomic.org/api/general/v1/info 
 ```
-<!--
-```python
-import requests
-headers = {
-  'Accept': 'application/json'
-}
-
-r = requests.get('https://virtserver.swaggerhub.com/Atomicbox/Wallet-to-ATOMIC-APIs/1.0/api/v1/info', params={
-
-}, headers = headers)
-
-print r.json()
-
-``` -->
 
 > Example responses
 
@@ -531,7 +401,7 @@ Status|Meaning|Description
 
 # Trade Platform APIs
  
- This section will detail the APIs from an ATOMIC powered wallet to an ATOMIC powered Trading Platform
+ This section will detail the APIs from an ATOMIC powered wallet to an ATOMIC powered P2P Trading Platform
  
 ## Create Order
  
@@ -557,18 +427,19 @@ Status|Meaning|Description
  > Code samples
  
  ```shell
- curl -request PUT https://atomic.org/api/trades/v1/users/{user-id}/orders/{order-id} 
- --data '{
-     "source-coin": "BTC",
-     "source-amount": 1010000000,
-     "destination-coin": "ETH",
-     "destination-amount": 300500000000000000000,
-     "destination-address": "0xe8e49e84480edd95aaae50a340422cb30057963b",
-     "escrow-coin": "BTC",
-     "escrow-amount": 1010000000,
-     "escrow-address": "2NF1qc9L4j1tyfqzzLdRzRqoVftHznSeC6K"
+ curl -request PUT https://atomic.org/api/trades/v1/users/{user-id}/orders/{order-id} \ 
+ -H 'Content-Type: application/json' --data '{ \
+     "source-coin": "BTC",        \
+     "source-amount": 1010000000, \
+     "destination-coin": "ETH",   \
+     "destination-amount": 300500000000000000000, \
+     "destination-address": "0xe8e49e84480edd95aaae50a340422cb30057963b", \
+     "escrow-coin": "BTC",        \
+     "escrow-amount": 1010000000, \
+     "escrow-address": "2NF1qc9L4j1tyfqzzLdRzRqoVftHznSeC6K" \
      }'
  ```
+ 
 ### Return Codes
  Status|Meaning|Description
  ---|---|---
@@ -581,7 +452,9 @@ Status|Meaning|Description
 
 Retrieves the existing information for a specific order.
 
+<aside class="success">
 If the order is currently in an active deal - will also return the payment ID
+</aside>
 
 `GET /api/trades/v1/users/{user-id}/orders/{order-id}`
 
@@ -599,10 +472,11 @@ curl -request GET https://atomic.org/api/trades/v1/users/{user-id}/orders/{order
 {
     "order-id": "d290f1ee-6c54-4b01-90e6-d701748f0100",
     "user-id": "d290f1ee-6c54-4b01-90e6-d701748f0200",
-    "status": "Pending match",
+    "status": "IN_DEAL",
     "payment-id": "d290f1ee-6c54-4b01-90e6-d701748f0300"
 }
 ```
+
 ### Return Codes
 Status|Meaning|Description
 ---|---|---
@@ -621,6 +495,7 @@ Deletes a given order, if allowed
 curl -request DELETE https://atomic.org/api/trades/v1/users/{user-id}/orders/{order-id}
 
 ```
+
 ### Return Codes
 Status|Meaning|Description
 ---|---|---
@@ -631,7 +506,11 @@ Status|Meaning|Description
 
 ## Get Supported Coins
 
-List of supported coins - by default all pairs are supported
+List of supported coins
+
+<aside class="success">
+by default all pairs are supported
+</aside>
 
 `GET /api/trades/v1/coins`
 
@@ -644,6 +523,7 @@ curl -request GET https://atomic.org/api/trades/v1/coins'
 > Example responses
 
 > 200 Response
+
 ```json
 {
    [BTC, LTC, DASH, BSV, DOGE, BCH, ETC, ETH] 
@@ -652,16 +532,15 @@ curl -request GET https://atomic.org/api/trades/v1/coins'
 
 ## Get Generic Info
 
-Generic info from the trading platform
+Generic info from the P2P trading platform
 
 `GET /api/trades/v1/info`
 
 > Code samples
 
 ```shell
-curl -request https://atomic.org/api/trades/v1/info'
+curl -request GET https://atomic.org/api/trades/v1/info'
 ```
-
 
 > Example responses
 
@@ -677,17 +556,17 @@ curl -request https://atomic.org/api/trades/v1/info'
 
 # Credit Line Platforms APIs
 
+This section will detail the APIs from an ATOMIC powered wallet to an ATOMIC powered Credit Line provider
+
 ## Request Credit Line
 
-
-Request/Update Credit Line amount.
+Request/Update Credit Line amount
 
 <aside class="success">
 Returns a payment ID in case such is required
 </aside>
 
 `PUT /api/credit-line/v1/users/{user-id}/credits/{credit-id}`
-
 
 > Body parameters
 
@@ -701,8 +580,8 @@ Returns a payment ID in case such is required
 > Code samples
 
 ```shell
-curl -request PUT  PUT https://atomic.org/api/credit-line/v1/users/{user-id}/credits/{credit-id} \
---data '{ "coin-type": "BTC", "amount": 1050000000}'
+curl -request PUT https://atomic.org/api/credit-line/v1/users/{user-id}/credits/{credit-id} \
+-H 'Content-Type: application/json' --data '{ "coin-type": "BTC", "amount": 1050000000}'
 ```
 
 > Example responses
@@ -717,6 +596,7 @@ curl -request PUT  PUT https://atomic.org/api/credit-line/v1/users/{user-id}/cre
     "payment-id": "d290f1ee-6c54-4b01-90e6-d701748f0300"
 }
 ```
+
 ### Return Codes
 Status|Meaning|Description
 ---|---|---
@@ -728,14 +608,18 @@ Status|Meaning|Description
 
 ## Get Credit Line Details
 
-Gets the user's credit-line information - with the current payment ID if requried
+Gets the user's Credit Line information 
+
+<aside class="success">
+Returns a payment ID in case such is required
+</aside>
 
 `GET /api/credit-line/v1/users/{user-id}/credits/{credit-id}`
 
 > Code samples
 
 ```shell
-curl -request GET  PUT https://atomic.org/api/credit-line/v1/users/{user-id}/credits/{credit-id}
+curl -request GET https://atomic.org/api/credit-line/v1/users/{user-id}/credits/{credit-id}
 ```
 
 > Example responses
@@ -760,7 +644,7 @@ Status|Meaning|Description
 
 ## Delete Credit Line
 
-Request to remove a specific credit-line
+Request to remove a specific Credit Line
 
 `DELETE /api/credit-line/v1/users/{user-id}/credits/{credit-id}`
 
@@ -768,8 +652,8 @@ Request to remove a specific credit-line
 
 ```shell
 curl -request DELETE  PUT https://atomic.org/api/credit-line/v1/users/{user-id}/credits/{credit-id}
-
 ```
+
 ### Return Codes
 Status|Meaning|Description|Schema|
 ---|---|---|---|
@@ -777,3 +661,430 @@ Status|Meaning|Description|Schema|
 403| Forbidden | Credit Line not yet settled - delete not allowed
 404| Not Found | User/Credit Line not found
 
+## Get User Details
+
+Gets the list of all lines of credit for a given user
+
+`GET /api/credit-line/v1/users/{user-id}`
+
+> Code samples
+
+```shell
+curl -request GET https://atomic.org/api/credit-line/v1/users/{user-id}
+```
+
+> Example responses
+
+> 200 Response
+
+```json
+[
+    {
+        "user-id": "d290f1ee-6c54-4b01-90e6-d701748f0200",
+        "amount": 1050000000,
+        "coin-type": "BTC",
+        "payment-id": "d290f1ee-6c54-4b01-90e6-d701748f0300"
+    }
+]
+```
+
+### Return Codes
+Status|Meaning|Description
+---|---|---
+200| OK | OK
+404| Not Found | User not found
+
+
+## Get Supported Coins
+
+List of supported coins
+
+`GET /api/credit-line/v1/coins`
+
+> Code samples
+
+```shell
+curl -request GET https://atomic.org/api/credit-line/v1/coins
+```
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+    [BTC, LTC, DASH, BSV, DOGE, BCH, ETC, ETH] 
+}
+```
+
+## Get Generic Info
+
+> Code samples
+
+Generic info from the Credit Line provider
+
+`GET /api/credit-line/v1/info`
+
+```shell
+curl -request GET https://atomic.org/api/credit-line/v1/info
+```
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+    "business-name": "Lifeline - Credit Lines",
+    "business-id": "a450f1fa-6d54-4b01-90e6-d701748f0400",
+    "api-version": "v1"
+}
+```
+
+# Loan Platform APIs
+
+This section will detail the APIs from an ATOMIC powered wallet to an ATOMIC powered P2P Loans Platform
+
+## Request Loan
+
+Request a new loan or update an existing loan
+
+`PUT /api/loans/v1/borrowers/{user-id}/loans/{loan-id}`
+
+> Body parameter
+
+```json
+{
+    "user-id": "d290f1ee-6c54-4b01-90e6-d701748f0200",
+    "coin-type": "BTC",
+    "amount": 560000000,
+    "destination-address": "2NF1qc9L4j1tyfqzzLdRzRqoVftHznSeC6K",
+    "max-interest": 7.1,
+    "loan-duration-in-days": 527
+}
+```
+
+> Code samples
+
+```shell
+curl -request PUT https://atomic.org/api/loans/v1/borrowers/{user-id}/loans/{loan-id} \
+-H 'Content-Type: application/json' --data '{ \
+         "user-id": "d290f1ee-6c54-4b01-90e6-d701748f0200", \
+         "coin-type": "BTC", \
+         "amount": 560000000, \
+         "destination-address": "2NF1qc9L4j1tyfqzzLdRzRqoVftHznSeC6K", \
+         "max-interest": 7.1, \
+         "loan-duration-in-days": 527 \
+}'
+```
+
+### Return Codes
+Status|Meaning|Description
+---|---|---
+201| Created | Loan request created
+400| Bad Request | Invalid input
+403| Forbidden | Can't update loan to an amount lower than already received
+409| Conflict | Loan already exists
+
+
+## Get Loan Details
+
+Gets the user's loan information
+
+`GET /api/loans/v1/borrowers/{user-id}/loans/{loan-id}`
+
+> Code samples
+
+```shell
+curl -request GET https://atomic.org/api/loans/v1/borrowers/{user-id}/loans/{loan-id}
+```
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+    "user-id": "d290f1ee-6c54-4b01-90e6-d701748f0200",
+    "loan-id": "d290f1ee-6c54-4b01-90e6-d701748f0500",
+    "coin-type": "BTC",
+    "max-interest-rate": 7.1,
+    "requested-amount": 560000000,
+    "filled-amount": 420000000,
+    "loan-details":
+        {
+            "coin-type": "BTC",
+            "amount": 420000000,
+            "amount-due": 43500000,
+            "interest": 6.9,
+            "duration-in-days": 527,
+            "expiration-date": 1595697538
+        }
+}
+```
+
+
+### Return Codes
+Status|Meaning|Description
+---|---|---
+200| OK | Loan found
+404| Not Found | User/Loan not found
+
+
+## Delete Loan
+
+Request to delete a user's loan
+
+`DELETE /api/loans/v1/borrowers/{user-id}/loans/{loan-id}`
+
+> Code samples
+
+```shell
+curl -request DELETE https://atomic.org/api/loans/v1/borrowers/{user-id}/loans/{loan-id}
+```
+
+### Return Codes
+Status|Meaning|Description
+---|---|---
+200| OK | Loan deleted successfully
+403| Forbidden | Loan is in progress, unable to delete
+404| Not Found | User/Loan not found
+
+## List Loans
+
+Gets the user's loans information
+
+`GET /api/loans/v1/borrowers/{user-id}`
+
+> Code samples
+
+```shell
+curl -request GET https://atomic.org/api/loans/v1/borrowers/{user-id}
+```
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+    "user-id": "d290f1ee-6c54-4b01-90e6-d701748f0200",
+    "loan-id": "d290f1ee-6c54-4b01-90e6-d701748f0500",
+    "coin-type": "BTC",
+    "max-interest-rate": 7.1,
+    "requested-amount": 560000000,
+    "filled-amount": 420000000,
+    "num-active-loans": 1,
+    "active-loans": [
+            {
+            "coin-type": "BTC",
+            "amount": 420000000,
+            "amount-due": 43500000,
+            "interest": 6.9,
+            "duration-in-days": 527,
+            "expiration-date": 1595697538
+            }
+        ]
+    }
+```
+
+### Return Codes
+Status|Meaning|Description
+---|---|---
+200| OK | OK
+404| Not Found | User not found
+
+## Create Investment
+
+Create a new investment/Update an existing investment
+
+`PUT /api/loans/v1/investors/{user-id}/investments/{investment-id}`
+
+> Body parameter
+
+```json
+{
+    "coin-type": "BTC",
+    "amount": 1000000000,
+    "min-interest": 5.4,
+    "max-loan-duration-in-days": 527,
+    "expiration-date": 1737307138,
+    "destination-address": "2NBkFMN1h5Jchqwh4Fp5JYcUEwNuXnU9cR2"
+}
+```
+
+> Code samples
+
+```shell
+curl -request PUT https://atomic.org/api/loans/v1/investors/{user-id}/investments/{investment-id} \
+-H 'Content-Type: application/json' --data '{ \
+          "coin-type": "BTC",   \
+          "amount": 1000000000, \
+          "min-interest": 5.4,  \
+          "max-loan-duration-in-days": 527, \
+          "expiration-date": 1737307138,    \
+          "destination-address": "2NBkFMN1h5Jchqwh4Fp5JYcUEwNuXnU9cR2"}'
+```
+
+### Return Codes
+Status|Meaning|Description
+---|---|---
+201 | Created | Investment created/updated
+400 | Bad Request | Invalid input
+406 | Not Acceptable | Cannot update amount to be less than amount in active loans
+409 | Conflict | Investment is up to date
+
+
+## Get Investment Details
+
+Gets the user's investment information
+
+`GET /api/loans/v1/investors/{user-id}/investments/{investment-id}`
+
+> Code samples
+
+```shell
+curl -request GET https://atomic.org/api/loans/v1/investors/{user-id}/investments/{investment-id}
+```
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+    "user-id": "d290f1ee-6c54-4b01-90e6-d701748f0200",
+    "investment-summary": { "coin-type": "BTC", "amount": 1000000000},
+    "amount-in-active-loans": {"coin-type": "BTC","amount": 420000000},
+    "num-active-loans": 1,
+    "active-loans": [
+        {
+        "coin-type": "BTC",
+        "amount": 420000000,
+        "amount-due": 43500000,
+        "interest": 6.9,
+        "duration-in-days": 527,
+        "expiration-date": 1595697538
+        }
+    ]
+}
+```
+
+### Return Codes
+Status|Meaning|Description
+---|---|---
+200| OK | Investment found
+404| Not Found | User/Investment not found
+
+
+## Delete Investment
+
+Request to delete a user's investment
+
+`DELETE /api/loans/v1/investors/{user-id}/investments/{investment-id}`
+
+> Code samples
+
+```shell
+curl -request DELETE https://atomic.org/api/loans/v1/investors/{user-id}/investments/{investment-id}
+```
+
+### Return Codes
+Status|Meaning|Description
+---|---|---
+200| OK | Investment deleted successfully
+403| Forbidden | Investment is in progress, unable to delete
+404| Not Found |  User/Investment not found
+
+
+## List Investments
+
+Gets the user's investments information
+
+`GET /api/loans/v1/investors/{user-id}`
+
+> Code samples
+
+```shell
+curl -request GET https://atomic.org/api/loans/v1/investors/{user-id}
+```
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+    "user-id": "d290f1ee-6c54-4b01-90e6-d701748f0200",
+    "num-investments": 1,
+    "investment-info": [
+        {
+            "investment-summary": { "coin-type": "BTC", "amount": 1000000000},
+            "amount-in-active-loans": {"coin-type": "BTC","amount": 420000000},
+            "num-active-loans": 1,
+            "active-loans": [
+                {
+                "coin-type": "BTC",
+                "amount": 420000000,
+                "amount-due": 43500000,
+                "interest": 6.9,
+                "duration-in-days": 527,
+                "expiration-date": 1595697538
+                }
+            ]
+        }
+    ]
+}
+```
+
+### Return Codes
+Status|Meaning|Description
+---|---|---
+200 | OK | OK
+404 | Not Found | User not found
+
+## Get Supported Coins
+
+List of supported coins
+
+`GET /api/loans/v1/coins`
+
+> Code samples
+
+```shell
+curl -request GET https://atomic.org/api/loans/v1/coins
+```
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+    [BTC, LTC, DASH, BSV, DOGE, BCH, ETC, ETH] 
+}
+```
+
+## Get Generic Info
+
+> Code samples
+
+Generic info from the P2P Loans business
+
+`GET /api/loans/v1/info`
+
+```shell
+curl -request GET https://atomic.org/api/loans/v1/info
+```
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+    "business-name": "Shark - P2P Lines",
+    "business-id": "a418bcfa-abcd-1234-90e6-d701748f0400",
+    "api-version": "v1"
+}
+```
