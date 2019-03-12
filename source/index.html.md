@@ -45,7 +45,7 @@ Register user with ATOMIC - creating a Private Collateral address
 > Code samples
 
 ```shell
-curl -request PUT http://atomicbox.org/wallet-to-atomic/api/v1/users/{user-id} 
+curl -request PUT https://atomic.org/wallet-to-atomic/api/v1/users/{user-id} 
 --data '{"public-key": "027a478fd4a7c3b8e43cfd2eaf0e439158b2b874dace2b598c585e88f67eeb8655", "refund-address": "2NF1qc9L4j1tyfqzzLdRzRqoVftHznSeC6K"}'
 ```
 
@@ -95,7 +95,7 @@ Retrieves existing information for a specific user
 > Code samples
 
 ```shell
-curl -request GET http://atomicbox.org/wallet-to-atomic/api/v1/users/{user-id}
+curl -request GET https://atomic.org/wallet-to-atomic/api/v1/users/{user-id}
 ```
 <!--
 ```python
@@ -163,7 +163,7 @@ NOTE: An on demand unlock cannot be processed during ongoing transactions
 > Code samples
 
 ```shell
-curl -request GET http://atomicbox.org/wallet-to-atomic/api/v1/users/{user-id}/unlock 
+curl -request GET https://atomic.org/wallet-to-atomic/api/v1/users/{user-id}/unlock 
 --data '{"amount": 498000000 }'
 ```
 <!--
@@ -222,7 +222,7 @@ NOTE: An on demand unlock cannot be processed during ongoing transactions
 
 > Code samples
 ```shell
-curl -request PUT http://atomicbox.org/wallet-to-atomic/api/v1/users/{user-id}/unlock 
+curl -request PUT https://atomic.org/wallet-to-atomic/api/v1/users/{user-id}/unlock 
 --data '{"partially-signed-unlock-tx":      "02000000018e62016f5fe7fad1f7f343cdf900f8c6aad4cd1bef9c2a274334291c3999551c00000000b400483045022100de328bf0550164f0b6f1ae3bae78c6d417140808fa82f0da67be00cd8df41816022024b2fc2182789488fcca4984e7af3123bd3e680e4f4be8eaeb3e547f24ca31ea01004c675241043af1ba0a3429d7890d91a7f9ff280b7130c3b5edd1c02613e9f770a05ec1977a76646d7223ff17f3881f07e08a15f31cb23e79a7871202e52c678f5b9af6823021033f1654d3187087ad5f7f220814c94232945825663d55431345aca8a82746780552aefeffffff0118c69a3b0000000017a91455f415046dfb9e578426fbcbfb480a66b0782480876e000000"}'
 ```
 
@@ -277,7 +277,7 @@ Transactions will not be allowed near the target unlock time
 > Code samples
 
 ```shell
-curl -request GET http://atomicbox.org/wallet-to-atomic/api/v1/users/{user-id}/unlock/timed 
+curl -request GET https://atomic.org/wallet-to-atomic/api/v1/users/{user-id}/unlock/timed 
 --data '{"amount": 498000000, "nLockTime": 1548885799}'  
 ```
 <!--
@@ -337,7 +337,7 @@ The timed transaction will be stored by the user, and submitted when the lock ti
 > Code samples
 
 ```shell
-curl -request PUT http://atomicbox.org/wallet-to-atomic/api/v1/users/{user-id}/unlock/timed 
+curl -request PUT https://atomic.org/wallet-to-atomic/api/v1/users/{user-id}/unlock/timed 
 --data '{"partially-signed-tx": "02000000018e62016f5fe7fad1f7f343cdf900f8c6aad4cd1bef9c2a274334291c3999551c00000000b400483045022100de328bf0550164f0b6f1ae3bae78c6d417140808fa82f0da67be00cd8df41816022024b2fc2182789488fcca4984e7af3123bd3e680e4f4be8eaeb3e547f24ca31ea01004c675241043af1ba0a3429d7890d91a7f9ff280b7130c3b5edd1c02613e9f770a05ec1977a76646d7223ff17f3881f07e08a15f31cb23e79a7871202e52c678f5b9af6823021033f1654d3187087ad5f7f220814c94232945825663d55431345aca8a82746780552aefeffffff0118c69a3b0000000017a91455f415046dfb9e578426fbcbfb480a66b0782480876e000000"}'  
 ```
 <!--
@@ -383,7 +383,7 @@ ATOMIC will provide the raw escrow transaction, as well as the required details 
 > Code samples
 
 ```shell
-curl -request GET http://atomicbox.org/wallet-to-atomic/api/v1/users/{user-id}/payments/{payment-id} 
+curl -request GET https://atomic.org/wallet-to-atomic/api/v1/users/{user-id}/payments/{payment-id} 
 ```
 <!--
 ```python
@@ -454,7 +454,7 @@ Providing ATOMIC with the signed escrow transactions which was obtained from the
 > Code samples
 
 ```shell
-curl -request PUT http://atomicbox.org/wallet-to-atomic/api/v1/users/{user-id}/payments/{payment-id} 
+curl -request PUT https://atomic.org/wallet-to-atomic/api/v1/users/{user-id}/payments/{payment-id} 
 --data '{"fully-signed-pay-transaction": "02000000000101fea70fbb492e7814ce3a31639c64a7819a95ee43580867cc751a3e83438289fb01000000232200200818c20455783996fd6c4d753751f4c3f49d9a474fed9a65c3ddb31a48afa7f8ffffffff0200e1f5050000000017a9144f22a11a711f126454fd24e9d589529ed592c93387b800a3350000000017a914e90e71bb600bb67ac5c67b0f512c521dc1d7eceb87030047304402206f67c13ae9c8ad897090f8660993adabec91c1a221558f7a0fd46fe5054d911d02205c28139ab369be614588923742ea9b3922701240c1e19ab27983a1755ca8653c01255121032cea817f794f4afa7061a1187bb8108bfff0096c61f69468ce800629cebec87951ae00000000",
 
 "partially-signed-escrow-transaction": "0200000001fea70fbb492e7814ce3a31639c64a7819a95ee43580867cc751a3e83438289fb00000000b400483045022100c37d9f6bef9575be912e1963815f50efaa269779d7edcc72333044f14b3c52500220785d9bb8636125e30ca20a3b300b02f9566b33e0d5610b49393187a9c9ea603d01004c675241041256ae5095da25836abbe95f06f54ec27a745d66df3baa98f7ca1c54bfd12e26b279680220f779d059c3f168a7bbbc35344f5ff82b58d8329e920daba2586b3121032cea817f794f4afa7061a1187bb8108bfff0096c61f69468ce800629cebec87952aeffffffff0200c2eb0b0000000017a9144f22a11a711f126454fd24e9d589529ed592c93387dc13ae2f0000000017a914119cd81d4e3c2fab3e7edb5556ddaf5d1df893248700000000"
@@ -495,7 +495,7 @@ Get general ATOMIC information
 > Code samples
 
 ```shell
-curl -request GET http://atomicbox.org/wallet-to-atomic/api/v1/info 
+curl -request GET https://atomic.org/wallet-to-atomic/api/v1/info 
 ```
 <!--
 ```python
