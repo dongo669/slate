@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>API Reference</title>
+    <title>Wallet to ATOMIC APIs</title>
 
     <style>
       .highlight table td { padding: 5px; }
@@ -201,7 +201,7 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;,&quot;javascript&quot;]">
+  <body class="index" data-languages="[&quot;shell&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -211,10 +211,7 @@
     <div class="toc-wrapper">
       <img src="images/logo.png" class="logo" alt="Logo" />
         <div class="lang-selector">
-              <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
-              <a href="#" data-language-name="python">python</a>
-              <a href="#" data-language-name="javascript">javascript</a>
+              <a href="#" data-language-name="shell">cURL</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -225,279 +222,707 @@
             <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
           </li>
           <li>
-            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
-          </li>
-          <li>
-            <a href="#kittens" class="toc-h1 toc-link" data-title="Kittens">Kittens</a>
+            <a href="#user-management" class="toc-h1 toc-link" data-title="User Management">User Management</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-all-kittens" class="toc-h2 toc-link" data-title="Get All Kittens">Get All Kittens</a>
+                    <a href="#create-new-user" class="toc-h2 toc-link" data-title="Create new user">Create new user</a>
                   </li>
                   <li>
-                    <a href="#get-a-specific-kitten" class="toc-h2 toc-link" data-title="Get a Specific Kitten">Get a Specific Kitten</a>
-                  </li>
-                  <li>
-                    <a href="#delete-a-specific-kitten" class="toc-h2 toc-link" data-title="Delete a Specific Kitten">Delete a Specific Kitten</a>
+                    <a href="#get-user-39-s-information" class="toc-h2 toc-link" data-title="Get user's information">Get user's information</a>
                   </li>
               </ul>
           </li>
           <li>
-            <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
+            <a href="#unlock-operations" class="toc-h1 toc-link" data-title="Unlock Operations">Unlock Operations</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-on-demand-unlock" class="toc-h2 toc-link" data-title="Get on-demand unlock">Get on-demand unlock</a>
+                  </li>
+                  <li>
+                    <a href="#submit-an-on-demand-unlock" class="toc-h2 toc-link" data-title="Submit an on-demand unlock">Submit an on-demand unlock</a>
+                  </li>
+                  <li>
+                    <a href="#get-timed-unlock" class="toc-h2 toc-link" data-title="Get timed unlock">Get timed unlock</a>
+                  </li>
+                  <li>
+                    <a href="#submit-timed-unlock" class="toc-h2 toc-link" data-title="Submit timed unlock">Submit timed unlock</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#payments" class="toc-h1 toc-link" data-title="Payments">Payments</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-payment-details" class="toc-h2 toc-link" data-title="Get payment details">Get payment details</a>
+                  </li>
+                  <li>
+                    <a href="#confirm-payment" class="toc-h2 toc-link" data-title="Confirm payment">Confirm payment</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#general-information" class="toc-h1 toc-link" data-title="General Information">General Information</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-atomic-generic-information" class="toc-h2 toc-link" data-title="Get ATOMIC generic information">Get ATOMIC generic information</a>
+                  </li>
+              </ul>
           </li>
       </ul>
         <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
-            <li><a href='https://github.com/lord/slate'>Documentation Powered by Slate</a></li>
+            <li><a href='https://www.atomic.org'>Visit ATOMIC home page</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
-
-<p>We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
-
-<p>This example API documentation page was created with <a href="https://github.com/lord/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&#39;s documentation.</p>
-<h1 id='authentication'>Authentication</h1>
+        <!-- Generator: Widdershins v3.6.6 -->
+<h1 id='introduction'>Introduction</h1>
 <blockquote>
-<p>To authorize, use this code:</p>
-</blockquote>
-<pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-</code></pre>
-<blockquote>
-<p>Make sure to replace <code>meowmeowmeow</code> with your API key.</p>
+<p>Scroll down for code samples, example requests and responses. Select a language for code samples from the tabs above or the mobile navigation menu.</p>
 </blockquote>
 
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
+<p>This page details the APIs from an ATOMIC powered wallet towards ATOMIC P2P collateral guarantees service</p>
+<h1 id='user-management'>User Management</h1>
+<p>User management related APIs</p>
+<h2 id='create-new-user'>Create new user</h2>
+<p>Register user with ATOMIC - creating a Private Collateral address</p>
 
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
+<p><code>PUT /api/v1/users/{user-id}</code></p>
 
-<p><code>Authorization: meowmeowmeow</code></p>
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-<h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">kittens</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">();</span>
-</code></pre>
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre>
-<p>This endpoint retrieves all kittens.</p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code>GET http://example.com/api/kittens</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
-</tr>
-<tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
-</tr>
-</tbody></table>
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-<h2 id='get-a-specific-kitten'>Get a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>Body parameter</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+    </span><span class="s2">"public-key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"027a478fd4a7c3b8e43cfd2eaf0e439158b2b874dace2b598c585e88f67eeb8655"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"refund-address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2NF1qc9L4j1tyfqzzLdRzRqoVftHznSeC6K"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves a specific kitten.</p>
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-<h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ID</td>
-<td>The ID of the kitten to retrieve</td>
-</tr>
-</tbody></table>
-<h2 id='delete-a-specific-kitten'>Delete a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -X DELETE
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-</code></pre>
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>Code samples</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -request PUT http://atomicbox.org/wallet-to-atomic/api/v1/users/<span class="o">{</span>user-id<span class="o">}</span> 
+--data <span class="s1">'{"public-key": "027a478fd4a7c3b8e43cfd2eaf0e439158b2b874dace2b598c585e88f67eeb8655", "refund-address": "2NF1qc9L4j1tyfqzzLdRzRqoVftHznSeC6K"}'</span>
+</code></pre>
+<!-- 
+```python
+import requests
+headers = {
+'Content-Type': 'application/json',
+'Accept': 'application/json'
+}
+
+r = requests.put('https://virtserver.swaggerhub.com/Atomicbox/Wallet-to-ATOMIC-APIs/1.0/api/v1/users/{user-id}', params={
+
+}, headers = headers)
+
+print r.json()
+
+``` -->
+
+<blockquote>
+<p>Example responses</p>
+
+<p>201 Response</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"deleted"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">":("</span><span class="w">
+    </span><span class="s2">"smart-credit-info"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"atomic-public-key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"022d4a565aa6845c72bd2a732d3d4971704e8403942766b59d68e0dcf62713443c"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"smart-credit-address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2Mx1EM2Bsd8qzV2yFv3XxemKaqW7ZfCKAFN"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"smart-credit-redeem-script"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5221022d4a565aa6845c72bd2a732d3d4971704e8403942766b59d68e0dcf62713443c21027a478fd4a7c3b8e43cfd2eaf0e439158b2b874dace2b598c585e88f67eeb865552ae"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"smart-credit-script-pub-key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a91434331a9a1282cb1f58a383eb3d74bbbe671161ba87"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint deletes a specific kitten.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
-<p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters-2'>URL Parameters</h3>
+</span></code></pre><h3 id='return-codes'>Return codes</h3>
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ID</td>
-<td>The ID of the kitten to delete</td>
-</tr>
-</tbody></table>
-<h1 id='errors'>Errors</h1>
-<aside class="notice">
-This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
-</aside>
-
-<p>The Kittn API uses the following error codes:</p>
-
-<table><thead>
-<tr>
-<th>Error Code</th>
+<th>Status</th>
 <th>Meaning</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>201</td>
+<td>OK</td>
+<td>User created succesfully</td>
+</tr>
 <tr>
 <td>400</td>
-<td>Bad Request -- Your request is invalid.</td>
+<td>Bad Request</td>
+<td>Invalid request or conflict with existing user</td>
 </tr>
 <tr>
-<td>401</td>
-<td>Unauthorized -- Your API key is wrong.</td>
+<td>409</td>
+<td>Already Exist</td>
+<td>User already exists</td>
 </tr>
+</tbody></table>
+<h2 id='get-user-39-s-information'>Get user&#39;s information</h2>
+<p>Retrieves existing information for a specific user</p>
+
+<p><code>GET /api/v1/users/{user-id}</code></p>
+
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -request GET http://atomicbox.org/wallet-to-atomic/api/v1/users/<span class="o">{</span>user-id<span class="o">}</span>
+</code></pre>
+<!--
+```python
+import requests
+headers = {
+'Accept': 'application/json'
+}
+
+r = requests.get('https://virtserver.swaggerhub.com/Atomicbox/Wallet-to-ATOMIC-APIs/1.0/api/v1/users/{user-id}', params={
+
+}, headers = headers)
+
+print r.json()
+
+``` -->
+
+<blockquote>
+<p>Example responses</p>
+
+<p>200 Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"smart-credit-info"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"atomic-public-key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"022d4a565aa6845c72bd2a732d3d4971704e8403942766b59d68e0dcf62713443c"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"smart-credit-address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2Mx1EM2Bsd8qzV2yFv3XxemKaqW7ZfCKAFN"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"smart-credit-redeem-script"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5221022d4a565aa6845c72bd2a732d3d4971704e8403942766b59d68e0dcf62713443c21027a478fd4a7c3b8e43cfd2eaf0e439158b2b874dace2b598c585e88f67eeb865552ae"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"smart-credit-script-pub-key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a91434331a9a1282cb1f58a383eb3d74bbbe671161ba87"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"smart-credit-balance"</span><span class="p">:</span><span class="w"> </span><span class="mi">102340000</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"inflight-transactions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"payment-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d290f1ee-6c54-4b01-90e6-d701748f0300"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"transaction-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"850b5f43b0b13837f2fea92818c73034c7337c963245eaa4eca8b78e00515fd0"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PENDING-CONFIRMATIONS"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='return-codes-2'>Return codes</h3>
+<table><thead>
 <tr>
-<td>403</td>
-<td>Forbidden -- The kitten requested is hidden for administrators only.</td>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+<td>OK</td>
 </tr>
 <tr>
 <td>404</td>
-<td>Not Found -- The specified kitten could not be found.</td>
+<td>Not Found</td>
+<td>User not found</td>
+</tr>
+</tbody></table>
+<h1 id='unlock-operations'>Unlock Operations</h1><h2 id='get-on-demand-unlock'>Get on-demand unlock</h2>
+<p>Get an on-demand unlock transaction from the user&#39;s private-collateral address</p>
+
+<p><code>GET /api/v1/users/{user-id}/unlock</code></p>
+
+<aside class="warning">
+NOTE: An on demand unlock cannot be processed during ongoing transactions
+</aside>
+
+<blockquote>
+<p>Body parameter</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">498000000</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -request GET http://atomicbox.org/wallet-to-atomic/api/v1/users/<span class="o">{</span>user-id<span class="o">}</span>/unlock 
+--data <span class="s1">'{"amount": 498000000 }'</span>
+</code></pre>
+<!--
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+r = requests.get('https://virtserver.swaggerhub.com/Atomicbox/Wallet-to-ATOMIC-APIs/1.0/api/v1/users/{user-id}/unlock', params={
+
+}, headers = headers)
+
+print r.json()
+
+``` -->
+
+<blockquote>
+<p>Example responses</p>
+
+<p>200 Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"raw-transaction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"02000000018e62016f5fe7fad1f7f343cdf900f8c6aad4cd1bef9c2a274334291c3999551c0000000000feffffff0118c69a3b0000000017a91455f415046dfb9e578426fbcbfb480a66b0782480876e000000"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='return-codes-3'>Return codes</h3>
+<table><thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+<td>On demand unlock transaction created</td>
 </tr>
 <tr>
-<td>405</td>
-<td>Method Not Allowed -- You tried to access a kitten with an invalid method.</td>
+<td>403</td>
+<td>Forbidden</td>
+<td>Cannot perform on-demand unlock at this time</td>
 </tr>
 <tr>
-<td>406</td>
-<td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
+<td>404</td>
+<td>Not Found</td>
+<td>User not found</td>
+</tr>
+</tbody></table>
+<h2 id='submit-an-on-demand-unlock'>Submit an on-demand unlock</h2>
+<p>Perform an unlock of funds from the user&#39;s private-collateral address.</p>
+
+<p>Should supply a signed unlock transaction which was obtained from the &quot;GET&quot; command, or created manually</p>
+
+<p><code>PUT /api/v1/users/{user-id}/unlock</code></p>
+
+<aside class="warning">
+NOTE: An on demand unlock cannot be processed during ongoing transactions
+</aside>
+
+<blockquote>
+<p>Body parameter</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"partially-signed-unlock-tx"</span><span class="p">:</span><span class="w"> </span><span class="s2">"02000000018e62016f5fe7fad1f7f343cdf900f8c6aad4cd1bef9c2a274334291c3999551c00000000b400483045022100de328bf0550164f0b6f1ae3bae78c6d417140808fa82f0da67be00cd8df41816022024b2fc2182789488fcca4984e7af3123bd3e680e4f4be8eaeb3e547f24ca31ea01004c675241043af1ba0a3429d7890d91a7f9ff280b7130c3b5edd1c02613e9f770a05ec1977a76646d7223ff17f3881f07e08a15f31cb23e79a7871202e52c678f5b9af6823021033f1654d3187087ad5f7f220814c94232945825663d55431345aca8a82746780552aefeffffff0118c69a3b0000000017a91455f415046dfb9e578426fbcbfb480a66b0782480876e000000"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Code samples
+<code>shell
+curl -request PUT http://atomicbox.org/wallet-to-atomic/api/v1/users/{user-id}/unlock 
+--data &#39;{&quot;partially-signed-unlock-tx&quot;:      &quot;02000000018e62016f5fe7fad1f7f343cdf900f8c6aad4cd1bef9c2a274334291c3999551c00000000b400483045022100de328bf0550164f0b6f1ae3bae78c6d417140808fa82f0da67be00cd8df41816022024b2fc2182789488fcca4984e7af3123bd3e680e4f4be8eaeb3e547f24ca31ea01004c675241043af1ba0a3429d7890d91a7f9ff280b7130c3b5edd1c02613e9f770a05ec1977a76646d7223ff17f3881f07e08a15f31cb23e79a7871202e52c678f5b9af6823021033f1654d3187087ad5f7f220814c94232945825663d55431345aca8a82746780552aefeffffff0118c69a3b0000000017a91455f415046dfb9e578426fbcbfb480a66b0782480876e000000&quot;}&#39;
+</code></p>
+</blockquote>
+
+<!--
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json'
+}
+
+r = requests.put('https://virtserver.swaggerhub.com/Atomicbox/Wallet-to-ATOMIC-APIs/1.0/api/v1/users/{user-id}/unlock', params={
+
+}, headers = headers)
+
+print r.json()
+
+``` -->
+
+<blockquote>
+<p>Example responses</p>
+
+<p>201 Response -  Unlock command recieved</p>
+</blockquote>
+<h3 id='return-codes-4'>Return codes</h3>
+<table><thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>201</td>
+<td>Created</td>
+<td>Unlock command recieved</td>
 </tr>
 <tr>
-<td>410</td>
-<td>Gone -- The kitten requested has been removed from our servers.</td>
+<td>400</td>
+<td>Bad Request</td>
+<td>Invalid input, object invalid</td>
 </tr>
 <tr>
-<td>418</td>
-<td>I&#39;m a teapot.</td>
+<td>403</td>
+<td>Forbidden</td>
+<td>Cannot perform unlock at this time</td>
 </tr>
 <tr>
-<td>429</td>
-<td>Too Many Requests -- You&#39;re requesting too many kittens! Slow down!</td>
+<td>404</td>
+<td>Not Found</td>
+<td>User not found</td>
 </tr>
 <tr>
-<td>500</td>
-<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
+<td>409</td>
+<td>Conflict</td>
+<td>Another unlock already in progress</td>
+</tr>
+</tbody></table>
+<h2 id='get-timed-unlock'>Get timed unlock</h2>
+<p>Get a timed unlock transaction from the user&#39;s smart credit address at the given lock time</p>
+
+<p><code>GET /api/v1/users/{user-id}/unlock/timed</code></p>
+
+<aside class="warning">
+Transactions will not be allowed near the target unlock time
+</aside>
+
+<blockquote>
+<p>Body parameter</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">498000000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"nLockTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1548885799</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -request GET http://atomicbox.org/wallet-to-atomic/api/v1/users/<span class="o">{</span>user-id<span class="o">}</span>/unlock/timed 
+--data <span class="s1">'{"amount": 498000000, "nLockTime": 1548885799}'</span>  
+</code></pre>
+<!--
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+r = requests.get('https://virtserver.swaggerhub.com/Atomicbox/Wallet-to-ATOMIC-APIs/1.0/api/v1/users/{user-id}/unlock/timed', params={
+
+}, headers = headers)
+
+print r.json()
+
+``` -->
+
+<blockquote>
+<p>Example responses</p>
+
+<p>200 Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"raw-transaction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"02000000018e62016f5fe7fad1f7f343cdf900f8c6aad4cd1bef9c2a274334291c3999551c0000000000feffffff0118c69a3b0000000017a91455f415046dfb9e578426fbcbfb480a66b0782480876e000000"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='return-codes-5'>Return codes</h3>
+<table><thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+<td>Transaction created</td>
 </tr>
 <tr>
-<td>503</td>
-<td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
+<td>400</td>
+<td>Bad Request</td>
+<td>Invalid input, object invalid</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+<td>Cannot create the requested timed unlock</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+<td>User not found</td>
+</tr>
+</tbody></table>
+<h2 id='submit-timed-unlock'>Submit timed unlock</h2>
+<p>Requests ATOMIC to sign the user-signed timed unlock transaction.</p>
+
+<aside class="success">
+The timed transaction will be stored by the user, and submitted when the lock time arrives
+</aside>
+
+<p><code>PUT /api/v1/users/{user-id}/unlock/timed</code></p>
+
+<blockquote>
+<p>Body parameter</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"partially-signed-tx"</span><span class="p">:</span><span class="w"> </span><span class="s2">"02000000018e62016f5fe7fad1f7f343cdf900f8c6aad4cd1bef9c2a274334291c3999551c00000000b400483045022100de328bf0550164f0b6f1ae3bae78c6d417140808fa82f0da67be00cd8df41816022024b2fc2182789488fcca4984e7af3123bd3e680e4f4be8eaeb3e547f24ca31ea01004c675241043af1ba0a3429d7890d91a7f9ff280b7130c3b5edd1c02613e9f770a05ec1977a76646d7223ff17f3881f07e08a15f31cb23e79a7871202e52c678f5b9af6823021033f1654d3187087ad5f7f220814c94232945825663d55431345aca8a82746780552aefeffffff0118c69a3b0000000017a91455f415046dfb9e578426fbcbfb480a66b0782480876e000000"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -request PUT http://atomicbox.org/wallet-to-atomic/api/v1/users/<span class="o">{</span>user-id<span class="o">}</span>/unlock/timed 
+--data <span class="s1">'{"partially-signed-tx": "02000000018e62016f5fe7fad1f7f343cdf900f8c6aad4cd1bef9c2a274334291c3999551c00000000b400483045022100de328bf0550164f0b6f1ae3bae78c6d417140808fa82f0da67be00cd8df41816022024b2fc2182789488fcca4984e7af3123bd3e680e4f4be8eaeb3e547f24ca31ea01004c675241043af1ba0a3429d7890d91a7f9ff280b7130c3b5edd1c02613e9f770a05ec1977a76646d7223ff17f3881f07e08a15f31cb23e79a7871202e52c678f5b9af6823021033f1654d3187087ad5f7f220814c94232945825663d55431345aca8a82746780552aefeffffff0118c69a3b0000000017a91455f415046dfb9e578426fbcbfb480a66b0782480876e000000"}'</span>  
+</code></pre>
+<!--
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': '*/*'
+}
+
+r = requests.put('https://virtserver.swaggerhub.com/Atomicbox/Wallet-to-ATOMIC-APIs/1.0/api/v1/users/{user-id}/unlock/timed', params={
+
+}, headers = headers)
+
+print r.json()
+
+``` -->
+<h3 id='return-codes-6'>Return codes</h3>
+<table><thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>201</td>
+<td>Created</td>
+<td>Unlock command received</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+<td>Invalid input, object invalid</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+<td>Cannot perform unlock, earlier unlock/transaction is already in progress</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+<td>User not found</td>
+</tr>
+<tr>
+<td>409</td>
+<td>Conflict</td>
+<td>Already exists</td>
+</tr>
+</tbody></table>
+<h1 id='payments'>Payments</h1><h2 id='get-payment-details'>Get payment details</h2>
+<p>Gets the required information for payment confirmation.</p>
+
+<p><code>GET /api/v1/users/{user-id}/payments/{payment-id}</code></p>
+
+<aside class="success">
+ATOMIC will provide the raw escrow transaction, as well as the required details for the payment transaction
+</aside>
+
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -request GET http://atomicbox.org/wallet-to-atomic/api/v1/users/<span class="o">{</span>user-id<span class="o">}</span>/payments/<span class="o">{</span>payment-id<span class="o">}</span> 
+</code></pre>
+<!--
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('https://virtserver.swaggerhub.com/Atomicbox/Wallet-to-ATOMIC-APIs/1.0/api/v1/users/{user-id}/payments/{payment-id}', params={
+}, headers = headers)
+
+print r.json()
+
+``` -->
+
+<blockquote>
+<p>Example responses</p>
+
+<p>200 Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"payment-transaction-details"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"coin-type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"outputs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2N82m2L7p17jNzrnJKN4CTjuAApSYmRtPe2"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000000</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"escrow-transaction-details"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"coin-type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"source-address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2Mx1EM2Bsd8qzV2yFv3XxemKaqW7ZfCKAFN"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"raw-escrow-transaction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0200000001fea70fbb492e7814ce3a31639c64a7819a95ee43580867cc751a3e83438289fb0000000000ffffffff0200c2eb0b0000000017a9144f22a11a711f126454fd24e9d589529ed592c93387dc13ae2f0000000017a914119cd81d4e3c2fab3e7edb5556ddaf5d1df893248700000000"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='return-codes-7'>Return codes</h3>
+<table><thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+<td>Payment found</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+<td>Invalid input, object invalid</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+<td>User/Payment not found</td>
+</tr>
+<tr>
+<td>409</td>
+<td>Conflict</td>
+<td>Payment already performed</td>
+</tr>
+</tbody></table>
+<h2 id='confirm-payment'>Confirm payment</h2>
+<p>Confirms the payment.</p>
+
+<p>Providing ATOMIC with the signed escrow transactions which was obtained from the &quot;GET&quot; command, and the created and signed pay transaction</p>
+
+<p><code>PUT /api/v1/users/{user-id}/payments/{payment-id}</code></p>
+
+<blockquote>
+<p>Body parameter</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"fully-signed-pay-transaction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"02000000000101fea70fbb492e7814ce3a31639c64a7819a95ee43580867cc751a3e83438289fb01000000232200200818c20455783996fd6c4d753751f4c3f49d9a474fed9a65c3ddb31a48afa7f8ffffffff0200e1f5050000000017a9144f22a11a711f126454fd24e9d589529ed592c93387b800a3350000000017a914e90e71bb600bb67ac5c67b0f512c521dc1d7eceb87030047304402206f67c13ae9c8ad897090f8660993adabec91c1a221558f7a0fd46fe5054d911d02205c28139ab369be614588923742ea9b3922701240c1e19ab27983a1755ca8653c01255121032cea817f794f4afa7061a1187bb8108bfff0096c61f69468ce800629cebec87951ae00000000"</span><span class="p">,</span><span class="w">
+
+    </span><span class="s2">"partially-signed-escrow-transaction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0200000001fea70fbb492e7814ce3a31639c64a7819a95ee43580867cc751a3e83438289fb00000000b400483045022100c37d9f6bef9575be912e1963815f50efaa269779d7edcc72333044f14b3c52500220785d9bb8636125e30ca20a3b300b02f9566b33e0d5610b49393187a9c9ea603d01004c675241041256ae5095da25836abbe95f06f54ec27a745d66df3baa98f7ca1c54bfd12e26b279680220f779d059c3f168a7bbbc35344f5ff82b58d8329e920daba2586b3121032cea817f794f4afa7061a1187bb8108bfff0096c61f69468ce800629cebec87952aeffffffff0200c2eb0b0000000017a9144f22a11a711f126454fd24e9d589529ed592c93387dc13ae2f0000000017a914119cd81d4e3c2fab3e7edb5556ddaf5d1df893248700000000"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -request PUT http://atomicbox.org/wallet-to-atomic/api/v1/users/<span class="o">{</span>user-id<span class="o">}</span>/payments/<span class="o">{</span>payment-id<span class="o">}</span> 
+--data <span class="s1">'{"fully-signed-pay-transaction": "02000000000101fea70fbb492e7814ce3a31639c64a7819a95ee43580867cc751a3e83438289fb01000000232200200818c20455783996fd6c4d753751f4c3f49d9a474fed9a65c3ddb31a48afa7f8ffffffff0200e1f5050000000017a9144f22a11a711f126454fd24e9d589529ed592c93387b800a3350000000017a914e90e71bb600bb67ac5c67b0f512c521dc1d7eceb87030047304402206f67c13ae9c8ad897090f8660993adabec91c1a221558f7a0fd46fe5054d911d02205c28139ab369be614588923742ea9b3922701240c1e19ab27983a1755ca8653c01255121032cea817f794f4afa7061a1187bb8108bfff0096c61f69468ce800629cebec87951ae00000000",
+
+"partially-signed-escrow-transaction": "0200000001fea70fbb492e7814ce3a31639c64a7819a95ee43580867cc751a3e83438289fb00000000b400483045022100c37d9f6bef9575be912e1963815f50efaa269779d7edcc72333044f14b3c52500220785d9bb8636125e30ca20a3b300b02f9566b33e0d5610b49393187a9c9ea603d01004c675241041256ae5095da25836abbe95f06f54ec27a745d66df3baa98f7ca1c54bfd12e26b279680220f779d059c3f168a7bbbc35344f5ff82b58d8329e920daba2586b3121032cea817f794f4afa7061a1187bb8108bfff0096c61f69468ce800629cebec87952aeffffffff0200c2eb0b0000000017a9144f22a11a711f126454fd24e9d589529ed592c93387dc13ae2f0000000017a914119cd81d4e3c2fab3e7edb5556ddaf5d1df893248700000000"
+}'</span>
+</code></pre>
+<!--
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json'
+}
+
+r = requests.put('https://virtserver.swaggerhub.com/Atomicbox/Wallet-to-ATOMIC-APIs/1.0/api/v1/users/{user-id}/payments/{payment-id}', params={
+
+}, headers = headers)
+
+print r.json()
+
+``` -->
+<h3 id='return-codes-8'>Return codes</h3>
+<table><thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>201</td>
+<td>Created</td>
+<td>Payment received</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+<td>Invalid input, object invalid</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+<td>User/Payment not found</td>
+</tr>
+<tr>
+<td>409</td>
+<td>Conflict</td>
+<td>Payment already performed</td>
+</tr>
+</tbody></table>
+<h1 id='general-information'>General Information</h1><h2 id='get-atomic-generic-information'>Get ATOMIC generic information</h2>
+<p>Get general ATOMIC information</p>
+
+<p><code>GET /api/v1/info</code></p>
+
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -request GET http://atomicbox.org/wallet-to-atomic/api/v1/info 
+</code></pre>
+<!--
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('https://virtserver.swaggerhub.com/Atomicbox/Wallet-to-ATOMIC-APIs/1.0/api/v1/info', params={
+
+}, headers = headers)
+
+print r.json()
+
+``` -->
+
+<blockquote>
+<p>Example responses</p>
+
+<p>200 Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"api-version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"v1"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='return-codes-9'>Return codes</h3>
+<table><thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+<td>Bad input parameter</td>
 </tr>
 </tbody></table>
 
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
-                <a href="#" data-language-name="python">python</a>
-                <a href="#" data-language-name="javascript">javascript</a>
+                <a href="#" data-language-name="shell">cURL</a>
           </div>
       </div>
     </div>
