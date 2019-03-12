@@ -16,7 +16,7 @@ headingLevel: 2
 
 # Introduction
 
-> Scroll down for code samples, example requests and responses. Select a language for code samples from the tabs above or the mobile navigation menu.
+> Scroll down for code samples, example requests and responses
 
 This page details the APIs from an ATOMIC powered wallet towards ATOMIC P2P collateral guarantees service
 
