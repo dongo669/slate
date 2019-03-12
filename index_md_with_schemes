@@ -1,9 +1,9 @@
 ---
 title: Wallet to ATOMIC APIs
 language_tabs:
-  - python: Python
+  - shell: cURL
 toc_footers:
-  []
+- <a href='https://www.atomic.org'>Visit ATOMIC home page</a>
 includes:
   []
 search: true
@@ -14,36 +14,94 @@ headingLevel: 2
 
 <!-- Generator: Widdershins v3.6.6 -->
 
-<section>
-<h1 id="wallet-to-atomic-apis">Wallet to ATOMIC APIs v1.0</h1>
+# Introduction
 
 > Scroll down for code samples, example requests and responses. Select a language for code samples from the tabs above or the mobile navigation menu.
 
-APIs from an ATOMIC powered wallet towards ATOMIC P2P collateral guarantees service
+This page details the APIs from an ATOMIC powered wallet towards ATOMIC P2P collateral guarantees service
 
-Base URLs:
 
-* <a href="https://virtserver.swaggerhub.com/Atomicbox/Wallet-to-ATOMIC-APIs/1.0">https://virtserver.swaggerhub.com/Atomicbox/Wallet-to-ATOMIC-APIs/1.0</a>
-
-</section>
-
-<section>
-<h1 id="wallet-to-atomic-apis-user-management">user-management</h1>
+# User Management
 
 User management related APIs
 
-<section>
+## Create new user
 
-## Get user's information
 
-<a id="opIdgetUserInfo"></a>
+Register user with ATOMIC - creating a Private Collateral address
+
+
+`PUT /api/v1/users/{user-id}`
+
+> Body parameter
+
+```json
+{
+    "public-key": "027a478fd4a7c3b8e43cfd2eaf0e439158b2b874dace2b598c585e88f67eeb8655",
+    "refund-address": "2NF1qc9L4j1tyfqzzLdRzRqoVftHznSeC6K"
+}
+```
 
 > Code samples
 
+```shell
+curl -request PUT http://atomicbox.org/wallet-to-atomic/api/v1/users/{user-id} 
+--data '{"public-key": "027a478fd4a7c3b8e43cfd2eaf0e439158b2b874dace2b598c585e88f67eeb8655", "refund-address": "2NF1qc9L4j1tyfqzzLdRzRqoVftHznSeC6K"}'
+```
+
+<!-- 
 ```python
 import requests
 headers = {
-  'Accept': 'application/json'
+'Content-Type': 'application/json',
+'Accept': 'application/json'
+}
+
+r = requests.put('https://virtserver.swaggerhub.com/Atomicbox/Wallet-to-ATOMIC-APIs/1.0/api/v1/users/{user-id}', params={
+
+}, headers = headers)
+
+print r.json()
+
+``` -->
+
+
+> Example responses
+
+> 201 Response
+
+```json
+{
+    "smart-credit-info": {
+    "atomic-public-key": "022d4a565aa6845c72bd2a732d3d4971704e8403942766b59d68e0dcf62713443c",
+    "smart-credit-address": "2Mx1EM2Bsd8qzV2yFv3XxemKaqW7ZfCKAFN",
+    "smart-credit-redeem-script": "5221022d4a565aa6845c72bd2a732d3d4971704e8403942766b59d68e0dcf62713443c21027a478fd4a7c3b8e43cfd2eaf0e439158b2b874dace2b598c585e88f67eeb865552ae",
+    "smart-credit-script-pub-key": "a91434331a9a1282cb1f58a383eb3d74bbbe671161ba87"
+    }
+}
+```
+### Return codes
+Status|Meaning|Description
+---|---|---
+201 | OK  | User created succesfully
+400 | Bad Request | Invalid request or conflict with existing user
+409 | Already Exist | User already exists
+
+## Get user's information
+Retrieves existing information for a specific user
+
+`GET /api/v1/users/{user-id}`
+
+> Code samples
+
+```shell
+curl -request GET http://atomicbox.org/wallet-to-atomic/api/v1/users/{user-id}
+```
+<!--
+```python
+import requests
+headers = {
+'Accept': 'application/json'
 }
 
 r = requests.get('https://virtserver.swaggerhub.com/Atomicbox/Wallet-to-ATOMIC-APIs/1.0/api/v1/users/{user-id}', params={
@@ -52,20 +110,7 @@ r = requests.get('https://virtserver.swaggerhub.com/Atomicbox/Wallet-to-ATOMIC-A
 
 print r.json()
 
-```
-
-`GET /api/v1/users/{user-id}`
-
-Retrieves existing information for a specific user
-
-<section>
-<h3 id="get-user's-information-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|user-id|path|string(uuid)|true|User ID|
-
-</section>
+``` -->
 
 > Example responses
 
@@ -89,109 +134,39 @@ Retrieves existing information for a specific user
   ]
 }
 ```
+### Return codes
+Status|Meaning|Description
+---|---|---
+200 | OK | OK
+404 | Not Found | User not found
 
-<section>
-<h3 id="get-user's-information-responses">Responses</h3>
+# Unlock Operations
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|user found|[user-get-response](#schemauser-get-response)|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|user not found|None|
+## Get on-demand unlock
+Get an on-demand unlock transaction from the user's private-collateral address
 
-</section>
+`GET /api/v1/users/{user-id}/unlock`
 
-<aside class="success">
-This operation does not require authentication
+<aside class="warning">
+NOTE: An on demand unlock cannot be processed during ongoing transactions
 </aside>
 
-</section>
-
-<section>
-
-## Create new user
-
-<a id="opIdregisterUser"></a>
-
-> Code samples
-
-```python
-import requests
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json'
-}
-
-r = requests.put('https://virtserver.swaggerhub.com/Atomicbox/Wallet-to-ATOMIC-APIs/1.0/api/v1/users/{user-id}', params={
-
-}, headers = headers)
-
-print r.json()
-
-```
-
-`PUT /api/v1/users/{user-id}`
-
-Register user with ATOMIC - creating a smart-credit address
 
 > Body parameter
 
 ```json
 {
-  "public-key": "027a478fd4a7c3b8e43cfd2eaf0e439158b2b874dace2b598c585e88f67eeb8655",
-  "refund-address": "2NF1qc9L4j1tyfqzzLdRzRqoVftHznSeC6K"
+    "amount": 498000000
 }
 ```
-
-<section>
-<h3 id="create-new-user-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|user-id|path|string(uuid)|true|User ID|
-|body|body|[register-user-params](#schemaregister-user-params)|false|Parameters for user registeration|
-
-</section>
-
-> Example responses
-
-> 201 Response
-
-```json
-{
-  "smart-credit-info": {
-    "atomic-public-key": "022d4a565aa6845c72bd2a732d3d4971704e8403942766b59d68e0dcf62713443c",
-    "smart-credit-address": "2Mx1EM2Bsd8qzV2yFv3XxemKaqW7ZfCKAFN",
-    "smart-credit-redeem-script": "5221022d4a565aa6845c72bd2a732d3d4971704e8403942766b59d68e0dcf62713443c21027a478fd4a7c3b8e43cfd2eaf0e439158b2b874dace2b598c585e88f67eeb865552ae",
-    "smart-credit-script-pub-key": "a91434331a9a1282cb1f58a383eb3d74bbbe671161ba87"
-  }
-}
-```
-
-<section>
-<h3 id="create-new-user-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|user registered|[register-user-response](#schemaregister-user-response)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|invalid input, object invalid|None|
-|409|[Conflict](https://tools.ietf.org/html/rfc7231#section-6.5.8)|user already exists|None|
-
-</section>
-
-<aside class="success">
-This operation does not require authentication
-</aside>
-
-</section>
-
-<section>
-
-## Get on-demand unlock
-
-<a id="opIdgetUnlock"></a>
 
 > Code samples
 
+```shell
+curl -request GET http://atomicbox.org/wallet-to-atomic/api/v1/users/{user-id}/unlock 
+--data '{"amount": 498000000 }'
+```
+<!--
 ```python
 import requests
 headers = {
@@ -205,29 +180,7 @@ r = requests.get('https://virtserver.swaggerhub.com/Atomicbox/Wallet-to-ATOMIC-A
 
 print r.json()
 
-```
-
-`GET /api/v1/users/{user-id}/unlock`
-
-Get an on-demand unlock transaction from the user's smart credit address
-
-> Body parameter
-
-```json
-{
-  "amount": 498000000
-}
-```
-
-<section>
-<h3 id="get-on-demand-unlock-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|user-id|path|string(uuid)|true|User ID|
-|body|body|[get-unlock-params](#schemaget-unlock-params)|false|Parameters for getting an unlock transaction|
-
-</section>
+``` -->
 
 > Example responses
 
@@ -239,32 +192,41 @@ Get an on-demand unlock transaction from the user's smart credit address
 }
 ```
 
-<section>
-<h3 id="get-on-demand-unlock-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|transaction created|[get-unlock-response](#schemaget-unlock-response)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|invalid input, object invalid|None|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|cannot perform unlock at this time|None|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|user not found|None|
-
-</section>
-
-<aside class="success">
-This operation does not require authentication
-</aside>
-
-</section>
-
-<section>
+### Return codes
+Status|Meaning|Description
+---|---|---
+200 | OK | On demand unlock transaction created
+403 | Forbidden | Cannot perform on-demand unlock at this time
+404 | Not Found | User not found
 
 ## Submit an on-demand unlock
 
-<a id="opIdperformUnlock"></a>
+Perform an unlock of funds from the user's private-collateral address.
+
+Should supply a signed unlock transaction which was obtained from the "GET" command, or created manually
+
+`PUT /api/v1/users/{user-id}/unlock`
+
+<aside class="warning">
+NOTE: An on demand unlock cannot be processed during ongoing transactions
+</aside>
+
+
+> Body parameter
+
+```json
+{
+    "partially-signed-unlock-tx": "02000000018e62016f5fe7fad1f7f343cdf900f8c6aad4cd1bef9c2a274334291c3999551c00000000b400483045022100de328bf0550164f0b6f1ae3bae78c6d417140808fa82f0da67be00cd8df41816022024b2fc2182789488fcca4984e7af3123bd3e680e4f4be8eaeb3e547f24ca31ea01004c675241043af1ba0a3429d7890d91a7f9ff280b7130c3b5edd1c02613e9f770a05ec1977a76646d7223ff17f3881f07e08a15f31cb23e79a7871202e52c678f5b9af6823021033f1654d3187087ad5f7f220814c94232945825663d55431345aca8a82746780552aefeffffff0118c69a3b0000000017a91455f415046dfb9e578426fbcbfb480a66b0782480876e000000"
+}
+```
 
 > Code samples
+```shell
+curl -request PUT http://atomicbox.org/wallet-to-atomic/api/v1/users/{user-id}/unlock 
+--data '{"partially-signed-unlock-tx":      "02000000018e62016f5fe7fad1f7f343cdf900f8c6aad4cd1bef9c2a274334291c3999551c00000000b400483045022100de328bf0550164f0b6f1ae3bae78c6d417140808fa82f0da67be00cd8df41816022024b2fc2182789488fcca4984e7af3123bd3e680e4f4be8eaeb3e547f24ca31ea01004c675241043af1ba0a3429d7890d91a7f9ff280b7130c3b5edd1c02613e9f770a05ec1977a76646d7223ff17f3881f07e08a15f31cb23e79a7871202e52c678f5b9af6823021033f1654d3187087ad5f7f220814c94232945825663d55431345aca8a82746780552aefeffffff0118c69a3b0000000017a91455f415046dfb9e578426fbcbfb480a66b0782480876e000000"}'
+```
 
+<!--
 ```python
 import requests
 headers = {
@@ -277,58 +239,48 @@ r = requests.put('https://virtserver.swaggerhub.com/Atomicbox/Wallet-to-ATOMIC-A
 
 print r.json()
 
-```
+``` -->
 
-`PUT /api/v1/users/{user-id}/unlock`
+> Example responses
 
-Perform an unlock of funds from the user's smart-credit.
-Should supply a signed unlock transaction which was obtained from the "GET" command, or created manually
+> 201 Response -  Unlock command recieved
+
+### Return codes
+Status|Meaning|Description|
+--------- |  ----------- | -----------
+201| Created|Unlock command recieved
+400| Bad Request | Invalid input, object invalid
+403| Forbidden|Cannot perform unlock at this time
+404 |Not Found | User not found
+409| Conflict | Another unlock already in progress
+
+
+## Get timed unlock
+
+Get a timed unlock transaction from the user's smart credit address at the given lock time
+
+`GET /api/v1/users/{user-id}/unlock/timed`
+
+<aside class="warning">
+Transactions will not be allowed near the target unlock time
+</aside>
 
 > Body parameter
 
 ```json
 {
-  "partially-signed-unlock-tx": "02000000018e62016f5fe7fad1f7f343cdf900f8c6aad4cd1bef9c2a274334291c3999551c00000000b400483045022100de328bf0550164f0b6f1ae3bae78c6d417140808fa82f0da67be00cd8df41816022024b2fc2182789488fcca4984e7af3123bd3e680e4f4be8eaeb3e547f24ca31ea01004c675241043af1ba0a3429d7890d91a7f9ff280b7130c3b5edd1c02613e9f770a05ec1977a76646d7223ff17f3881f07e08a15f31cb23e79a7871202e52c678f5b9af6823021033f1654d3187087ad5f7f220814c94232945825663d55431345aca8a82746780552aefeffffff0118c69a3b0000000017a91455f415046dfb9e578426fbcbfb480a66b0782480876e000000"
+    "amount": 498000000,
+    "nLockTime": 1548885799
 }
 ```
 
-<section>
-<h3 id="submit-an-on-demand-unlock-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|user-id|path|string(uuid)|true|User ID|
-|body|body|[put-unlock-params](#schemaput-unlock-params)|false|Parameters for performing the unlock command|
-
-</section>
-
-<section>
-<h3 id="submit-an-on-demand-unlock-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|unlock command recieved|None|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|invalid input, object invalid|None|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|cannot perform unlock, another unlock/transaction is already in progress|None|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|user not found|None|
-|409|[Conflict](https://tools.ietf.org/html/rfc7231#section-6.5.8)|already exists|None|
-
-</section>
-
-<aside class="success">
-This operation does not require authentication
-</aside>
-
-</section>
-
-<section>
-
-## Get timed unlock
-
-<a id="opIdgetTimedUnlock"></a>
-
 > Code samples
 
+```shell
+curl -request GET http://atomicbox.org/wallet-to-atomic/api/v1/users/{user-id}/unlock/timed 
+--data '{"amount": 498000000, "nLockTime": 1548885799}'  
+```
+<!--
 ```python
 import requests
 headers = {
@@ -342,30 +294,7 @@ r = requests.get('https://virtserver.swaggerhub.com/Atomicbox/Wallet-to-ATOMIC-A
 
 print r.json()
 
-```
-
-`GET /api/v1/users/{user-id}/unlock/timed`
-
-Get a timed unlock transaction from the user's smart credit address at the given lock time
-
-> Body parameter
-
-```json
-{
-  "amount": 498000000,
-  "nLockTime": 1548885799
-}
-```
-
-<section>
-<h3 id="get-timed-unlock-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|user-id|path|string(uuid)|true|User ID|
-|body|body|[get-timed-unlock-params](#schemaget-timed-unlock-params)|false|Parameters for getting a timed unlock transaction|
-
-</section>
+``` -->
 
 > Example responses
 
@@ -376,33 +305,42 @@ Get a timed unlock transaction from the user's smart credit address at the given
   "raw-transaction": "02000000018e62016f5fe7fad1f7f343cdf900f8c6aad4cd1bef9c2a274334291c3999551c0000000000feffffff0118c69a3b0000000017a91455f415046dfb9e578426fbcbfb480a66b0782480876e000000"
 }
 ```
+### Return codes
+Status|Meaning|Description
+---|---|---
+200 | OK | Transaction created
+400 | Bad Request | Invalid input, object invalid
+403 | Forbidden | Cannot create the requested timed unlock
+404|  Not Found | User not found 
 
-<section>
-<h3 id="get-timed-unlock-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|transaction created|[get-timed-unlock-response](#schemaget-timed-unlock-response)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|invalid input, object invalid|None|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|cannot perform the requested timed unlock|None|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|user not found|None|
-
-</section>
-
-<aside class="success">
-This operation does not require authentication
-</aside>
-
-</section>
-
-<section>
 
 ## Submit timed unlock
 
-<a id="opIdperformTimedUnlock"></a>
+Requests ATOMIC to sign the user-signed timed unlock transaction.
+
+<aside class="success">
+The timed transaction will be stored by the user, and submitted when the lock time arrives
+</aside>
+
+
+`PUT /api/v1/users/{user-id}/unlock/timed`
+
+
+> Body parameter
+
+```json
+{
+    "partially-signed-tx": "02000000018e62016f5fe7fad1f7f343cdf900f8c6aad4cd1bef9c2a274334291c3999551c00000000b400483045022100de328bf0550164f0b6f1ae3bae78c6d417140808fa82f0da67be00cd8df41816022024b2fc2182789488fcca4984e7af3123bd3e680e4f4be8eaeb3e547f24ca31ea01004c675241043af1ba0a3429d7890d91a7f9ff280b7130c3b5edd1c02613e9f770a05ec1977a76646d7223ff17f3881f07e08a15f31cb23e79a7871202e52c678f5b9af6823021033f1654d3187087ad5f7f220814c94232945825663d55431345aca8a82746780552aefeffffff0118c69a3b0000000017a91455f415046dfb9e578426fbcbfb480a66b0782480876e000000"
+}
+```
 
 > Code samples
 
+```shell
+curl -request PUT http://atomicbox.org/wallet-to-atomic/api/v1/users/{user-id}/unlock/timed 
+--data '{"partially-signed-tx": "02000000018e62016f5fe7fad1f7f343cdf900f8c6aad4cd1bef9c2a274334291c3999551c00000000b400483045022100de328bf0550164f0b6f1ae3bae78c6d417140808fa82f0da67be00cd8df41816022024b2fc2182789488fcca4984e7af3123bd3e680e4f4be8eaeb3e547f24ca31ea01004c675241043af1ba0a3429d7890d91a7f9ff280b7130c3b5edd1c02613e9f770a05ec1977a76646d7223ff17f3881f07e08a15f31cb23e79a7871202e52c678f5b9af6823021033f1654d3187087ad5f7f220814c94232945825663d55431345aca8a82746780552aefeffffff0118c69a3b0000000017a91455f415046dfb9e578426fbcbfb480a66b0782480876e000000"}'  
+```
+<!--
 ```python
 import requests
 headers = {
@@ -416,69 +354,38 @@ r = requests.put('https://virtserver.swaggerhub.com/Atomicbox/Wallet-to-ATOMIC-A
 
 print r.json()
 
-```
+``` -->
 
-`PUT /api/v1/users/{user-id}/unlock/timed`
+### Return codes
+Status|Meaning|Description
+---|---|---
+201| Created | Unlock command received
+400| Bad Request | Invalid input, object invalid
+403| Forbidden | Cannot perform unlock, earlier unlock/transaction is already in progress
+404| Not Found | User not found
+409| Conflict | Already exists 
 
-Requests ATOMIC to sign the user-signed timed unlock transaction.
-The timed transaction will be stored by the user, and submitted when the lock time arrives
 
-> Body parameter
+# Payments
 
-```json
-{
-  "partially-signed-tx": "02000000018e62016f5fe7fad1f7f343cdf900f8c6aad4cd1bef9c2a274334291c3999551c00000000b400483045022100de328bf0550164f0b6f1ae3bae78c6d417140808fa82f0da67be00cd8df41816022024b2fc2182789488fcca4984e7af3123bd3e680e4f4be8eaeb3e547f24ca31ea01004c675241043af1ba0a3429d7890d91a7f9ff280b7130c3b5edd1c02613e9f770a05ec1977a76646d7223ff17f3881f07e08a15f31cb23e79a7871202e52c678f5b9af6823021033f1654d3187087ad5f7f220814c94232945825663d55431345aca8a82746780552aefeffffff0118c69a3b0000000017a91455f415046dfb9e578426fbcbfb480a66b0782480876e000000"
-}
-```
-
-<section>
-<h3 id="submit-timed-unlock-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|user-id|path|string(uuid)|true|User ID|
-|body|body|[put-timed-unlock-params](#schemaput-timed-unlock-params)|false|Parameters for performing the unlock command|
-
-</section>
-
-> Example responses
-
-> 201 Response
-
-<section>
-<h3 id="submit-timed-unlock-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|unlock command received|[put-timed-unlock-response](#schemaput-timed-unlock-response)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|invalid input, object invalid|None|
-|403|[Forbidden](https://tools.ietf.org/html/rfc7231#section-6.5.3)|cannot perform unlock, earlier unlock/transaction is already in progress|None|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|user not found|None|
-|409|[Conflict](https://tools.ietf.org/html/rfc7231#section-6.5.8)|already exists|[put-timed-unlock-response](#schemaput-timed-unlock-response)|
-
-</section>
-
-<aside class="success">
-This operation does not require authentication
-</aside>
-
-</section>
-
-</section>
-
-<section>
-<h1 id="wallet-to-atomic-apis-transactions">transactions</h1>
-
-APIs for transactions of ATOMIC payments
-
-<section>
 
 ## Get payment details
 
-<a id="opIdgetPaymentInfo"></a>
+Gets the required information for payment confirmation.
+
+`GET /api/v1/users/{user-id}/payments/{payment-id}`
+
+<aside class="success">
+ATOMIC will provide the raw escrow transaction, as well as the required details for the payment transaction
+</aside>
+
 
 > Code samples
 
+```shell
+curl -request GET http://atomicbox.org/wallet-to-atomic/api/v1/users/{user-id}/payments/{payment-id} 
+```
+<!--
 ```python
 import requests
 headers = {
@@ -486,27 +393,11 @@ headers = {
 }
 
 r = requests.get('https://virtserver.swaggerhub.com/Atomicbox/Wallet-to-ATOMIC-APIs/1.0/api/v1/users/{user-id}/payments/{payment-id}', params={
-
 }, headers = headers)
 
 print r.json()
 
-```
-
-`GET /api/v1/users/{user-id}/payments/{payment-id}`
-
-Gets the information needed to confirm an order.
-ATOMIC will provide the raw escrow transaction, as well as the required details for the payment
-
-<section>
-<h3 id="get-payment-details-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|user-id|path|string(uuid)|true|User ID|
-|payment-id|path|string(uuid)|true|Payment ID|
-
-</section>
+``` -->
 
 > Example responses
 
@@ -532,32 +423,45 @@ ATOMIC will provide the raw escrow transaction, as well as the required details 
 }
 ```
 
-<section>
-<h3 id="get-payment-details-responses">Responses</h3>
+### Return codes
+Status|Meaning|Description
+---|---|---
+200| OK | Payment found
+400| Bad Request | Invalid input, object invalid
+404| Not Found | User/Payment not found
+409| Conflict | Payment already performed
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|payment found|[get-payment-response](#schemaget-payment-response)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|invalid input, object invalid|None|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|user/payment not found|None|
-|409|[Conflict](https://tools.ietf.org/html/rfc7231#section-6.5.8)|payment already performed|None|
-
-</section>
-
-<aside class="success">
-This operation does not require authentication
-</aside>
-
-</section>
-
-<section>
 
 ## Confirm payment
 
-<a id="opIdconfirmPayment"></a>
+Confirms the payment.
+
+Providing ATOMIC with the signed escrow transactions which was obtained from the "GET" command, and the created and signed pay transaction
+
+`PUT /api/v1/users/{user-id}/payments/{payment-id}`
+
+
+> Body parameter
+
+```json
+{
+    "fully-signed-pay-transaction": "02000000000101fea70fbb492e7814ce3a31639c64a7819a95ee43580867cc751a3e83438289fb01000000232200200818c20455783996fd6c4d753751f4c3f49d9a474fed9a65c3ddb31a48afa7f8ffffffff0200e1f5050000000017a9144f22a11a711f126454fd24e9d589529ed592c93387b800a3350000000017a914e90e71bb600bb67ac5c67b0f512c521dc1d7eceb87030047304402206f67c13ae9c8ad897090f8660993adabec91c1a221558f7a0fd46fe5054d911d02205c28139ab369be614588923742ea9b3922701240c1e19ab27983a1755ca8653c01255121032cea817f794f4afa7061a1187bb8108bfff0096c61f69468ce800629cebec87951ae00000000",
+    
+    "partially-signed-escrow-transaction": "0200000001fea70fbb492e7814ce3a31639c64a7819a95ee43580867cc751a3e83438289fb00000000b400483045022100c37d9f6bef9575be912e1963815f50efaa269779d7edcc72333044f14b3c52500220785d9bb8636125e30ca20a3b300b02f9566b33e0d5610b49393187a9c9ea603d01004c675241041256ae5095da25836abbe95f06f54ec27a745d66df3baa98f7ca1c54bfd12e26b279680220f779d059c3f168a7bbbc35344f5ff82b58d8329e920daba2586b3121032cea817f794f4afa7061a1187bb8108bfff0096c61f69468ce800629cebec87952aeffffffff0200c2eb0b0000000017a9144f22a11a711f126454fd24e9d589529ed592c93387dc13ae2f0000000017a914119cd81d4e3c2fab3e7edb5556ddaf5d1df893248700000000"
+}
+```
 
 > Code samples
 
+```shell
+curl -request PUT http://atomicbox.org/wallet-to-atomic/api/v1/users/{user-id}/payments/{payment-id} 
+--data '{"fully-signed-pay-transaction": "02000000000101fea70fbb492e7814ce3a31639c64a7819a95ee43580867cc751a3e83438289fb01000000232200200818c20455783996fd6c4d753751f4c3f49d9a474fed9a65c3ddb31a48afa7f8ffffffff0200e1f5050000000017a9144f22a11a711f126454fd24e9d589529ed592c93387b800a3350000000017a914e90e71bb600bb67ac5c67b0f512c521dc1d7eceb87030047304402206f67c13ae9c8ad897090f8660993adabec91c1a221558f7a0fd46fe5054d911d02205c28139ab369be614588923742ea9b3922701240c1e19ab27983a1755ca8653c01255121032cea817f794f4afa7061a1187bb8108bfff0096c61f69468ce800629cebec87951ae00000000",
+
+"partially-signed-escrow-transaction": "0200000001fea70fbb492e7814ce3a31639c64a7819a95ee43580867cc751a3e83438289fb00000000b400483045022100c37d9f6bef9575be912e1963815f50efaa269779d7edcc72333044f14b3c52500220785d9bb8636125e30ca20a3b300b02f9566b33e0d5610b49393187a9c9ea603d01004c675241041256ae5095da25836abbe95f06f54ec27a745d66df3baa98f7ca1c54bfd12e26b279680220f779d059c3f168a7bbbc35344f5ff82b58d8329e920daba2586b3121032cea817f794f4afa7061a1187bb8108bfff0096c61f69468ce800629cebec87952aeffffffff0200c2eb0b0000000017a9144f22a11a711f126454fd24e9d589529ed592c93387dc13ae2f0000000017a914119cd81d4e3c2fab3e7edb5556ddaf5d1df893248700000000"
+}'
+```
+
+<!--
 ```python
 import requests
 headers = {
@@ -570,66 +474,30 @@ r = requests.put('https://virtserver.swaggerhub.com/Atomicbox/Wallet-to-ATOMIC-A
 
 print r.json()
 
-```
+``` -->
 
-`PUT /api/v1/users/{user-id}/payments/{payment-id}`
+### Return codes
+Status|Meaning|Description
+---|---|---
+201| Created | Payment received 
+400| Bad Request  | Invalid input, object invalid
+404| Not Found  | User/Payment not found
+409| Conflict  | Payment already performed 
 
-Confirms the payment.
-Providing ATOMIC with the signed transactions which were obtained from the "GET" command
-
-> Body parameter
-
-```json
-{
-  "fully-signed-pay-transaction": "02000000000101fea70fbb492e7814ce3a31639c64a7819a95ee43580867cc751a3e83438289fb01000000232200200818c20455783996fd6c4d753751f4c3f49d9a474fed9a65c3ddb31a48afa7f8ffffffff0200e1f5050000000017a9144f22a11a711f126454fd24e9d589529ed592c93387b800a3350000000017a914e90e71bb600bb67ac5c67b0f512c521dc1d7eceb87030047304402206f67c13ae9c8ad897090f8660993adabec91c1a221558f7a0fd46fe5054d911d02205c28139ab369be614588923742ea9b3922701240c1e19ab27983a1755ca8653c01255121032cea817f794f4afa7061a1187bb8108bfff0096c61f69468ce800629cebec87951ae00000000",
-  "partially-signed-escrow-transaction": "0200000001fea70fbb492e7814ce3a31639c64a7819a95ee43580867cc751a3e83438289fb00000000b400483045022100c37d9f6bef9575be912e1963815f50efaa269779d7edcc72333044f14b3c52500220785d9bb8636125e30ca20a3b300b02f9566b33e0d5610b49393187a9c9ea603d01004c675241041256ae5095da25836abbe95f06f54ec27a745d66df3baa98f7ca1c54bfd12e26b279680220f779d059c3f168a7bbbc35344f5ff82b58d8329e920daba2586b3121032cea817f794f4afa7061a1187bb8108bfff0096c61f69468ce800629cebec87952aeffffffff0200c2eb0b0000000017a9144f22a11a711f126454fd24e9d589529ed592c93387dc13ae2f0000000017a914119cd81d4e3c2fab3e7edb5556ddaf5d1df893248700000000"
-}
-```
-
-<section>
-<h3 id="confirm-payment-parameters">Parameters</h3>
-
-|Name|In|Type|Required|Description|
-|---|---|---|---|---|
-|user-id|path|string(uuid)|true|User ID|
-|payment-id|path|string(uuid)|true|Payment ID|
-|body|body|[put-payment-params](#schemaput-payment-params)|false|Parameters for performing the payment|
-
-</section>
-
-<section>
-<h3 id="confirm-payment-responses">Responses</h3>
-
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|201|[Created](https://tools.ietf.org/html/rfc7231#section-6.3.2)|payment received|None|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|invalid input, object invalid|None|
-|404|[Not Found](https://tools.ietf.org/html/rfc7231#section-6.5.4)|user/payment not found|None|
-|409|[Conflict](https://tools.ietf.org/html/rfc7231#section-6.5.8)|payment already performed|None|
-
-</section>
-
-<aside class="success">
-This operation does not require authentication
-</aside>
-
-</section>
-
-</section>
-
-<section>
-<h1 id="wallet-to-atomic-apis-info">info</h1>
-
-Generic ATOMIC info
-
-<section>
+# General Information
 
 ## Get ATOMIC generic information
 
-<a id="opIdgetAtomicInfo"></a>
+Get general ATOMIC information
+
+`GET /api/v1/info`
 
 > Code samples
 
+```shell
+curl -request GET http://atomicbox.org/wallet-to-atomic/api/v1/info 
+```
+<!--
 ```python
 import requests
 headers = {
@@ -642,11 +510,7 @@ r = requests.get('https://virtserver.swaggerhub.com/Atomicbox/Wallet-to-ATOMIC-A
 
 print r.json()
 
-```
-
-`GET /api/v1/info`
-
-Get general ATOMIC information
+``` -->
 
 > Example responses
 
@@ -658,26 +522,13 @@ Get general ATOMIC information
 }
 ```
 
-<section>
-<h3 id="get-atomic-generic-information-responses">Responses</h3>
+### Return codes
+Status|Meaning|Description
+---|---|---
+200 |OK | OK
+400|Bad Request | Bad input parameter
 
-|Status|Meaning|Description|Schema|
-|---|---|---|---|
-|200|[OK](https://tools.ietf.org/html/rfc7231#section-6.3.1)|OK|[atomic-generic-info](#schemaatomic-generic-info)|
-|400|[Bad Request](https://tools.ietf.org/html/rfc7231#section-6.5.1)|bad input parameter|None|
-
-</section>
-
-<aside class="success">
-This operation does not require authentication
-</aside>
-
-</section>
-
-</section>
-
-<section>
-
+<!-- Schemes which are not relevant here 
 # Schemas
 
 <section>
@@ -1887,3 +1738,4 @@ and
 </section>
 </section>
 
+-->

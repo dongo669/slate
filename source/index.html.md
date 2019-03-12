@@ -1,239 +1,529 @@
 ---
-title: API Reference
-
-language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
-  - ruby
-  - python
-  - javascript
-
+title: Wallet to ATOMIC APIs
+language_tabs:
+  - shell: cURL
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
-
+- <a href='https://www.atomic.org'>Visit ATOMIC home page</a>
 includes:
-  - errors
-
+  []
 search: true
+highlight_theme: darkula
+headingLevel: 2
+
 ---
+
+<!-- Generator: Widdershins v3.6.6 -->
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+> Scroll down for code samples, example requests and responses. Select a language for code samples from the tabs above or the mobile navigation menu.
 
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+This page details the APIs from an ATOMIC powered wallet towards ATOMIC P2P collateral guarantees service
 
-This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
 
-# Authentication
+# User Management
 
-> To authorize, use this code:
+User management related APIs
 
-```ruby
-require 'kittn'
+## Create new user
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
 
-```python
-import kittn
+Register user with ATOMIC - creating a Private Collateral address
 
-api = kittn.authorize('meowmeowmeow')
-```
 
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
+`PUT /api/v1/users/{user-id}`
 
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
+> Body parameter
 
 ```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
+{
+    "public-key": "027a478fd4a7c3b8e43cfd2eaf0e439158b2b874dace2b598c585e88f67eeb8655",
+    "refund-address": "2NF1qc9L4j1tyfqzzLdRzRqoVftHznSeC6K"
+}
 ```
 
-This endpoint retrieves all kittens.
+> Code samples
 
-### HTTP Request
+```shell
+curl -request PUT http://atomicbox.org/wallet-to-atomic/api/v1/users/{user-id} 
+--data '{"public-key": "027a478fd4a7c3b8e43cfd2eaf0e439158b2b874dace2b598c585e88f67eeb8655", "refund-address": "2NF1qc9L4j1tyfqzzLdRzRqoVftHznSeC6K"}'
+```
 
-`GET http://example.com/api/kittens`
+<!-- 
+```python
+import requests
+headers = {
+'Content-Type': 'application/json',
+'Accept': 'application/json'
+}
 
-### Query Parameters
+r = requests.put('https://virtserver.swaggerhub.com/Atomicbox/Wallet-to-ATOMIC-APIs/1.0/api/v1/users/{user-id}', params={
 
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+}, headers = headers)
+
+print r.json()
+
+``` -->
+
+
+> Example responses
+
+> 201 Response
+
+```json
+{
+    "smart-credit-info": {
+    "atomic-public-key": "022d4a565aa6845c72bd2a732d3d4971704e8403942766b59d68e0dcf62713443c",
+    "smart-credit-address": "2Mx1EM2Bsd8qzV2yFv3XxemKaqW7ZfCKAFN",
+    "smart-credit-redeem-script": "5221022d4a565aa6845c72bd2a732d3d4971704e8403942766b59d68e0dcf62713443c21027a478fd4a7c3b8e43cfd2eaf0e439158b2b874dace2b598c585e88f67eeb865552ae",
+    "smart-credit-script-pub-key": "a91434331a9a1282cb1f58a383eb3d74bbbe671161ba87"
+    }
+}
+```
+### Return codes
+Status|Meaning|Description
+---|---|---
+201 | OK  | User created succesfully
+400 | Bad Request | Invalid request or conflict with existing user
+409 | Already Exist | User already exists
+
+## Get user's information
+Retrieves existing information for a specific user
+
+`GET /api/v1/users/{user-id}`
+
+> Code samples
+
+```shell
+curl -request GET http://atomicbox.org/wallet-to-atomic/api/v1/users/{user-id}
+```
+<!--
+```python
+import requests
+headers = {
+'Accept': 'application/json'
+}
+
+r = requests.get('https://virtserver.swaggerhub.com/Atomicbox/Wallet-to-ATOMIC-APIs/1.0/api/v1/users/{user-id}', params={
+
+}, headers = headers)
+
+print r.json()
+
+``` -->
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "smart-credit-info": {
+    "atomic-public-key": "022d4a565aa6845c72bd2a732d3d4971704e8403942766b59d68e0dcf62713443c",
+    "smart-credit-address": "2Mx1EM2Bsd8qzV2yFv3XxemKaqW7ZfCKAFN",
+    "smart-credit-redeem-script": "5221022d4a565aa6845c72bd2a732d3d4971704e8403942766b59d68e0dcf62713443c21027a478fd4a7c3b8e43cfd2eaf0e439158b2b874dace2b598c585e88f67eeb865552ae",
+    "smart-credit-script-pub-key": "a91434331a9a1282cb1f58a383eb3d74bbbe671161ba87"
+  },
+  "smart-credit-balance": 102340000,
+  "inflight-transactions": [
+    {
+      "payment-id": "d290f1ee-6c54-4b01-90e6-d701748f0300",
+      "transaction-id": "850b5f43b0b13837f2fea92818c73034c7337c963245eaa4eca8b78e00515fd0",
+      "status": "PENDING-CONFIRMATIONS"
+    }
+  ]
+}
+```
+### Return codes
+Status|Meaning|Description
+---|---|---
+200 | OK | OK
+404 | Not Found | User not found
+
+# Unlock Operations
+
+## Get on-demand unlock
+Get an on-demand unlock transaction from the user's private-collateral address
+
+`GET /api/v1/users/{user-id}/unlock`
+
+<aside class="warning">
+NOTE: An on demand unlock cannot be processed during ongoing transactions
+</aside>
+
+
+> Body parameter
+
+```json
+{
+    "amount": 498000000
+}
+```
+
+> Code samples
+
+```shell
+curl -request GET http://atomicbox.org/wallet-to-atomic/api/v1/users/{user-id}/unlock 
+--data '{"amount": 498000000 }'
+```
+<!--
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+r = requests.get('https://virtserver.swaggerhub.com/Atomicbox/Wallet-to-ATOMIC-APIs/1.0/api/v1/users/{user-id}/unlock', params={
+
+}, headers = headers)
+
+print r.json()
+
+``` -->
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "raw-transaction": "02000000018e62016f5fe7fad1f7f343cdf900f8c6aad4cd1bef9c2a274334291c3999551c0000000000feffffff0118c69a3b0000000017a91455f415046dfb9e578426fbcbfb480a66b0782480876e000000"
+}
+```
+
+### Return codes
+Status|Meaning|Description
+---|---|---
+200 | OK | On demand unlock transaction created
+403 | Forbidden | Cannot perform on-demand unlock at this time
+404 | Not Found | User not found
+
+## Submit an on-demand unlock
+
+Perform an unlock of funds from the user's private-collateral address.
+
+Should supply a signed unlock transaction which was obtained from the "GET" command, or created manually
+
+`PUT /api/v1/users/{user-id}/unlock`
+
+<aside class="warning">
+NOTE: An on demand unlock cannot be processed during ongoing transactions
+</aside>
+
+
+> Body parameter
+
+```json
+{
+    "partially-signed-unlock-tx": "02000000018e62016f5fe7fad1f7f343cdf900f8c6aad4cd1bef9c2a274334291c3999551c00000000b400483045022100de328bf0550164f0b6f1ae3bae78c6d417140808fa82f0da67be00cd8df41816022024b2fc2182789488fcca4984e7af3123bd3e680e4f4be8eaeb3e547f24ca31ea01004c675241043af1ba0a3429d7890d91a7f9ff280b7130c3b5edd1c02613e9f770a05ec1977a76646d7223ff17f3881f07e08a15f31cb23e79a7871202e52c678f5b9af6823021033f1654d3187087ad5f7f220814c94232945825663d55431345aca8a82746780552aefeffffff0118c69a3b0000000017a91455f415046dfb9e578426fbcbfb480a66b0782480876e000000"
+}
+```
+
+> Code samples
+```shell
+curl -request PUT http://atomicbox.org/wallet-to-atomic/api/v1/users/{user-id}/unlock 
+--data '{"partially-signed-unlock-tx":      "02000000018e62016f5fe7fad1f7f343cdf900f8c6aad4cd1bef9c2a274334291c3999551c00000000b400483045022100de328bf0550164f0b6f1ae3bae78c6d417140808fa82f0da67be00cd8df41816022024b2fc2182789488fcca4984e7af3123bd3e680e4f4be8eaeb3e547f24ca31ea01004c675241043af1ba0a3429d7890d91a7f9ff280b7130c3b5edd1c02613e9f770a05ec1977a76646d7223ff17f3881f07e08a15f31cb23e79a7871202e52c678f5b9af6823021033f1654d3187087ad5f7f220814c94232945825663d55431345aca8a82746780552aefeffffff0118c69a3b0000000017a91455f415046dfb9e578426fbcbfb480a66b0782480876e000000"}'
+```
+
+<!--
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json'
+}
+
+r = requests.put('https://virtserver.swaggerhub.com/Atomicbox/Wallet-to-ATOMIC-APIs/1.0/api/v1/users/{user-id}/unlock', params={
+
+}, headers = headers)
+
+print r.json()
+
+``` -->
+
+> Example responses
+
+> 201 Response -  Unlock command recieved
+
+### Return codes
+Status|Meaning|Description|
+--------- |  ----------- | -----------
+201| Created|Unlock command recieved
+400| Bad Request | Invalid input, object invalid
+403| Forbidden|Cannot perform unlock at this time
+404 |Not Found | User not found
+409| Conflict | Another unlock already in progress
+
+
+## Get timed unlock
+
+Get a timed unlock transaction from the user's smart credit address at the given lock time
+
+`GET /api/v1/users/{user-id}/unlock/timed`
+
+<aside class="warning">
+Transactions will not be allowed near the target unlock time
+</aside>
+
+> Body parameter
+
+```json
+{
+    "amount": 498000000,
+    "nLockTime": 1548885799
+}
+```
+
+> Code samples
+
+```shell
+curl -request GET http://atomicbox.org/wallet-to-atomic/api/v1/users/{user-id}/unlock/timed 
+--data '{"amount": 498000000, "nLockTime": 1548885799}'  
+```
+<!--
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+r = requests.get('https://virtserver.swaggerhub.com/Atomicbox/Wallet-to-ATOMIC-APIs/1.0/api/v1/users/{user-id}/unlock/timed', params={
+
+}, headers = headers)
+
+print r.json()
+
+``` -->
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "raw-transaction": "02000000018e62016f5fe7fad1f7f343cdf900f8c6aad4cd1bef9c2a274334291c3999551c0000000000feffffff0118c69a3b0000000017a91455f415046dfb9e578426fbcbfb480a66b0782480876e000000"
+}
+```
+### Return codes
+Status|Meaning|Description
+---|---|---
+200 | OK | Transaction created
+400 | Bad Request | Invalid input, object invalid
+403 | Forbidden | Cannot create the requested timed unlock
+404|  Not Found | User not found 
+
+
+## Submit timed unlock
+
+Requests ATOMIC to sign the user-signed timed unlock transaction.
 
 <aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+The timed transaction will be stored by the user, and submitted when the lock time arrives
 </aside>
 
-## Get a Specific Kitten
 
-```ruby
-require 'kittn'
+`PUT /api/v1/users/{user-id}/unlock/timed`
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
 
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
+> Body parameter
 
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+    "partially-signed-tx": "02000000018e62016f5fe7fad1f7f343cdf900f8c6aad4cd1bef9c2a274334291c3999551c00000000b400483045022100de328bf0550164f0b6f1ae3bae78c6d417140808fa82f0da67be00cd8df41816022024b2fc2182789488fcca4984e7af3123bd3e680e4f4be8eaeb3e547f24ca31ea01004c675241043af1ba0a3429d7890d91a7f9ff280b7130c3b5edd1c02613e9f770a05ec1977a76646d7223ff17f3881f07e08a15f31cb23e79a7871202e52c678f5b9af6823021033f1654d3187087ad5f7f220814c94232945825663d55431345aca8a82746780552aefeffffff0118c69a3b0000000017a91455f415046dfb9e578426fbcbfb480a66b0782480876e000000"
 }
 ```
 
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-
-### HTTP Request
-
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
-
-## Delete a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
+> Code samples
 
 ```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
+curl -request PUT http://atomicbox.org/wallet-to-atomic/api/v1/users/{user-id}/unlock/timed 
+--data '{"partially-signed-tx": "02000000018e62016f5fe7fad1f7f343cdf900f8c6aad4cd1bef9c2a274334291c3999551c00000000b400483045022100de328bf0550164f0b6f1ae3bae78c6d417140808fa82f0da67be00cd8df41816022024b2fc2182789488fcca4984e7af3123bd3e680e4f4be8eaeb3e547f24ca31ea01004c675241043af1ba0a3429d7890d91a7f9ff280b7130c3b5edd1c02613e9f770a05ec1977a76646d7223ff17f3881f07e08a15f31cb23e79a7871202e52c678f5b9af6823021033f1654d3187087ad5f7f220814c94232945825663d55431345aca8a82746780552aefeffffff0118c69a3b0000000017a91455f415046dfb9e578426fbcbfb480a66b0782480876e000000"}'  
 ```
+<!--
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': '*/*'
+}
 
-```javascript
-const kittn = require('kittn');
+r = requests.put('https://virtserver.swaggerhub.com/Atomicbox/Wallet-to-ATOMIC-APIs/1.0/api/v1/users/{user-id}/unlock/timed', params={
 
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
+}, headers = headers)
+
+print r.json()
+
+``` -->
+
+### Return codes
+Status|Meaning|Description
+---|---|---
+201| Created | Unlock command received
+400| Bad Request | Invalid input, object invalid
+403| Forbidden | Cannot perform unlock, earlier unlock/transaction is already in progress
+404| Not Found | User not found
+409| Conflict | Already exists 
+
+
+# Payments
+
+
+## Get payment details
+
+Gets the required information for payment confirmation.
+
+`GET /api/v1/users/{user-id}/payments/{payment-id}`
+
+<aside class="success">
+ATOMIC will provide the raw escrow transaction, as well as the required details for the payment transaction
+</aside>
+
+
+> Code samples
+
+```shell
+curl -request GET http://atomicbox.org/wallet-to-atomic/api/v1/users/{user-id}/payments/{payment-id} 
 ```
+<!--
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
 
-> The above command returns JSON structured like this:
+r = requests.get('https://virtserver.swaggerhub.com/Atomicbox/Wallet-to-ATOMIC-APIs/1.0/api/v1/users/{user-id}/payments/{payment-id}', params={
+}, headers = headers)
+
+print r.json()
+
+``` -->
+
+> Example responses
+
+> 200 Response
 
 ```json
 {
-  "id": 2,
-  "deleted" : ":("
+  "payment-transaction-details": {
+    "coin-type": "BTC",
+    "fee": 1000,
+    "outputs": [
+      {
+        "address": "2N82m2L7p17jNzrnJKN4CTjuAApSYmRtPe2",
+        "amount": 1000000
+      }
+    ]
+  },
+  "escrow-transaction-details": {
+    "coin-type": "BTC",
+    "source-address": "2Mx1EM2Bsd8qzV2yFv3XxemKaqW7ZfCKAFN",
+    "raw-escrow-transaction": "0200000001fea70fbb492e7814ce3a31639c64a7819a95ee43580867cc751a3e83438289fb0000000000ffffffff0200c2eb0b0000000017a9144f22a11a711f126454fd24e9d589529ed592c93387dc13ae2f0000000017a914119cd81d4e3c2fab3e7edb5556ddaf5d1df893248700000000"
+  }
 }
 ```
 
-This endpoint deletes a specific kitten.
+### Return codes
+Status|Meaning|Description
+---|---|---
+200| OK | Payment found
+400| Bad Request | Invalid input, object invalid
+404| Not Found | User/Payment not found
+409| Conflict | Payment already performed
 
-### HTTP Request
 
-`DELETE http://example.com/kittens/<ID>`
+## Confirm payment
 
-### URL Parameters
+Confirms the payment.
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
+Providing ATOMIC with the signed escrow transactions which was obtained from the "GET" command, and the created and signed pay transaction
 
+`PUT /api/v1/users/{user-id}/payments/{payment-id}`
+
+
+> Body parameter
+
+```json
+{
+    "fully-signed-pay-transaction": "02000000000101fea70fbb492e7814ce3a31639c64a7819a95ee43580867cc751a3e83438289fb01000000232200200818c20455783996fd6c4d753751f4c3f49d9a474fed9a65c3ddb31a48afa7f8ffffffff0200e1f5050000000017a9144f22a11a711f126454fd24e9d589529ed592c93387b800a3350000000017a914e90e71bb600bb67ac5c67b0f512c521dc1d7eceb87030047304402206f67c13ae9c8ad897090f8660993adabec91c1a221558f7a0fd46fe5054d911d02205c28139ab369be614588923742ea9b3922701240c1e19ab27983a1755ca8653c01255121032cea817f794f4afa7061a1187bb8108bfff0096c61f69468ce800629cebec87951ae00000000",
+    
+    "partially-signed-escrow-transaction": "0200000001fea70fbb492e7814ce3a31639c64a7819a95ee43580867cc751a3e83438289fb00000000b400483045022100c37d9f6bef9575be912e1963815f50efaa269779d7edcc72333044f14b3c52500220785d9bb8636125e30ca20a3b300b02f9566b33e0d5610b49393187a9c9ea603d01004c675241041256ae5095da25836abbe95f06f54ec27a745d66df3baa98f7ca1c54bfd12e26b279680220f779d059c3f168a7bbbc35344f5ff82b58d8329e920daba2586b3121032cea817f794f4afa7061a1187bb8108bfff0096c61f69468ce800629cebec87952aeffffffff0200c2eb0b0000000017a9144f22a11a711f126454fd24e9d589529ed592c93387dc13ae2f0000000017a914119cd81d4e3c2fab3e7edb5556ddaf5d1df893248700000000"
+}
+```
+
+> Code samples
+
+```shell
+curl -request PUT http://atomicbox.org/wallet-to-atomic/api/v1/users/{user-id}/payments/{payment-id} 
+--data '{"fully-signed-pay-transaction": "02000000000101fea70fbb492e7814ce3a31639c64a7819a95ee43580867cc751a3e83438289fb01000000232200200818c20455783996fd6c4d753751f4c3f49d9a474fed9a65c3ddb31a48afa7f8ffffffff0200e1f5050000000017a9144f22a11a711f126454fd24e9d589529ed592c93387b800a3350000000017a914e90e71bb600bb67ac5c67b0f512c521dc1d7eceb87030047304402206f67c13ae9c8ad897090f8660993adabec91c1a221558f7a0fd46fe5054d911d02205c28139ab369be614588923742ea9b3922701240c1e19ab27983a1755ca8653c01255121032cea817f794f4afa7061a1187bb8108bfff0096c61f69468ce800629cebec87951ae00000000",
+
+"partially-signed-escrow-transaction": "0200000001fea70fbb492e7814ce3a31639c64a7819a95ee43580867cc751a3e83438289fb00000000b400483045022100c37d9f6bef9575be912e1963815f50efaa269779d7edcc72333044f14b3c52500220785d9bb8636125e30ca20a3b300b02f9566b33e0d5610b49393187a9c9ea603d01004c675241041256ae5095da25836abbe95f06f54ec27a745d66df3baa98f7ca1c54bfd12e26b279680220f779d059c3f168a7bbbc35344f5ff82b58d8329e920daba2586b3121032cea817f794f4afa7061a1187bb8108bfff0096c61f69468ce800629cebec87952aeffffffff0200c2eb0b0000000017a9144f22a11a711f126454fd24e9d589529ed592c93387dc13ae2f0000000017a914119cd81d4e3c2fab3e7edb5556ddaf5d1df893248700000000"
+}'
+```
+
+<!--
+```python
+import requests
+headers = {
+  'Content-Type': 'application/json'
+}
+
+r = requests.put('https://virtserver.swaggerhub.com/Atomicbox/Wallet-to-ATOMIC-APIs/1.0/api/v1/users/{user-id}/payments/{payment-id}', params={
+
+}, headers = headers)
+
+print r.json()
+
+``` -->
+
+### Return codes
+Status|Meaning|Description
+---|---|---
+201| Created | Payment received 
+400| Bad Request  | Invalid input, object invalid
+404| Not Found  | User/Payment not found
+409| Conflict  | Payment already performed 
+
+# General Information
+
+## Get ATOMIC generic information
+
+Get general ATOMIC information
+
+`GET /api/v1/info`
+
+> Code samples
+
+```shell
+curl -request GET http://atomicbox.org/wallet-to-atomic/api/v1/info 
+```
+<!--
+```python
+import requests
+headers = {
+  'Accept': 'application/json'
+}
+
+r = requests.get('https://virtserver.swaggerhub.com/Atomicbox/Wallet-to-ATOMIC-APIs/1.0/api/v1/info', params={
+
+}, headers = headers)
+
+print r.json()
+
+``` -->
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "api-version": "v1"
+}
+```
+
+### Return codes
+Status|Meaning|Description
+---|---|---
+200 |OK | OK
+400|Bad Request | Bad input parameter
