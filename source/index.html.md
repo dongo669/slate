@@ -72,11 +72,11 @@ print r.json()
 
 ```json
 {
-    "smart-credit-info": {
+    "private-collateral-info": {
     "atomic-public-key": "022d4a565aa6845c72bd2a732d3d4971704e8403942766b59d68e0dcf62713443c",
-    "smart-credit-address": "2Mx1EM2Bsd8qzV2yFv3XxemKaqW7ZfCKAFN",
-    "smart-credit-redeem-script": "5221022d4a565aa6845c72bd2a732d3d4971704e8403942766b59d68e0dcf62713443c21027a478fd4a7c3b8e43cfd2eaf0e439158b2b874dace2b598c585e88f67eeb865552ae",
-    "smart-credit-script-pub-key": "a91434331a9a1282cb1f58a383eb3d74bbbe671161ba87"
+    "private-collateral-address": "2Mx1EM2Bsd8qzV2yFv3XxemKaqW7ZfCKAFN",
+    "private-collateral-redeem-script": "5221022d4a565aa6845c72bd2a732d3d4971704e8403942766b59d68e0dcf62713443c21027a478fd4a7c3b8e43cfd2eaf0e439158b2b874dace2b598c585e88f67eeb865552ae",
+    "private-collateral-script-pub-key": "a91434331a9a1282cb1f58a383eb3d74bbbe671161ba87"
     }
 }
 ```
@@ -118,13 +118,13 @@ print r.json()
 
 ```json
 {
-  "smart-credit-info": {
+  "private-collateral-info": {
     "atomic-public-key": "022d4a565aa6845c72bd2a732d3d4971704e8403942766b59d68e0dcf62713443c",
-    "smart-credit-address": "2Mx1EM2Bsd8qzV2yFv3XxemKaqW7ZfCKAFN",
-    "smart-credit-redeem-script": "5221022d4a565aa6845c72bd2a732d3d4971704e8403942766b59d68e0dcf62713443c21027a478fd4a7c3b8e43cfd2eaf0e439158b2b874dace2b598c585e88f67eeb865552ae",
-    "smart-credit-script-pub-key": "a91434331a9a1282cb1f58a383eb3d74bbbe671161ba87"
+    "private-collateral-address": "2Mx1EM2Bsd8qzV2yFv3XxemKaqW7ZfCKAFN",
+    "private-collateral-redeem-script": "5221022d4a565aa6845c72bd2a732d3d4971704e8403942766b59d68e0dcf62713443c21027a478fd4a7c3b8e43cfd2eaf0e439158b2b874dace2b598c585e88f67eeb865552ae",
+    "private-collateral-script-pub-key": "a91434331a9a1282cb1f58a383eb3d74bbbe671161ba87"
   },
-  "smart-credit-balance": 102340000,
+  "private-collateral-balance": 102340000,
   "inflight-transactions": [
     {
       "payment-id": "d290f1ee-6c54-4b01-90e6-d701748f0300",
@@ -257,7 +257,7 @@ Status|Meaning|Description|
 
 ## Get timed unlock
 
-Get a timed unlock transaction from the user's smart credit address at the given lock time
+Get a timed unlock transaction from the user's Private Coilateral address at the given lock time
 
 `GET /api/v1/users/{user-id}/unlock/timed`
 
