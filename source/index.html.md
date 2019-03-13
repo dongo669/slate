@@ -8,24 +8,21 @@ includes:
   []
 search: true
 highlight_theme: darkula
-headingLevel: 2
+headingLevel: 3
 
 ---
 
 <!-- Generator: Widdershins v3.6.6 -->
 
-# Introduction
+# Wallet APIs
 
-> Scroll down for code samples, example requests and responses
+This section details the APIs from an ATOMIC powered wallet towards ATOMIC P2P collateral guarantees service
 
-This page details the APIs from an ATOMIC powered wallet towards ATOMIC P2P collateral guarantees service
-
-
-# User Management
+## User Management
 
 User management related APIs
 
-## Create New User
+### Create New User
 
 
 Register user with ATOMIC - creating a Private Collateral address
@@ -66,14 +63,14 @@ curl -request PUT https://atomic.org/api/general/v1/users/{user-id} \
 }
 ```
 
-### Return Codes
+#### Return Codes
 Status|Meaning|Description
 ---|---|---
 201 | OK  | User created succesfully
 400 | Bad Request | Invalid request or conflict with existing user
 409 | Already Exist | User already exists
 
-## Get User's Information
+### Get User's Information
 Retrieves existing information for a specific user
 
 `GET /api/general/v1/users/{user-id}`
@@ -107,15 +104,17 @@ curl -request GET https://atomic.org/api/general/v1/users/{user-id}
 }
 ```
 
-### Return Codes
+#### Return Codes
 Status|Meaning|Description
 ---|---|---
 200 | OK | OK
 404 | Not Found | User not found
 
-# Unlock Operations
+## Unlock Operations
 
-## Get On-Demand Unlock
+APIs for Unlocking funds from the user's private collateral
+
+### Get On-Demand Unlock
 Get an on-demand unlock transaction from the user's private-collateral address
 
 `GET /api/general/v1/users/{user-id}/unlock`
@@ -150,14 +149,14 @@ curl -request GET https://atomic.org/api/general/v1/users/{user-id}/unlock \
 }
 ```
 
-### Return Codes
+#### Return Codes
 Status|Meaning|Description
 ---|---|---
 200 | OK | On demand unlock transaction created
 403 | Forbidden | Cannot perform on-demand unlock at this time
 404 | Not Found | User not found
 
-## Submit An On-Demand Unlock
+### Submit An On-Demand Unlock
 
 Perform an unlock of funds from the user's private-collateral address.
 
@@ -188,7 +187,7 @@ curl -request PUT https://atomic.org/api/general/v1/users/{user-id}/unlock
 
 > 201 Response -  Unlock command recieved
 
-### Return Codes
+#### Return Codes
 Status|Meaning|Description|
 --------- |  ----------- | -----------
 201| Created|Unlock command recieved
@@ -198,7 +197,7 @@ Status|Meaning|Description|
 409| Conflict | Another unlock already in progress
 
 
-## Get Timed Unlock
+### Get Timed Unlock
 
 Get a timed unlock transaction from the user's Private Coilateral address at the given lock time
 
@@ -233,7 +232,7 @@ curl -request GET https://atomic.org/api/general/v1/users/{user-id}/unlock/timed
   "raw-transaction": "02000000018e62016f5fe7fad1f7f343cdf900f8c6aad4cd1bef9c2a274334291c3999551c0000000000feffffff0118c69a3b0000000017a91455f415046dfb9e578426fbcbfb480a66b0782480876e000000"
 }
 ```
-### Return Codes
+#### Return Codes
 Status|Meaning|Description
 ---|---|---
 200 | OK | Transaction created
@@ -242,7 +241,7 @@ Status|Meaning|Description
 404|  Not Found | User not found 
 
 
-## Submit Timed Unlock
+### Submit Timed Unlock
 
 Requests ATOMIC to sign the user-signed timed unlock transaction.
 
@@ -269,7 +268,7 @@ curl -request PUT https://atomic.org/api/general/v1/users/{user-id}/unlock/timed
 -H 'Content-Type: application/json' --data '{"partially-signed-tx": \ "02000000018e62016f5fe7fad1f7f343cdf900f8c6aad4cd1bef9c2a274334291c3999551c00000000b400483045022100de328bf0550164f0b6f1ae3bae78c6d417140808fa82f0da67be00cd8df41816022024b2fc2182789488fcca4984e7af3123bd3e680e4f4be8eaeb3e547f24ca31ea01004c675241043af1ba0a3429d7890d91a7f9ff280b7130c3b5edd1c02613e9f770a05ec1977a76646d7223ff17f3881f07e08a15f31cb23e79a7871202e52c678f5b9af6823021033f1654d3187087ad5f7f220814c94232945825663d55431345aca8a82746780552aefeffffff0118c69a3b0000000017a91455f415046dfb9e578426fbcbfb480a66b0782480876e000000"}'  
 ```
 
-### Return Codes
+#### Return Codes
 Status|Meaning|Description
 ---|---|---
 201| Created | Unlock command received
@@ -279,10 +278,11 @@ Status|Meaning|Description
 409| Conflict | Already exists 
 
 
-# Payments
+## Payments
 
+APIs for confirming payments initiated from various financial services
 
-## Get Payment Details
+### Get Payment Details
 
 Gets the required information for payment confirmation.
 
@@ -323,7 +323,7 @@ curl -request GET https://atomic.org/api/general/v1/users/{user-id}/payments/{pa
 }
 ```
 
-### Return Codes
+#### Return Codes
 Status|Meaning|Description
 ---|---|---
 200| OK | Payment found
@@ -332,7 +332,7 @@ Status|Meaning|Description
 409| Conflict | Payment already performed
 
 
-## Confirm Payment
+### Confirm Payment
 
 Confirms the payment.
 
@@ -360,7 +360,7 @@ curl -request PUT https://atomic.org/api/general/v1/users/{user-id}/payments/{pa
     "partially-signed-escrow-transaction": \ "0200000001fea70fbb492e7814ce3a31639c64a7819a95ee43580867cc751a3e83438289fb00000000b400483045022100c37d9f6bef9575be912e1963815f50efaa269779d7edcc72333044f14b3c52500220785d9bb8636125e30ca20a3b300b02f9566b33e0d5610b49393187a9c9ea603d01004c675241041256ae5095da25836abbe95f06f54ec27a745d66df3baa98f7ca1c54bfd12e26b279680220f779d059c3f168a7bbbc35344f5ff82b58d8329e920daba2586b3121032cea817f794f4afa7061a1187bb8108bfff0096c61f69468ce800629cebec87952aeffffffff0200c2eb0b0000000017a9144f22a11a711f126454fd24e9d589529ed592c93387dc13ae2f0000000017a914119cd81d4e3c2fab3e7edb5556ddaf5d1df893248700000000" }'
 ```
 
-### Return Codes
+#### Return Codes
 Status|Meaning|Description
 ---|---|---
 201| Created | Payment received 
@@ -368,9 +368,11 @@ Status|Meaning|Description
 404| Not Found  | User/Payment not found
 409| Conflict  | Payment already performed 
 
-# General Information
+## General Information
 
-## Get ATOMIC Generic Ißnformation
+Genarl information from ATOMIC P2P Collateral Guarantees Service
+
+### Get ATOMIC Generic Information
 
 Get general ATOMIC information
 
@@ -392,18 +394,18 @@ curl -request GET https://atomic.org/api/general/v1/info
 }
 ```
 
-### Return Codes
+#### Return Codes
 Status|Meaning|Description
 ---|---|---
 200 |OK | OK
 400|Bad Request | Bad input parameter
 
 
-# Trade Platform APIs
+## Trade Platform APIs
  
  This section will detail the APIs from an ATOMIC powered wallet to an ATOMIC powered P2P Trading Platform
  
-## Create Order
+### Create Order
  
  Place a new trade order
 
@@ -440,7 +442,7 @@ Status|Meaning|Description
      }'
  ```
  
-### Return Codes
+#### Return Codes
  Status|Meaning|Description
  ---|---|---
  201 | Created | Order created succesfully 
@@ -448,7 +450,7 @@ Status|Meaning|Description
  409 | Conflict | Order already exists
 
 
-## Get Order Details
+### Get Order Details
 
 Retrieves the existing information for a specific order.
 
@@ -477,13 +479,13 @@ curl -request GET https://atomic.org/api/trades/v1/users/{user-id}/orders/{order
 }
 ```
 
-### Return Codes
+#### Return Codes
 Status|Meaning|Description
 ---|---|---
 200 | OK | Order found
 404 | Not Found | Order not found
 
-## Cancel Order
+### Cancel Order
 
 Deletes a given order, if allowed
 
@@ -496,7 +498,7 @@ curl -request DELETE https://atomic.org/api/trades/v1/users/{user-id}/orders/{or
 
 ```
 
-### Return Codes
+#### Return Codes
 Status|Meaning|Description
 ---|---|---
 200 | OK | Order canceled
@@ -504,7 +506,7 @@ Status|Meaning|Description
 403 | Forbidden | Order is currently being executed, unable to cancel 
 404 | Not Found | Order not found
 
-## Get Supported Coins
+### Get Supported Coins
 
 List of supported coins
 
@@ -530,7 +532,7 @@ curl -request GET https://atomic.org/api/trades/v1/coins'
 }
 ```
 
-## Get Generic Info
+### Get Generic Info
 
 Generic info from the P2P trading platform
 
@@ -554,11 +556,11 @@ curl -request GET https://atomic.org/api/trades/v1/info'
 }
 ```
 
-# Credit Line Platforms APIs
+## Credit Line Platforms APIs
 
 This section will detail the APIs from an ATOMIC powered wallet to an ATOMIC powered Credit Line provider
 
-## Request Credit Line
+### Request Credit Line
 
 Request/Update Credit Line amount
 
@@ -597,7 +599,7 @@ curl -request PUT https://atomic.org/api/credit-line/v1/users/{user-id}/credits/
 }
 ```
 
-### Return Codes
+#### Return Codes
 Status|Meaning|Description
 ---|---|---
 201 | Created | Credit Line updated - escrow required
@@ -606,7 +608,7 @@ Status|Meaning|Description
 409 | Conflict | Credit Line up to date - no additional escrow required
 
 
-## Get Credit Line Details
+### Get Credit Line Details
 
 Gets the user's Credit Line information 
 
@@ -635,14 +637,14 @@ curl -request GET https://atomic.org/api/credit-line/v1/users/{user-id}/credits/
 }
 ```
 
-### Return Codes
+#### Return Codes
 Status|Meaning|Description
 ---|---|---
 200| OK | Credit Line found
 404| Not Found | User/Credit Line not found
 
 
-## Delete Credit Line
+### Delete Credit Line
 
 Request to remove a specific Credit Line
 
@@ -654,14 +656,14 @@ Request to remove a specific Credit Line
 curl -request DELETE  PUT https://atomic.org/api/credit-line/v1/users/{user-id}/credits/{credit-id}
 ```
 
-### Return Codes
+#### Return Codes
 Status|Meaning|Description|Schema|
 ---|---|---|---|
 200| OK | Credit Line deleted succesfully
 403| Forbidden | Credit Line not yet settled - delete not allowed
 404| Not Found | User/Credit Line not found
 
-## Get User Details
+### Get User Details
 
 Gets the list of all lines of credit for a given user
 
@@ -688,14 +690,14 @@ curl -request GET https://atomic.org/api/credit-line/v1/users/{user-id}
 ]
 ```
 
-### Return Codes
+#### Return Codes
 Status|Meaning|Description
 ---|---|---
 200| OK | OK
 404| Not Found | User not found
 
 
-## Get Supported Coins
+### Get Supported Coins
 
 List of supported coins
 
@@ -717,7 +719,7 @@ curl -request GET https://atomic.org/api/credit-line/v1/coins
 }
 ```
 
-## Get Generic Info
+### Get Generic Info
 
 > Code samples
 
@@ -741,11 +743,11 @@ curl -request GET https://atomic.org/api/credit-line/v1/info
 }
 ```
 
-# Loan Platform APIs
+## Loan Platform APIs
 
 This section will detail the APIs from an ATOMIC powered wallet to an ATOMIC powered P2P Loans Platform
 
-## Request Loan
+### Request Loan
 
 Request a new loan or update an existing loan
 
@@ -778,7 +780,7 @@ curl -request PUT https://atomic.org/api/loans/v1/borrowers/{user-id}/loans/{loa
 }'
 ```
 
-### Return Codes
+#### Return Codes
 Status|Meaning|Description
 ---|---|---
 201| Created | Loan request created
@@ -787,7 +789,7 @@ Status|Meaning|Description
 409| Conflict | Loan already exists
 
 
-## Get Loan Details
+### Get Loan Details
 
 Gets the user's loan information
 
@@ -824,14 +826,14 @@ curl -request GET https://atomic.org/api/loans/v1/borrowers/{user-id}/loans/{loa
 ```
 
 
-### Return Codes
+#### Return Codes
 Status|Meaning|Description
 ---|---|---
 200| OK | Loan found
 404| Not Found | User/Loan not found
 
 
-## Delete Loan
+### Delete Loan
 
 Request to delete a user's loan
 
@@ -843,14 +845,14 @@ Request to delete a user's loan
 curl -request DELETE https://atomic.org/api/loans/v1/borrowers/{user-id}/loans/{loan-id}
 ```
 
-### Return Codes
+#### Return Codes
 Status|Meaning|Description
 ---|---|---
 200| OK | Loan deleted successfully
 403| Forbidden | Loan is in progress, unable to delete
 404| Not Found | User/Loan not found
 
-## List Loans
+### List Loans
 
 Gets the user's loans information
 
@@ -888,13 +890,13 @@ curl -request GET https://atomic.org/api/loans/v1/borrowers/{user-id}
     }
 ```
 
-### Return Codes
+#### Return Codes
 Status|Meaning|Description
 ---|---|---
 200| OK | OK
 404| Not Found | User not found
 
-## Create Investment
+### Create Investment
 
 Create a new investment/Update an existing investment
 
@@ -926,7 +928,7 @@ curl -request PUT https://atomic.org/api/loans/v1/investors/{user-id}/investment
           "destination-address": "2NBkFMN1h5Jchqwh4Fp5JYcUEwNuXnU9cR2"}'
 ```
 
-### Return Codes
+#### Return Codes
 Status|Meaning|Description
 ---|---|---
 201 | Created | Investment created/updated
@@ -935,7 +937,7 @@ Status|Meaning|Description
 409 | Conflict | Investment is up to date
 
 
-## Get Investment Details
+### Get Investment Details
 
 Gets the user's investment information
 
@@ -970,14 +972,14 @@ curl -request GET https://atomic.org/api/loans/v1/investors/{user-id}/investment
 }
 ```
 
-### Return Codes
+#### Return Codes
 Status|Meaning|Description
 ---|---|---
 200| OK | Investment found
 404| Not Found | User/Investment not found
 
 
-## Delete Investment
+### Delete Investment
 
 Request to delete a user's investment
 
@@ -989,7 +991,7 @@ Request to delete a user's investment
 curl -request DELETE https://atomic.org/api/loans/v1/investors/{user-id}/investments/{investment-id}
 ```
 
-### Return Codes
+#### Return Codes
 Status|Meaning|Description
 ---|---|---
 200| OK | Investment deleted successfully
@@ -997,7 +999,7 @@ Status|Meaning|Description
 404| Not Found |  User/Investment not found
 
 
-## List Investments
+### List Investments
 
 Gets the user's investments information
 
@@ -1037,13 +1039,13 @@ curl -request GET https://atomic.org/api/loans/v1/investors/{user-id}
 }
 ```
 
-### Return Codes
+#### Return Codes
 Status|Meaning|Description
 ---|---|---
 200 | OK | OK
 404 | Not Found | User not found
 
-## Get Supported Coins
+### Get Supported Coins
 
 List of supported coins
 
@@ -1065,7 +1067,7 @@ curl -request GET https://atomic.org/api/loans/v1/coins
 }
 ```
 
-## Get Generic Info
+### Get Generic Info
 
 > Code samples
 
@@ -1088,3 +1090,152 @@ curl -request GET https://atomic.org/api/loans/v1/info
     "api-version": "v1"
 }
 ```
+
+# Business APIs
+
+This section details the APIs from an ATOMIC powered business towards ATOMIC P2P Collateral Guarantees Service
+
+## Deal APIs
+
+Deal management APIs
+
+### Create Deal
+
+Create a new deal
+
+`PUT /api/v1/businesses/{business-id}/deals/{deal-id}`
+
+> Body parameter
+
+```json
+{
+"num-transactions": 1,
+    "transaction-info": [
+        {
+        "user-id": "d290f1ee-6c54-4b01-90e6-d701748f0200",
+        "coin-type": "BTC",
+        "target-address": "2NBkFMN1h5Jchqwh4Fp5JYcUEwNuXnU9cR2",
+        "escrow-address": "2NBkFMN1h5Jchqwh4Fp5JYcUEwNuXnU9cR2",
+        "amount": 854320000,
+        "collateral": 854320000,
+        "fee": 5123,
+        "second-target-address": "2NBkFMN1h5Jchqwh4Fp5JYcUEwNuXnU9cR2",
+        "second-amount": 854320000
+        }
+    ]
+}
+```
+
+> Code samples
+
+```shell
+curl -request PUT https://atomic.org/api/deals/v1/businesses/{business-id}/deals/{deal-id} \
+-H 'Content-Type: application/json' \ 
+              --data '{ "num-transactions": 1, \
+                        "transaction-info": [ \
+                            {  \
+                            "user-id": "d290f1ee-6c54-4b01-90e6-d701748f0200", \
+                            "coin-type": "BTC", \
+                            "target-address": "2NBkFMN1h5Jchqwh4Fp5JYcUEwNuXnU9cR2", \
+                            "escrow-address": "2NBkFMN1h5Jchqwh4Fp5JYcUEwNuXnU9cR2", \
+                            "amount": 854320000, \
+                            "collateral": 854320000, \
+                            "fee": 5123, \
+                            "second-target-address": "2NBkFMN1h5Jchqwh4Fp5JYcUEwNuXnU9cR2", \
+                            "second-amount": 854320000 } \
+                            ]}'
+
+```
+
+#### Return Codes
+Status|Meaning|Description
+---|---|---|
+201| Created | Deal created
+400| Bad Request | Invalid input
+409| Conflict | Deal already exists
+
+
+### Get Deal Details
+
+> Code samples
+
+Gets the deal's information
+
+`GET /api/v1/businesses/{business-id}/deals/{deal-id}`
+
+```shell
+curl -request GET https://atomic.org/api/deals/v1/businesses/{business-id}/deals/{deal-id} 
+```
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+    "deal-id": "d290f1ee-6c54-4b01-90e6-d701748f0100",
+    "business-id": "d290f1ee-6c54-4b01-90e6-d701748f0400",
+    "deal-status": "READY",
+    "num-transactions": 2
+}
+```
+
+#### Return Codes
+Status|Meaning|Description
+---|---|---
+200 | OK | Deal found
+400 | Bad Request | Invalid input
+404 | Not Found | Business/Deal not found
+
+
+### Abort Deal
+
+Aborts a deal, if allowed
+
+`DELETE /api/v1/businesses/{business-id}/deals/{deal-id}`
+
+> Code samples
+
+```shell
+curl -request DELETE  https://atomic.org/api/deals/v1/businesses/{business-id}/deals/{deal-id}
+```
+
+#### Return Codes
+Status|Meaning|Description
+---|---|---
+200 | OK | Deal aborted successfully
+400 | Bad Request | Invalid input
+403 | Forbidden | Deal already in execution phase, abort isn't allowed
+
+
+### Get Transaction Details
+
+Gets a deal's transaction information
+
+`GET /api/v1/businesses/{business-id}/deals/{deal-id}/transactions/{transaction-index}`
+
+> Code samples
+
+```shell
+
+curl -request GET https://atomic.org/api/deals/v1/businesses/{business-id}/deals/{deal-id}/transactions/{transaction-index}
+
+```
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+    "user-id": "d290f1ee-6c54-4b01-90e6-d701748f0200",
+    "transaction-status": "Pending User Confirmation"
+}
+```
+
+#### Return Codes
+Status|Meaning|Description
+---|---|---
+200 | OK | OK
+400 | Bad Request | Invalid input
+404 | Not Found  | Business/Deal/Transaction not found

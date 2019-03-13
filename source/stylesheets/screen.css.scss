@@ -379,7 +379,18 @@ html, body {
     border-top: none;
   }
 
-  h3, h4, h5, h6 {
+  h3 {
+    @extend %header-font;
+    font-size: 15px;
+    margin-top: 2.5em;
+    margin-bottom: 0.8;
+    border-top: 0.5px dotted #ccc;
+    padding-top: 1.2em;
+    padding-bottom: 1.2em;
+    background-image: linear-gradient(to bottom, rgba(#fff, 0.2), rgba(#fff, 0));
+  }
+
+   h4, h5, h6 {
     @extend %header-font;
     font-size: 15px;
     margin-top: 2.5em;
