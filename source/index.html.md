@@ -403,7 +403,7 @@ Status|Meaning|Description
 
 ## Trade Platform APIs
  
- This section will detail the APIs from an ATOMIC powered wallet to an ATOMIC powered P2P Trading Platform
+ This section details the APIs from an ATOMIC powered wallet to an ATOMIC powered P2P Trading Platform
  
 ### Create Order
  
@@ -558,7 +558,7 @@ curl -request GET https://atomic.org/api/trades/v1/info'
 
 ## Credit Line Platforms APIs
 
-This section will detail the APIs from an ATOMIC powered wallet to an ATOMIC powered Credit Line provider
+This section details the APIs from an ATOMIC powered wallet to an ATOMIC powered Credit Line provider
 
 ### Request Credit Line
 
@@ -745,7 +745,7 @@ curl -request GET https://atomic.org/api/credit-line/v1/info
 
 ## Loan Platform APIs
 
-This section will detail the APIs from an ATOMIC powered wallet to an ATOMIC powered P2P Loans Platform
+This section details the APIs from an ATOMIC powered wallet to an ATOMIC powered P2P Loans Platform
 
 ### Request Loan
 
