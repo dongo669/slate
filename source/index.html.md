@@ -178,20 +178,17 @@ NOTE: An on demand unlock cannot be processed during ongoing transactions
 ```
 
 > Code samples
+
 ```shell
 curl -request PUT https://atomic.org/api/general/v1/users/{user-id}/unlock 
 -H 'Content-Type: application/json' --data '{"partially-signed-unlock-tx": \ "02000000018e62016f5fe7fad1f7f343cdf900f8c6aad4cd1bef9c2a274334291c3999551c00000000b400483045022100de328bf0550164f0b6f1ae3bae78c6d417140808fa82f0da67be00cd8df41816022024b2fc2182789488fcca4984e7af3123bd3e680e4f4be8eaeb3e547f24ca31ea01004c675241043af1ba0a3429d7890d91a7f9ff280b7130c3b5edd1c02613e9f770a05ec1977a76646d7223ff17f3881f07e08a15f31cb23e79a7871202e52c678f5b9af6823021033f1654d3187087ad5f7f220814c94232945825663d55431345aca8a82746780552aefeffffff0118c69a3b0000000017a91455f415046dfb9e578426fbcbfb480a66b0782480876e000000"}'
 ```
 
-> Example responses
-
-> 201 Response -  Unlock command recieved
-
 #### Return Codes
-Status|Meaning|Description|
+Status|Meaning|Description
 --------- |  ----------- | -----------
 201| Created|Unlock command recieved
-400| Bad Request | Invalid input, object invalid
+400| Bad Request | Invalid input
 403| Forbidden|Cannot perform unlock at this time
 404 |Not Found | User not found
 409| Conflict | Another unlock already in progress
@@ -236,7 +233,7 @@ curl -request GET https://atomic.org/api/general/v1/users/{user-id}/unlock/timed
 Status|Meaning|Description
 ---|---|---
 200 | OK | Transaction created
-400 | Bad Request | Invalid input, object invalid
+400 | Bad Request | Inavlid input
 403 | Forbidden | Cannot create the requested timed unlock
 404|  Not Found | User not found 
 
@@ -272,7 +269,7 @@ curl -request PUT https://atomic.org/api/general/v1/users/{user-id}/unlock/timed
 Status|Meaning|Description
 ---|---|---
 201| Created | Unlock command received
-400| Bad Request | Invalid input, object invalid
+400| Bad Request | Inavlid input
 403| Forbidden | Cannot perform unlock, earlier unlock/transaction is already in progress
 404| Not Found | User not found
 409| Conflict | Already exists 
@@ -327,7 +324,7 @@ curl -request GET https://atomic.org/api/general/v1/users/{user-id}/payments/{pa
 Status|Meaning|Description
 ---|---|---
 200| OK | Payment found
-400| Bad Request | Invalid input, object invalid
+400| Bad Request | Inavlid input
 404| Not Found | User/Payment not found
 409| Conflict | Payment already performed
 
@@ -364,7 +361,7 @@ curl -request PUT https://atomic.org/api/general/v1/users/{user-id}/payments/{pa
 Status|Meaning|Description
 ---|---|---
 201| Created | Payment received 
-400| Bad Request  | Invalid input, object invalid
+400| Bad Request  | Inavlid input
 404| Not Found  | User/Payment not found
 409| Conflict  | Payment already performed 
 
