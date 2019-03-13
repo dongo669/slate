@@ -1214,7 +1214,6 @@ Gets a deal's transaction information
 > Code samples
 
 ```shell
-
 curl -request GET https://atomic.org/api/deals/v1/businesses/{business-id}/deals/{deal-id}/transactions/{transaction-index}
 
 ```
