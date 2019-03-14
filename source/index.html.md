@@ -343,7 +343,6 @@ Providing ATOMIC with the signed escrow transactions which was obtained from the
 ```json
 {
     "fully-signed-pay-transaction": "02000000000101fea70fbb492e7814ce3a31639c64a7819a95ee43580867cc751a3e83438289fb01000000232200200818c20455783996fd6c4d753751f4c3f49d9a474fed9a65c3ddb31a48afa7f8ffffffff0200e1f5050000000017a9144f22a11a711f126454fd24e9d589529ed592c93387b800a3350000000017a914e90e71bb600bb67ac5c67b0f512c521dc1d7eceb87030047304402206f67c13ae9c8ad897090f8660993adabec91c1a221558f7a0fd46fe5054d911d02205c28139ab369be614588923742ea9b3922701240c1e19ab27983a1755ca8653c01255121032cea817f794f4afa7061a1187bb8108bfff0096c61f69468ce800629cebec87951ae00000000",
-    
     "partially-signed-escrow-transaction": "0200000001fea70fbb492e7814ce3a31639c64a7819a95ee43580867cc751a3e83438289fb00000000b400483045022100c37d9f6bef9575be912e1963815f50efaa269779d7edcc72333044f14b3c52500220785d9bb8636125e30ca20a3b300b02f9566b33e0d5610b49393187a9c9ea603d01004c675241041256ae5095da25836abbe95f06f54ec27a745d66df3baa98f7ca1c54bfd12e26b279680220f779d059c3f168a7bbbc35344f5ff82b58d8329e920daba2586b3121032cea817f794f4afa7061a1187bb8108bfff0096c61f69468ce800629cebec87952aeffffffff0200c2eb0b0000000017a9144f22a11a711f126454fd24e9d589529ed592c93387dc13ae2f0000000017a914119cd81d4e3c2fab3e7edb5556ddaf5d1df893248700000000"
 }
 ```
@@ -718,11 +717,11 @@ curl -request GET https://atomic.org/api/credit-line/v1/coins
 
 ### Get Generic Info
 
-> Code samples
-
 Generic info from the Credit Line provider
 
 `GET /api/credit-line/v1/info`
+
+> Code samples
 
 ```shell
 curl -request GET https://atomic.org/api/credit-line/v1/info
@@ -1066,11 +1065,11 @@ curl -request GET https://atomic.org/api/loans/v1/coins
 
 ### Get Generic Info
 
-> Code samples
-
 Generic info from the P2P Loans business
 
 `GET /api/loans/v1/info`
+
+> Code samples
 
 ```shell
 curl -request GET https://atomic.org/api/loans/v1/info
@@ -1154,11 +1153,11 @@ Status|Meaning|Description
 
 ### Get Deal Details
 
-> Code samples
-
 Gets the deal's information
 
 `GET /api/v1/businesses/{business-id}/deals/{deal-id}`
+
+> Code samples
 
 ```shell
 curl -request GET https://atomic.org/api/deals/v1/businesses/{business-id}/deals/{deal-id} 
