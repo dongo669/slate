@@ -376,10 +376,14 @@
 </tbody></table>
 <h2 id='unlock-operations'>Unlock Operations</h2>
 <p>APIs for Unlocking funds from the user&#39;s private collateral</p>
-<h3 id='get-on-demand-unlock'>Get On-Demand Unlock</h3>
-<p>Get an on-demand unlock transaction from the user&#39;s private-collateral address</p>
+<h3 id='create-on-demand-unlock'>Create On-Demand Unlock</h3>
+<p>Create an on-demand unlock transaction from the user&#39;s private-collateral address</p>
 
-<p><code>GET /api/general/v1/users/{user-id}/unlock</code></p>
+<p><code>POST /api/general/v1/users/{user-id}/unlock</code></p>
+
+<aside class = "notice">
+Amount 0 will create an unlock transaction from all available funds
+</aside>
 
 <aside class="warning">
 NOTE: An on demand unlock cannot be processed during ongoing transactions
@@ -395,7 +399,7 @@ NOTE: An on demand unlock cannot be processed during ongoing transactions
 <blockquote>
 <p>Code samples</p>
 </blockquote>
-<pre class="highlight shell tab-shell"><code>curl -request GET https://atomic.org/api/general/v1/users/<span class="o">{</span>user-id<span class="o">}</span>/unlock <span class="se">\</span>
+<pre class="highlight shell tab-shell"><code>curl -request POST https://atomic.org/api/general/v1/users/<span class="o">{</span>user-id<span class="o">}</span>/unlock <span class="se">\</span>
  -H <span class="s1">'Content-Type: application/json'</span> --data <span class="s1">'{"amount": 498000000 }'</span>
 </code></pre>
 <blockquote>
@@ -433,9 +437,9 @@ NOTE: An on demand unlock cannot be processed during ongoing transactions
 <h3 id='submit-an-on-demand-unlock'>Submit An On-Demand Unlock</h3>
 <p>Perform an unlock of funds from the user&#39;s private-collateral address.</p>
 
-<p>Should supply a signed unlock transaction which was obtained from the &quot;GET&quot; command, or created manually</p>
+<p>Should supply a signed unlock transaction which was obtained from the &quot;POST&quot; command, or created manually</p>
 
-<p><code>PUT /api/general/v1/users/{user-id}/unlock</code></p>
+<p><code>PUT /api/general/v1/users/{user-id}/unlock/perform</code></p>
 
 <aside class="warning">
 NOTE: An on demand unlock cannot be processed during ongoing transactions
@@ -451,7 +455,7 @@ NOTE: An on demand unlock cannot be processed during ongoing transactions
 <blockquote>
 <p>Code samples</p>
 </blockquote>
-<pre class="highlight shell tab-shell"><code>curl -request PUT https://atomic.org/api/general/v1/users/<span class="o">{</span>user-id<span class="o">}</span>/unlock 
+<pre class="highlight shell tab-shell"><code>curl -request PUT https://atomic.org/api/general/v1/users/<span class="o">{</span>user-id<span class="o">}</span>/unlock/perform 
 -H <span class="s1">'Content-Type: application/json'</span> --data <span class="s1">'{"partially-signed-unlock-tx": \ "02000000018e62016f5fe7fad1f7f343cdf900f8c6aad4cd1bef9c2a274334291c3999551c00000000b400483045022100de328bf0550164f0b6f1ae3bae78c6d417140808fa82f0da67be00cd8df41816022024b2fc2182789488fcca4984e7af3123bd3e680e4f4be8eaeb3e547f24ca31ea01004c675241043af1ba0a3429d7890d91a7f9ff280b7130c3b5edd1c02613e9f770a05ec1977a76646d7223ff17f3881f07e08a15f31cb23e79a7871202e52c678f5b9af6823021033f1654d3187087ad5f7f220814c94232945825663d55431345aca8a82746780552aefeffffff0118c69a3b0000000017a91455f415046dfb9e578426fbcbfb480a66b0782480876e000000"}'</span>
 </code></pre><h4 id='return-codes-4'>Return Codes</h4>
 <table><thead>
@@ -487,10 +491,14 @@ NOTE: An on demand unlock cannot be processed during ongoing transactions
 <td>Another unlock already in progress</td>
 </tr>
 </tbody></table>
-<h3 id='get-timed-unlock'>Get Timed Unlock</h3>
-<p>Get a timed unlock transaction from the user&#39;s Private Coilateral address at the given lock time</p>
+<h3 id='create-timed-unlock'>Create Timed Unlock</h3>
+<p>Create a timed unlock transaction from the user&#39;s Private Coilateral address at the given lock time</p>
 
-<p><code>GET /api/general/v1/users/{user-id}/unlock/timed</code></p>
+<p><code>POST /api/general/v1/users/{user-id}/unlock/timed</code></p>
+
+<aside class = "notice">
+Amount 0 will create an unlock transaction from all available funds
+</aside>
 
 <aside class="warning">
 Transactions will not be allowed near the target unlock time
@@ -507,7 +515,7 @@ Transactions will not be allowed near the target unlock time
 <blockquote>
 <p>Code samples</p>
 </blockquote>
-<pre class="highlight shell tab-shell"><code>curl -request GET https://atomic.org/api/general/v1/users/<span class="o">{</span>user-id<span class="o">}</span>/unlock/timed <span class="se">\</span>
+<pre class="highlight shell tab-shell"><code>curl -request POST https://atomic.org/api/general/v1/users/<span class="o">{</span>user-id<span class="o">}</span>/unlock/timed <span class="se">\</span>
 -H <span class="s1">'Content-Type: application/json'</span> --data <span class="s1">'{"amount": 498000000, "nLockTime": 1548885799}'</span>  
 </code></pre>
 <blockquote>
@@ -554,7 +562,7 @@ Transactions will not be allowed near the target unlock time
 The timed transaction will be stored by the user, and submitted when the lock time arrives
 </aside>
 
-<p><code>PUT /api/general/v1/users/{user-id}/unlock/timed</code></p>
+<p><code>PUT /api/general/v1/users/{user-id}/unlock/timed/perform</code></p>
 
 <blockquote>
 <p>Body parameters</p>
@@ -566,7 +574,7 @@ The timed transaction will be stored by the user, and submitted when the lock ti
 <blockquote>
 <p>Code samples</p>
 </blockquote>
-<pre class="highlight shell tab-shell"><code>curl -request PUT https://atomic.org/api/general/v1/users/<span class="o">{</span>user-id<span class="o">}</span>/unlock/timed <span class="se">\</span>
+<pre class="highlight shell tab-shell"><code>curl -request PUT https://atomic.org/api/general/v1/users/<span class="o">{</span>user-id<span class="o">}</span>/unlock/timed/perform <span class="se">\</span>
 -H <span class="s1">'Content-Type: application/json'</span> --data <span class="s1">'{"partially-signed-tx": \
 "02000000018e62016f5fe7fad1f7f343cdf900f8c6aad4cd1bef9c2a274334291c3999551c00000000b400483045022100de328bf0550164f0b6f1ae3bae78c6d417140808fa82f0da67be00cd8df41816022024b2fc2182789488fcca4984e7af3123bd3e680e4f4be8eaeb3e547f24ca31ea01004c675241043af1ba0a3429d7890d91a7f9ff280b7130c3b5edd1c02613e9f770a05ec1977a76646d7223ff17f3881f07e08a15f31cb23e79a7871202e52c678f5b9af6823021033f1654d3187087ad5f7f220814c94232945825663d55431345aca8a82746780552aefeffffff0118c69a3b0000000017a91455f415046dfb9e578426fbcbfb480a66b0782480876e000000"}'</span>  
 </code></pre><h4 id='return-codes-6'>Return Codes</h4>
@@ -874,7 +882,6 @@ If the order is currently in an active deal - will also return the payment ID
 <p>Code samples</p>
 </blockquote>
 <pre class="highlight shell tab-shell"><code>curl -request DELETE https://atomic.org/api/trades/v1/users/<span class="o">{</span>user-id<span class="o">}</span>/orders/<span class="o">{</span>order-id<span class="o">}</span>
-
 </code></pre><h4 id='return-codes-12'>Return Codes</h4>
 <table><thead>
 <tr>
@@ -1063,7 +1070,7 @@ Returns a payment ID in case such is required
 <blockquote>
 <p>Code samples</p>
 </blockquote>
-<pre class="highlight shell tab-shell"><code>curl -request DELETE  PUT https://atomic.org/api/credit-line/v1/users/<span class="o">{</span>user-id<span class="o">}</span>/credits/<span class="o">{</span>credit-id<span class="o">}</span>
+<pre class="highlight shell tab-shell"><code>curl -request DELETE https://atomic.org/api/credit-line/v1/users/<span class="o">{</span>user-id<span class="o">}</span>/credits/<span class="o">{</span>credit-id<span class="o">}</span>
 </code></pre><h4 id='return-codes-15'>Return Codes</h4>
 <table><thead>
 <tr>
@@ -1727,7 +1734,7 @@ Returns a payment ID in case such is required
 <blockquote>
 <p>Code samples</p>
 </blockquote>
-<pre class="highlight shell tab-shell"><code>curl -request DELETE  https://atomic.org/api/deals/v1/businesses/<span class="o">{</span>business-id<span class="o">}</span>/deals/<span class="o">{</span>deal-id<span class="o">}</span>
+<pre class="highlight shell tab-shell"><code>curl -request DELETE https://atomic.org/api/deals/v1/businesses/<span class="o">{</span>business-id<span class="o">}</span>/deals/<span class="o">{</span>deal-id<span class="o">}</span>
 </code></pre><h4 id='return-codes-27'>Return Codes</h4>
 <table><thead>
 <tr>
