@@ -114,10 +114,14 @@ Status|Meaning|Description
 
 APIs for Unlocking funds from the user's private collateral
 
-### Get On-Demand Unlock
-Get an on-demand unlock transaction from the user's private-collateral address
+### Create On-Demand Unlock
+Create an on-demand unlock transaction from the user's private-collateral address
 
-`GET /api/general/v1/users/{user-id}/unlock`
+`POST /api/general/v1/users/{user-id}/unlock`
+
+<aside class = "notice">
+Amount 0 will create an unlock transaction from all available funds
+</aside>
 
 <aside class="warning">
 NOTE: An on demand unlock cannot be processed during ongoing transactions
@@ -135,7 +139,7 @@ NOTE: An on demand unlock cannot be processed during ongoing transactions
 > Code samples
 
 ```shell
-curl -request GET https://atomic.org/api/general/v1/users/{user-id}/unlock \
+curl -request POST https://atomic.org/api/general/v1/users/{user-id}/unlock \
  -H 'Content-Type: application/json' --data '{"amount": 498000000 }'
 ```
 
@@ -160,9 +164,9 @@ Status|Meaning|Description
 
 Perform an unlock of funds from the user's private-collateral address.
 
-Should supply a signed unlock transaction which was obtained from the "GET" command, or created manually
+Should supply a signed unlock transaction which was obtained from the "POST" command, or created manually
 
-`PUT /api/general/v1/users/{user-id}/unlock`
+`PUT /api/general/v1/users/{user-id}/unlock/perform`
 
 <aside class="warning">
 NOTE: An on demand unlock cannot be processed during ongoing transactions
@@ -180,7 +184,7 @@ NOTE: An on demand unlock cannot be processed during ongoing transactions
 > Code samples
 
 ```shell
-curl -request PUT https://atomic.org/api/general/v1/users/{user-id}/unlock 
+curl -request PUT https://atomic.org/api/general/v1/users/{user-id}/unlock/perform 
 -H 'Content-Type: application/json' --data '{"partially-signed-unlock-tx": \ "02000000018e62016f5fe7fad1f7f343cdf900f8c6aad4cd1bef9c2a274334291c3999551c00000000b400483045022100de328bf0550164f0b6f1ae3bae78c6d417140808fa82f0da67be00cd8df41816022024b2fc2182789488fcca4984e7af3123bd3e680e4f4be8eaeb3e547f24ca31ea01004c675241043af1ba0a3429d7890d91a7f9ff280b7130c3b5edd1c02613e9f770a05ec1977a76646d7223ff17f3881f07e08a15f31cb23e79a7871202e52c678f5b9af6823021033f1654d3187087ad5f7f220814c94232945825663d55431345aca8a82746780552aefeffffff0118c69a3b0000000017a91455f415046dfb9e578426fbcbfb480a66b0782480876e000000"}'
 ```
 
@@ -194,11 +198,15 @@ Status|Meaning|Description
 409| Conflict | Another unlock already in progress
 
 
-### Get Timed Unlock
+### Create Timed Unlock
 
-Get a timed unlock transaction from the user's Private Coilateral address at the given lock time
+Create a timed unlock transaction from the user's Private Coilateral address at the given lock time
 
-`GET /api/general/v1/users/{user-id}/unlock/timed`
+`POST /api/general/v1/users/{user-id}/unlock/timed`
+
+<aside class = "notice">
+Amount 0 will create an unlock transaction from all available funds
+</aside>
 
 <aside class="warning">
 Transactions will not be allowed near the target unlock time
@@ -216,7 +224,7 @@ Transactions will not be allowed near the target unlock time
 > Code samples
 
 ```shell
-curl -request GET https://atomic.org/api/general/v1/users/{user-id}/unlock/timed \
+curl -request POST https://atomic.org/api/general/v1/users/{user-id}/unlock/timed \
 -H 'Content-Type: application/json' --data '{"amount": 498000000, "nLockTime": 1548885799}'  
 ```
 
@@ -247,7 +255,7 @@ The timed transaction will be stored by the user, and submitted when the lock ti
 </aside>
 
 
-`PUT /api/general/v1/users/{user-id}/unlock/timed`
+`PUT /api/general/v1/users/{user-id}/unlock/timed/perform`
 
 
 > Body parameters
@@ -261,7 +269,7 @@ The timed transaction will be stored by the user, and submitted when the lock ti
 > Code samples
 
 ```shell
-curl -request PUT https://atomic.org/api/general/v1/users/{user-id}/unlock/timed \
+curl -request PUT https://atomic.org/api/general/v1/users/{user-id}/unlock/timed/perform \
 -H 'Content-Type: application/json' --data '{"partially-signed-tx": \
 "02000000018e62016f5fe7fad1f7f343cdf900f8c6aad4cd1bef9c2a274334291c3999551c00000000b400483045022100de328bf0550164f0b6f1ae3bae78c6d417140808fa82f0da67be00cd8df41816022024b2fc2182789488fcca4984e7af3123bd3e680e4f4be8eaeb3e547f24ca31ea01004c675241043af1ba0a3429d7890d91a7f9ff280b7130c3b5edd1c02613e9f770a05ec1977a76646d7223ff17f3881f07e08a15f31cb23e79a7871202e52c678f5b9af6823021033f1654d3187087ad5f7f220814c94232945825663d55431345aca8a82746780552aefeffffff0118c69a3b0000000017a91455f415046dfb9e578426fbcbfb480a66b0782480876e000000"}'  
 ```
@@ -494,7 +502,6 @@ Deletes a given order, if allowed
 
 ```shell
 curl -request DELETE https://atomic.org/api/trades/v1/users/{user-id}/orders/{order-id}
-
 ```
 
 #### Return Codes
@@ -652,7 +659,7 @@ Request to remove a specific Credit Line
 > Code samples
 
 ```shell
-curl -request DELETE  PUT https://atomic.org/api/credit-line/v1/users/{user-id}/credits/{credit-id}
+curl -request DELETE https://atomic.org/api/credit-line/v1/users/{user-id}/credits/{credit-id}
 ```
 
 #### Return Codes
@@ -1196,7 +1203,7 @@ Aborts a deal, if allowed
 > Code samples
 
 ```shell
-curl -request DELETE  https://atomic.org/api/deals/v1/businesses/{business-id}/deals/{deal-id}
+curl -request DELETE https://atomic.org/api/deals/v1/businesses/{business-id}/deals/{deal-id}
 ```
 
 #### Return Codes
