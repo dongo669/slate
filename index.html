@@ -226,7 +226,7 @@
                     <a href="#user-management" class="toc-h2 toc-link" data-title="User Management">User Management</a>
 			  <ul class="toc-list-h3">
 			    <li>
-		              <a href="#create-new-user" class="toc-h3 toc-link" data-title="Create New User">Create New User</a>
+		              <a href="#register-new-user" class="toc-h3 toc-link" data-title="Register New User">Register New User</a>
 		            </li>
 			    <li>
 		              <a href="#get-user-39-s-information" class="toc-h3 toc-link" data-title="Get User's Information">Get User's Information</a>
@@ -237,22 +237,19 @@
                     <a href="#unlock-operations" class="toc-h2 toc-link" data-title="Unlock Operations">Unlock Operations</a>
 			  <ul class="toc-list-h3">
 			    <li>
-		              <a href="#create-on-demand-unlock" class="toc-h3 toc-link" data-title="Create On-Demand Unlock">Create On-Demand Unlock</a>
-		            </li>
-			    <li>
 		              <a href="#submit-an-on-demand-unlock" class="toc-h3 toc-link" data-title="Submit An On-Demand Unlock">Submit An On-Demand Unlock</a>
 		            </li>
 			    <li>
 		              <a href="#create-timed-unlock" class="toc-h3 toc-link" data-title="Create Timed Unlock">Create Timed Unlock</a>
-		            </li>
-			    <li>
-		              <a href="#submit-timed-unlock" class="toc-h3 toc-link" data-title="Submit Timed Unlock">Submit Timed Unlock</a>
 		            </li>
 			  </ul>
                   </li>
                   <li>
                     <a href="#payments" class="toc-h2 toc-link" data-title="Payments">Payments</a>
 			  <ul class="toc-list-h3">
+			    <li>
+		              <a href="#prepare-payment" class="toc-h3 toc-link" data-title="Prepare Payment">Prepare Payment</a>
+		            </li>
 			    <li>
 		              <a href="#get-payment-details" class="toc-h3 toc-link" data-title="Get Payment Details">Get Payment Details</a>
 		            </li>
@@ -384,15 +381,20 @@
 <p>This section details the APIs from an ATOMIC powered wallet towards ATOMIC P2P collateral guarantees service</p>
 <h2 id='user-management'>User Management</h2>
 <p>User management related APIs</p>
-<h3 id='create-new-user'>Create New User</h3>
-<p>Register user with ATOMIC - creating a Private Collateral address</p>
+<h3 id='register-new-user'>Register New User</h3>
+<p>Register user with ATOMIC - creating his Private Collateral addresses</p>
 
 <p><code>PUT /api/general/v1/users/{user-id}</code></p>
+
+<aside class="info">
+The refund address will be used for cases in which small remainder is left after escrow activation
+</aside>
 
 <blockquote>
 <p>Body parameters</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"coin-type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"public-key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"027a478fd4a7c3b8e43cfd2eaf0e439158b2b874dace2b598c585e88f67eeb8655"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"refund-address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2NF1qc9L4j1tyfqzzLdRzRqoVftHznSeC6K"</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -411,12 +413,20 @@
 <p>201 Response</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"private-collateral-info"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"atomic-public-key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"022d4a565aa6845c72bd2a732d3d4971704e8403942766b59d68e0dcf62713443c"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"private-collateral-address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2Mx1EM2Bsd8qzV2yFv3XxemKaqW7ZfCKAFN"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"private-collateral-redeem-script"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5221022d4a565aa6845c72bd2a732d3d4971704e8403942766b59d68e0dcf62713443c21027a478fd4a7c3b8e43cfd2eaf0e439158b2b874dace2b598c585e88f67eeb865552ae"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"private-collateral-script-pub-key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a91434331a9a1282cb1f58a383eb3d74bbbe671161ba87"</span><span class="w">
-        </span><span class="p">}</span><span class="w">
+    </span><span class="s2">"primary-private-collateral-info"</span><span class="p">:{</span><span class="w">
+        </span><span class="s2">"coin-type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"atomic-pub-key"</span><span class="p">:</span><span class="s2">"037260dc3a7ab99fb5b51e035630a5dfb2187b90af02684dd5adb724f6dd28143a"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"private-collateral-address"</span><span class="p">:</span><span class="s2">"2N3TpkuzGdCNYajPsbePpfdzQmKX4JT48SH"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"private-collateral-redeem-script"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"5221037260dc3a7ab99fb5b51e035630a5dfb2187b90af02684dd5adb724f6dd28143a2103f2771401483f8f3d969d74281df0bc215e71c61bc4ec53df5b76420850ac0eb052ae"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"private-collateral-script-pub-key"</span><span class="p">:</span><span class="s2">"a9147013460351b8baac0de0692530294bab3791c99d87"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"secondary-private-collateral-info"</span><span class="p">:{</span><span class="w">
+        </span><span class="s2">"coin-type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"atomic-pub-key"</span><span class="p">:</span><span class="s2">"022e74f3b11e5ada6753c402b87034579ebb21a5bd60bdcdc79f6f4f87c648ecb1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"private-collateral-address"</span><span class="p">:</span><span class="s2">"2NChgDFvx946rELsmfuzBWCh7L5SPsbY7y3"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"private-collateral-redeem-script"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"5221022e74f3b11e5ada6753c402b87034579ebb21a5bd60bdcdc79f6f4f87c648ecb12103f2771401483f8f3d969d74281df0bc215e71c61bc4ec53df5b76420850ac0eb052ae"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"private-collateral-script-pub-key"</span><span class="p">:</span><span class="s2">"a914d56b1867f1e93c800a775886eb961e8284f3b60887"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h4 id='return-codes'>Return Codes</h4>
 <table><thead>
@@ -443,7 +453,7 @@
 </tr>
 </tbody></table>
 <h3 id='get-user-39-s-information'>Get User&#39;s Information</h3>
-<p>Retrieves existing information for a specific user</p>
+<p>Retrieves existing information of a specific user</p>
 
 <p><code>GET /api/general/v1/users/{user-id}</code></p>
 
@@ -458,15 +468,24 @@
 <p>200 Response</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"private-collateral-info"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"atomic-public-key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"022d4a565aa6845c72bd2a732d3d4971704e8403942766b59d68e0dcf62713443c"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"private-collateral-address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2Mx1EM2Bsd8qzV2yFv3XxemKaqW7ZfCKAFN"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"private-collateral-redeem-script"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5221022d4a565aa6845c72bd2a732d3d4971704e8403942766b59d68e0dcf62713443c21027a478fd4a7c3b8e43cfd2eaf0e439158b2b874dace2b598c585e88f67eeb865552ae"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"private-collateral-script-pub-key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a91434331a9a1282cb1f58a383eb3d74bbbe671161ba87"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"private-collateral-balance"</span><span class="p">:</span><span class="w"> </span><span class="mi">102340000</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"primary-private-collateral-info"</span><span class="p">:{</span><span class="w">
+        </span><span class="s2">"coin-type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"atomic-pub-key"</span><span class="p">:</span><span class="s2">"037260dc3a7ab99fb5b51e035630a5dfb2187b90af02684dd5adb724f6dd28143a"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"private-collateral-address"</span><span class="p">:</span><span class="s2">"2N3TpkuzGdCNYajPsbePpfdzQmKX4JT48SH"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"private-collateral-redeem-script"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"5221037260dc3a7ab99fb5b51e035630a5dfb2187b90af02684dd5adb724f6dd28143a2103f2771401483f8f3d969d74281df0bc215e71c61bc4ec53df5b76420850ac0eb052ae"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"private-collateral-script-pub-key"</span><span class="p">:</span><span class="s2">"a9147013460351b8baac0de0692530294bab3791c99d87"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+   </span><span class="s2">"secondary-private-collateral-info"</span><span class="p">:{</span><span class="w">
+        </span><span class="s2">"coin-type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"atomic-pub-key"</span><span class="p">:</span><span class="s2">"022e74f3b11e5ada6753c402b87034579ebb21a5bd60bdcdc79f6f4f87c648ecb1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"private-collateral-address"</span><span class="p">:</span><span class="s2">"2NChgDFvx946rELsmfuzBWCh7L5SPsbY7y3"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"private-collateral-redeem-script"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"5221022e74f3b11e5ada6753c402b87034579ebb21a5bd60bdcdc79f6f4f87c648ecb12103f2771401483f8f3d969d74281df0bc215e71c61bc4ec53df5b76420850ac0eb052ae"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"private-collateral-script-pub-key"</span><span class="p">:</span><span class="s2">"a914d56b1867f1e93c800a775886eb961e8284f3b60887"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"private-collateral-balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"102340000"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"inflight-transactions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"coin-type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"payment-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d290f1ee-6c54-4b01-90e6-d701748f0300"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"transaction-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"850b5f43b0b13837f2fea92818c73034c7337c963245eaa4eca8b78e00515fd0"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PENDING-CONFIRMATIONS"</span><span class="w">
@@ -493,69 +512,59 @@
 </tr>
 </tbody></table>
 <h2 id='unlock-operations'>Unlock Operations</h2>
-<p>APIs for Unlocking funds from the user&#39;s private collateral</p>
-<h3 id='create-on-demand-unlock'>Create On-Demand Unlock</h3>
-<p>Create an on-demand unlock transaction from the user&#39;s private-collateral address</p>
+<p>APIs for Unlocking funds from the user&#39;s primary private collateral</p>
 
-<p><code>POST /api/general/v1/users/{user-id}/unlock</code></p>
+<!--
+### Create On-Demand Unlock
+Create an on-demand unlock transaction from the user's private-collateral address
+
+`POST /api/general/v1/users/{user-id}/unlock`
 
 <aside class = "notice">
 Amount 0 will create an unlock transaction from all available funds
 </aside>
 
 <aside class="warning">
-NOTE: An on demand unlock cannot be processed during ongoing transactions
+NOTE: An on demand unlock cannot be processed during ongoing payment transactions
 </aside>
 
-<blockquote>
-<p>Body parameters</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">498000000</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<blockquote>
-<p>Code samples</p>
-</blockquote>
-<pre class="highlight shell tab-shell"><code>curl -request POST https://atomic.org/api/general/v1/users/<span class="o">{</span>user-id<span class="o">}</span>/unlock <span class="se">\</span>
- -H <span class="s1">'Content-Type: application/json'</span> --data <span class="s1">'{"amount": 498000000 }'</span>
-</code></pre>
-<blockquote>
-<p>Example responses</p>
 
-<p>200 Response</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"raw-transaction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"02000000018e62016f5fe7fad1f7f343cdf900f8c6aad4cd1bef9c2a274334291c3999551c0000000000feffffff0118c69a3b0000000017a91455f415046dfb9e578426fbcbfb480a66b0782480876e000000"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h4 id='return-codes-3'>Return Codes</h4>
-<table><thead>
-<tr>
-<th>Status</th>
-<th>Meaning</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>200</td>
-<td>OK</td>
-<td>On demand unlock transaction created</td>
-</tr>
-<tr>
-<td>403</td>
-<td>Forbidden</td>
-<td>Cannot perform on-demand unlock at this time</td>
-</tr>
-<tr>
-<td>404</td>
-<td>Not Found</td>
-<td>User not found</td>
-</tr>
-</tbody></table>
+> Body parameters
+
+```json
+{
+    "amount": 498000000
+}
+```
+
+> Code samples
+
+```shell
+curl -request POST https://atomic.org/api/general/v1/users/{user-id}/unlock \
+ -H 'Content-Type: application/json' --data '{"amount": 498000000 }'
+```
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+  "raw-transaction": "02000000018e62016f5fe7fad1f7f343cdf900f8c6aad4cd1bef9c2a274334291c3999551c0000000000feffffff0118c69a3b0000000017a91455f415046dfb9e578426fbcbfb480a66b0782480876e000000"
+}
+```
+
+#### Return Codes
+Status|Meaning|Description
+---|---|---
+200 | OK | On demand unlock transaction created
+403 | Forbidden | Cannot perform on-demand unlock at this time
+404 | Not Found | User not found
+-->
 <h3 id='submit-an-on-demand-unlock'>Submit An On-Demand Unlock</h3>
 <p>Perform an unlock of funds from the user&#39;s private-collateral address.</p>
 
-<p>Should supply a signed unlock transaction which was obtained from the &quot;POST&quot; command, or created manually</p>
+<p>Should supply the unlock transaction, signed (1 of 2) by the wallet.</p>
 
 <p><code>PUT /api/general/v1/users/{user-id}/unlock/perform</code></p>
 
@@ -567,6 +576,7 @@ NOTE: An on demand unlock cannot be processed during ongoing transactions
 <p>Body parameters</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"coin-type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"partially-signed-unlock-tx"</span><span class="p">:</span><span class="w"> </span><span class="s2">"02000000018e62016f5fe7fad1f7f343cdf900f8c6aad4cd1bef9c2a274334291c3999551c00000000b400483045022100de328bf0550164f0b6f1ae3bae78c6d417140808fa82f0da67be00cd8df41816022024b2fc2182789488fcca4984e7af3123bd3e680e4f4be8eaeb3e547f24ca31ea01004c675241043af1ba0a3429d7890d91a7f9ff280b7130c3b5edd1c02613e9f770a05ec1977a76646d7223ff17f3881f07e08a15f31cb23e79a7871202e52c678f5b9af6823021033f1654d3187087ad5f7f220814c94232945825663d55431345aca8a82746780552aefeffffff0118c69a3b0000000017a91455f415046dfb9e578426fbcbfb480a66b0782480876e000000"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -574,8 +584,8 @@ NOTE: An on demand unlock cannot be processed during ongoing transactions
 <p>Code samples</p>
 </blockquote>
 <pre class="highlight shell tab-shell"><code>curl -request PUT https://atomic.org/api/general/v1/users/<span class="o">{</span>user-id<span class="o">}</span>/unlock/perform 
--H <span class="s1">'Content-Type: application/json'</span> --data <span class="s1">'{"partially-signed-unlock-tx": \ "02000000018e62016f5fe7fad1f7f343cdf900f8c6aad4cd1bef9c2a274334291c3999551c00000000b400483045022100de328bf0550164f0b6f1ae3bae78c6d417140808fa82f0da67be00cd8df41816022024b2fc2182789488fcca4984e7af3123bd3e680e4f4be8eaeb3e547f24ca31ea01004c675241043af1ba0a3429d7890d91a7f9ff280b7130c3b5edd1c02613e9f770a05ec1977a76646d7223ff17f3881f07e08a15f31cb23e79a7871202e52c678f5b9af6823021033f1654d3187087ad5f7f220814c94232945825663d55431345aca8a82746780552aefeffffff0118c69a3b0000000017a91455f415046dfb9e578426fbcbfb480a66b0782480876e000000"}'</span>
-</code></pre><h4 id='return-codes-4'>Return Codes</h4>
+-H <span class="s1">'Content-Type: application/json'</span> --data <span class="s1">'{"coin-type": "BTC", "partially-signed-unlock-tx": \ "02000000018e62016f5fe7fad1f7f343cdf900f8c6aad4cd1bef9c2a274334291c3999551c00000000b400483045022100de328bf0550164f0b6f1ae3bae78c6d417140808fa82f0da67be00cd8df41816022024b2fc2182789488fcca4984e7af3123bd3e680e4f4be8eaeb3e547f24ca31ea01004c675241043af1ba0a3429d7890d91a7f9ff280b7130c3b5edd1c02613e9f770a05ec1977a76646d7223ff17f3881f07e08a15f31cb23e79a7871202e52c678f5b9af6823021033f1654d3187087ad5f7f220814c94232945825663d55431345aca8a82746780552aefeffffff0118c69a3b0000000017a91455f415046dfb9e578426fbcbfb480a66b0782480876e000000"}'</span>
+</code></pre><h4 id='return-codes-3'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
@@ -610,31 +620,34 @@ NOTE: An on demand unlock cannot be processed during ongoing transactions
 </tr>
 </tbody></table>
 <h3 id='create-timed-unlock'>Create Timed Unlock</h3>
-<p>Create a timed unlock transaction from the user&#39;s Private Coilateral address at the given lock time</p>
+<p>Request ATOMIC to sign the (independently created) timed unlock transaction from the user&#39;s Private Coilateral address at the given lock time</p>
 
 <p><code>POST /api/general/v1/users/{user-id}/unlock/timed</code></p>
 
-<aside class = "notice">
-Amount 0 will create an unlock transaction from all available funds
+<aside class="info">
+The fully signed transaction (the response), should be stored by the wallet, and submitted when the lock-time arrives
 </aside>
 
 <aside class="warning">
-Transactions will not be allowed near the target unlock time
+Payment transactions will not be allowed near the target unlock time
 </aside>
 
 <blockquote>
 <p>Body parameters</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">498000000</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"nLockTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">1548885799</span><span class="w">
+    </span><span class="s2">"coin-type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"partially-signed-unlock-tx"</span><span class="p">:</span><span class="w"> </span><span class="s2">"020000000001016e069dc051125daa13babacc05cf1005d78af655a53f86749071246e8e5e735a0000000023220020d2a1b05864a583d696e155d9de3772dde728e059964443091f156c455d3dd835feffffff0118c69a3b0000000017a91470da9b3ae8884cedd69dd800c46b15fdeb840f3c8704004730440220075195504bddb720ffdaf3b76d4cd62e08503386466700c170864caf75bf5e220220597b9f6017d51784948f2c7835f50bfc2403850bf80aeea90fd359b26f87f6620100475221037a2ce0416838155e9e6a486687e5bad626e5b6930796351dc6c65b2aa26805b82102cfee084d838e114e2b6489e82e77ebd6fffc84046a2656ca6b3367c0f6e5173552ae6e000000"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
 <p>Code samples</p>
 </blockquote>
 <pre class="highlight shell tab-shell"><code>curl -request POST https://atomic.org/api/general/v1/users/<span class="o">{</span>user-id<span class="o">}</span>/unlock/timed <span class="se">\</span>
--H <span class="s1">'Content-Type: application/json'</span> --data <span class="s1">'{"amount": 498000000, "nLockTime": 1548885799}'</span>  
+-H <span class="s1">'Content-Type: application/json'</span> --data <span class="s1">'{ \
+      "coin-type": "BTC", \
+      "partially-signed-tx": "020000000001016e069dc051125daa13babacc05cf1005d78af655a53f86749071246e8e5e735a0000000023220020d2a1b05864a583d696e155d9de3772dde728e059964443091f156c455d3dd835feffffff0118c69a3b0000000017a91470da9b3ae8884cedd69dd800c46b15fdeb840f3c8704004730440220075195504bddb720ffdaf3b76d4cd62e08503386466700c170864caf75bf5e220220597b9f6017d51784948f2c7835f50bfc2403850bf80aeea90fd359b26f87f6620100475221037a2ce0416838155e9e6a486687e5bad626e5b6930796351dc6c65b2aa26805b82102cfee084d838e114e2b6489e82e77ebd6fffc84046a2656ca6b3367c0f6e5173552ae6e000000" \
+}'</span>  
 </code></pre>
 <blockquote>
 <p>Example responses</p>
@@ -642,60 +655,9 @@ Transactions will not be allowed near the target unlock time
 <p>200 Response</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"raw-transaction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"02000000018e62016f5fe7fad1f7f343cdf900f8c6aad4cd1bef9c2a274334291c3999551c0000000000feffffff0118c69a3b0000000017a91455f415046dfb9e578426fbcbfb480a66b0782480876e000000"</span><span class="w">
+      </span><span class="s2">"fully-signed-tx"</span><span class="p">:</span><span class="w"> </span><span class="s2">"020000000001016e069dc051125daa13babacc05cf1005d78af655a53f86749071246e8e5e735a0000000023220020d2a1b05864a583d696e155d9de3772dde728e059964443091f156c455d3dd835feffffff0118c69a3b0000000017a91470da9b3ae8884cedd69dd800c46b15fdeb840f3c87040047304402202a78c8d8e295fd20e00ed9315edc890c975d2439b5de7961662d62f44c3680c00220074e066490b6ecd0ba98fc4dc93cb6161979424b7c7b2ec20ce70a12edc10a8d014730440220075195504bddb720ffdaf3b76d4cd62e08503386466700c170864caf75bf5e220220597b9f6017d51784948f2c7835f50bfc2403850bf80aeea90fd359b26f87f66201475221037a2ce0416838155e9e6a486687e5bad626e5b6930796351dc6c65b2aa26805b82102cfee084d838e114e2b6489e82e77ebd6fffc84046a2656ca6b3367c0f6e5173552ae6e000000"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h4 id='return-codes-5'>Return Codes</h4>
-<table><thead>
-<tr>
-<th>Status</th>
-<th>Meaning</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>200</td>
-<td>OK</td>
-<td>Transaction created</td>
-</tr>
-<tr>
-<td>400</td>
-<td>Bad Request</td>
-<td>Inavlid input</td>
-</tr>
-<tr>
-<td>403</td>
-<td>Forbidden</td>
-<td>Cannot create the requested timed unlock</td>
-</tr>
-<tr>
-<td>404</td>
-<td>Not Found</td>
-<td>User not found</td>
-</tr>
-</tbody></table>
-<h3 id='submit-timed-unlock'>Submit Timed Unlock</h3>
-<p>Requests ATOMIC to sign the user-signed timed unlock transaction.</p>
-
-<aside class="success">
-The timed transaction will be stored by the user, and submitted when the lock time arrives
-</aside>
-
-<p><code>PUT /api/general/v1/users/{user-id}/unlock/timed/perform</code></p>
-
-<blockquote>
-<p>Body parameters</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"partially-signed-tx"</span><span class="p">:</span><span class="w"> </span><span class="s2">"02000000018e62016f5fe7fad1f7f343cdf900f8c6aad4cd1bef9c2a274334291c3999551c00000000b400483045022100de328bf0550164f0b6f1ae3bae78c6d417140808fa82f0da67be00cd8df41816022024b2fc2182789488fcca4984e7af3123bd3e680e4f4be8eaeb3e547f24ca31ea01004c675241043af1ba0a3429d7890d91a7f9ff280b7130c3b5edd1c02613e9f770a05ec1977a76646d7223ff17f3881f07e08a15f31cb23e79a7871202e52c678f5b9af6823021033f1654d3187087ad5f7f220814c94232945825663d55431345aca8a82746780552aefeffffff0118c69a3b0000000017a91455f415046dfb9e578426fbcbfb480a66b0782480876e000000"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<blockquote>
-<p>Code samples</p>
-</blockquote>
-<pre class="highlight shell tab-shell"><code>curl -request PUT https://atomic.org/api/general/v1/users/<span class="o">{</span>user-id<span class="o">}</span>/unlock/timed/perform <span class="se">\</span>
--H <span class="s1">'Content-Type: application/json'</span> --data <span class="s1">'{"partially-signed-tx": \
-"02000000018e62016f5fe7fad1f7f343cdf900f8c6aad4cd1bef9c2a274334291c3999551c00000000b400483045022100de328bf0550164f0b6f1ae3bae78c6d417140808fa82f0da67be00cd8df41816022024b2fc2182789488fcca4984e7af3123bd3e680e4f4be8eaeb3e547f24ca31ea01004c675241043af1ba0a3429d7890d91a7f9ff280b7130c3b5edd1c02613e9f770a05ec1977a76646d7223ff17f3881f07e08a15f31cb23e79a7871202e52c678f5b9af6823021033f1654d3187087ad5f7f220814c94232945825663d55431345aca8a82746780552aefeffffff0118c69a3b0000000017a91455f415046dfb9e578426fbcbfb480a66b0782480876e000000"}'</span>  
-</code></pre><h4 id='return-codes-6'>Return Codes</h4>
+</span></code></pre><h4 id='return-codes-4'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
@@ -731,19 +693,20 @@ The timed transaction will be stored by the user, and submitted when the lock ti
 </tbody></table>
 <h2 id='payments'>Payments</h2>
 <p>APIs for confirming payments initiated from various financial services</p>
-<h3 id='get-payment-details'>Get Payment Details</h3>
-<p>Gets the required information for payment confirmation.</p>
 
-<p><code>GET /api/general/v1/users/{user-id}/payments/{payment-id}</code></p>
+<p>ATOMIC Payment is comprised of four transactions - 
+three escrow transactions, and a single payment transaction</p>
+<h3 id='prepare-payment'>Prepare Payment</h3>
+<p>This is the first phase of the Payment confirmation process.</p>
 
-<aside class="success">
-ATOMIC will provide the raw escrow transaction, as well as the required details for the payment transaction
-</aside>
+<p>In this phase - the wallet gets the &quot;Primary Escrow Transaction&quot;</p>
+
+<p><code>GET /api/general/v1/users/{user-id}/payments/{payment-id}/prepare</code></p>
 
 <blockquote>
 <p>Code samples</p>
 </blockquote>
-<pre class="highlight shell tab-shell"><code>curl -request GET https://atomic.org/api/general/v1/users/<span class="o">{</span>user-id<span class="o">}</span>/payments/<span class="o">{</span>payment-id<span class="o">}</span> 
+<pre class="highlight shell tab-shell"><code>curl -request GET https://atomic.org/api/general/v1/users/<span class="o">{</span>user-id<span class="o">}</span>/payments/<span class="o">{</span>payment-id<span class="o">}</span>/prepare 
 </code></pre>
 <blockquote>
 <p>Example responses</p>
@@ -751,23 +714,136 @@ ATOMIC will provide the raw escrow transaction, as well as the required details 
 <p>200 Response</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"payment-transaction-details"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"primary-escrow-details"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"coin-type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"raw-tx"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0200000001d17c10b7486d1a6da4128802f533a361d4dd160152752c7c585827e5c05af7c90000000000ffffffff0212dfcd1d0000000017a914779208bacd21597a2fbed8f739d384bf7663600a87dcce9cd00000000017a914c437ad520cc819d7e6bd480c739139b0b33226d88700000000"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h4 id='return-codes-5'>Return Codes</h4>
+<table><thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+<td>Error - see body for details</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+<td>User/Payment not found</td>
+</tr>
+<tr>
+<td>409</td>
+<td>Conflict</td>
+<td>Payment already performed</td>
+</tr>
+</tbody></table>
+<h3 id='get-payment-details'>Get Payment Details</h3>
+<p>This is the second phase of the Payment confirmation process.</p>
+
+<p>In this phase - the wallet provides the signed transaction from the first phase (prepare), and gets all the required information for payment confirmation.</p>
+
+<p><code>POST /api/general/v1/users/{user-id}/payments/{payment-id}</code></p>
+
+<aside class="success">
+ATOMIC will provide the raw escrow transactions, as well as the required details for the pay transaction
+</aside>
+
+<aside class="notice">
+The Input transaction for the secondary & return escrow transactions are the primary escrow
+</aside>
+
+<blockquote>
+<p>Body parameters</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"partially-signed-primary-escrow-tx"</span><span class="p">:</span><span class="w"> </span><span class="s2">"02000000000101d17c10b7486d1a6da4128802f533a361d4dd160152752c7c585827e5c05af7c90000000023220020ba1535217938a9c8ff2deb3d3d5f08d07e882b0f6b969e4586b55e031b17c9abffffffff0212dfcd1d0000000017a914779208bacd21597a2fbed8f739d384bf7663600a87dcce9cd00000000017a914c437ad520cc819d7e6bd480c739139b0b33226d887040047304402202aae02aa182a13c54ff8bda594882899452d77df76481be22101c4fc61769bde02201b113db024198719a3805beefb55bf9a6009dc34e094a7df443980684d8d4d3e010047522103720bb3b7ecbf2a5c14fafe380a777c17199b6b8df2d7850ab4de4653bdb115532103d55a1526cd6aad84103722e952ade3ac7b969c5a576ef74ed367f814a2173c5452ae00000000"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -request POST https://atomic.org/api/general/v1/users/<span class="o">{</span>user-id<span class="o">}</span>/payments/<span class="o">{</span>payment-id<span class="o">}</span> <span class="se">\</span>
+-H <span class="s1">'Content-Type: application/json'</span> --data <span class="s1">'{ \
+    "partially-signed-primary-escrow-tx": "02000000000101d17c10b7486d1a6da4128802f533a361d4dd160152752c7c585827e5c05af7c90000000023220020ba1535217938a9c8ff2deb3d3d5f08d07e882b0f6b969e4586b55e031b17c9abffffffff0212dfcd1d0000000017a914779208bacd21597a2fbed8f739d384bf7663600a87dcce9cd00000000017a914c437ad520cc819d7e6bd480c739139b0b33226d887040047304402202aae02aa182a13c54ff8bda594882899452d77df76481be22101c4fc61769bde02201b113db024198719a3805beefb55bf9a6009dc34e094a7df443980684d8d4d3e010047522103720bb3b7ecbf2a5c14fafe380a777c17199b6b8df2d7850ab4de4653bdb115532103d55a1526cd6aad84103722e952ade3ac7b969c5a576ef74ed367f814a2173c5452ae00000000" \
+}'</span>
+</code></pre>
+<blockquote>
+<p>Example responses</p>
+
+<p>200 Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"payment-type"</span><span class="p">:</span><span class="w"> </span><span class="err">FULL</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"pay-details"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"coin-type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"outputs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2N82m2L7p17jNzrnJKN4CTjuAApSYmRtPe2"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000000</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
+    </span><span class="s2">"num-outputs"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"target-address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2MsJzTLwm1bQJkbC7tjqVUaJ8jF5FBByrNn"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"500000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"second-target-address"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"second-amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="s2">"escrow-transaction-details"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"coin-type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"source-address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2Mx1EM2Bsd8qzV2yFv3XxemKaqW7ZfCKAFN"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"raw-escrow-transaction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0200000001fea70fbb492e7814ce3a31639c64a7819a95ee43580867cc751a3e83438289fb0000000000ffffffff0200c2eb0b0000000017a9144f22a11a711f126454fd24e9d589529ed592c93387dc13ae2f0000000017a914119cd81d4e3c2fab3e7edb5556ddaf5d1df893248700000000"</span><span class="w">
+  </span><span class="s2">"primary-escrow-details"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"coin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"input-info"</span><span class="p">:{</span><span class="w">
+        </span><span class="s2">"address"</span><span class="p">:</span><span class="s2">"2NB8j8Pcv2RoiGFdmLXnWP3n7JHw77zj3G5"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"redeemScript"</span><span class="p">:</span><span class="w"> </span><span class="s2">"522103720bb3b7ecbf2a5c14fafe380a777c17199b6b8df2d7850ab4de4653bdb115532103d55a1526cd6aad84103722e952ade3ac7b969c5a576ef74ed367f814a2173c5452ae"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"num-outputs"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"target-address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2N49TLjp5DiCJ9pMhQ4qe5niPen3CREq3W5"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"500031250"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"second-target-address"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"second-amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"31250"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"raw-tx"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"secondary-escrow-details"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"coin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"input-info"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2N49TLjp5DiCJ9pMhQ4qe5niPen3CREq3W5"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"redeemScript"</span><span class="p">:</span><span class="w"> </span><span class="s2">"522103286234c63a8db5b66d089976468fade14f15d44df5c19cdd80694e74f5139a502103d55a1526cd6aad84103722e952ade3ac7b969c5a576ef74ed367f814a2173c5452ae"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"inputTxId"</span><span class="p">:</span><span class="s2">"e22fa048ec9060eb0dc65dd6d2bac8debbffa47703d2d7ba2a31c445ee053263"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"vout"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"500031250"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"num-outputs"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"target-address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2MsJzTLwm1bQJkbC7tjqVUaJ8jF5FBByrNn"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"500000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"second-target-address"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"second-amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"31250"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"raw-tx"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0200000001633205ee45c4312abad7d20377a4ffbbdec8bad2d65dc60deb6090ec48a02fe20000000000ffffffff010065cd1d0000000017a91400b65de04f3a8dc0be83d14749ccee3c99d7c7858700000000"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"return-escrow-details"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"coin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"input_info"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2N49TLjp5DiCJ9pMhQ4qe5niPen3CREq3W5"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"redeemScript"</span><span class="p">:</span><span class="w"> </span><span class="s2">"522103286234c63a8db5b66d089976468fade14f15d44df5c19cdd80694e74f5139a502103d55a1526cd6aad84103722e952ade3ac7b969c5a576ef74ed367f814a2173c5452ae"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"inputTxId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"e22fa048ec9060eb0dc65dd6d2bac8debbffa47703d2d7ba2a31c445ee053263"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"vout"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"500031250"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"num-outputs"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"target-address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2NB8j8Pcv2RoiGFdmLXnWP3n7JHw77zj3G5"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"500000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"second-target-address"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"second-amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"31250"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"raw-tx"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0200000001633205ee45c4312abad7d20377a4ffbbdec8bad2d65dc60deb6090ec48a02fe20000000000ffffffff010065cd1d0000000017a914c437ad520cc819d7e6bd480c739139b0b33226d88700000000"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h4 id='return-codes-7'>Return Codes</h4>
+</span></code></pre><h4 id='return-codes-6'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
@@ -797,30 +873,32 @@ ATOMIC will provide the raw escrow transaction, as well as the required details 
 </tr>
 </tbody></table>
 <h3 id='confirm-payment'>Confirm Payment</h3>
-<p>Confirms the payment.</p>
+<p>This is the third and last phase of the Payment confirmation process.</p>
 
-<p>Providing ATOMIC with the signed escrow transactions which was obtained from the &quot;GET&quot; command, and the created and signed pay transaction</p>
+<p>In this phase - the wallet submites all the requried transactions, and by doing so - confirms the payment.</p>
 
-<p><code>PUT /api/general/v1/users/{user-id}/payments/{payment-id}</code></p>
+<p><code>PUT /api/general/v1/users/{user-id}/payments/{payment-id}/confirm</code></p>
 
 <blockquote>
 <p>Body parameters</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"fully-signed-pay-transaction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"02000000000101fea70fbb492e7814ce3a31639c64a7819a95ee43580867cc751a3e83438289fb01000000232200200818c20455783996fd6c4d753751f4c3f49d9a474fed9a65c3ddb31a48afa7f8ffffffff0200e1f5050000000017a9144f22a11a711f126454fd24e9d589529ed592c93387b800a3350000000017a914e90e71bb600bb67ac5c67b0f512c521dc1d7eceb87030047304402206f67c13ae9c8ad897090f8660993adabec91c1a221558f7a0fd46fe5054d911d02205c28139ab369be614588923742ea9b3922701240c1e19ab27983a1755ca8653c01255121032cea817f794f4afa7061a1187bb8108bfff0096c61f69468ce800629cebec87951ae00000000"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"partially-signed-escrow-transaction"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0200000001fea70fbb492e7814ce3a31639c64a7819a95ee43580867cc751a3e83438289fb00000000b400483045022100c37d9f6bef9575be912e1963815f50efaa269779d7edcc72333044f14b3c52500220785d9bb8636125e30ca20a3b300b02f9566b33e0d5610b49393187a9c9ea603d01004c675241041256ae5095da25836abbe95f06f54ec27a745d66df3baa98f7ca1c54bfd12e26b279680220f779d059c3f168a7bbbc35344f5ff82b58d8329e920daba2586b3121032cea817f794f4afa7061a1187bb8108bfff0096c61f69468ce800629cebec87952aeffffffff0200c2eb0b0000000017a9144f22a11a711f126454fd24e9d589529ed592c93387dc13ae2f0000000017a914119cd81d4e3c2fab3e7edb5556ddaf5d1df893248700000000"</span><span class="w">
+    </span><span class="s2">"fully-signed-pay-tx"</span><span class="p">:</span><span class="w"> </span><span class="s2">"020000000001013f2bf4dda666fba203bf134ff0089fa9bedd822ba0e4e3201cc951766435280600000000171600143042968fb09feccebab20f8d96d625272ffce6dfffffffff020065cd1d0000000017a91400b65de04f3a8dc0be83d14749ccee3c99d7c78587ee12380c0100000017a914614bb7051bf0802e01574760e594fdbd3505997787024730440220247c702c2ad6ea5e1bcac6b0fd91df33d49054ad802e5111eef59b265458dd5202204126ad02aaaef77304dccdf58deae311e4fa8a4e54757eadef1d99940d1145800121023f66527707b3b528e7075ad7942b5b0e63a174a24e4b7e8db333965ba0ceaf2400000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"partially-signed-primary-escrow-tx"</span><span class="p">:</span><span class="w"> </span><span class="s2">"02000000000101d17c10b7486d1a6da4128802f533a361d4dd160152752c7c585827e5c05af7c90000000023220020ba1535217938a9c8ff2deb3d3d5f08d07e882b0f6b969e4586b55e031b17c9abffffffff0212dfcd1d0000000017a914779208bacd21597a2fbed8f739d384bf7663600a87dcce9cd00000000017a914c437ad520cc819d7e6bd480c739139b0b33226d887040047304402202aae02aa182a13c54ff8bda594882899452d77df76481be22101c4fc61769bde02201b113db024198719a3805beefb55bf9a6009dc34e094a7df443980684d8d4d3e010047522103720bb3b7ecbf2a5c14fafe380a777c17199b6b8df2d7850ab4de4653bdb115532103d55a1526cd6aad84103722e952ade3ac7b969c5a576ef74ed367f814a2173c5452ae00000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"partially-signed-secondary-escrow-tx"</span><span class="p">:</span><span class="w"> </span><span class="s2">"02000000000101633205ee45c4312abad7d20377a4ffbbdec8bad2d65dc60deb6090ec48a02fe20000000023220020ebc41ba034dc92cc5e01f5becaa8c91d2d77f632f914f6be7c690ab60ed1d7baffffffff010065cd1d0000000017a91400b65de04f3a8dc0be83d14749ccee3c99d7c78587040047304402205d5d1b98a13c99da24dd3d2bb9e4da4aaf6c72eb102ed98c8da5986593e0a5fb02204e59b817fa69553e2e51f6d0e4e67ccab17c2be01fbdf8332a95ce2b21a15ca7010047522103286234c63a8db5b66d089976468fade14f15d44df5c19cdd80694e74f5139a502103d55a1526cd6aad84103722e952ade3ac7b969c5a576ef74ed367f814a2173c5452ae00000000"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"partially-signed-return-escrow-tx"</span><span class="p">:</span><span class="w"> </span><span class="s2">"02000000000101633205ee45c4312abad7d20377a4ffbbdec8bad2d65dc60deb6090ec48a02fe20000000023220020ebc41ba034dc92cc5e01f5becaa8c91d2d77f632f914f6be7c690ab60ed1d7baffffffff010065cd1d0000000017a914c437ad520cc819d7e6bd480c739139b0b33226d887040047304402202cec801f3066ad54015d9aaee7eb2da1ef31c6fe9fb8eea2956442cc15dd9ae3022076121c89b2834947bcd3e30040182dec3a85b0724947f9e9e28c43a3aa2dd5cb010047522103286234c63a8db5b66d089976468fade14f15d44df5c19cdd80694e74f5139a502103d55a1526cd6aad84103722e952ade3ac7b969c5a576ef74ed367f814a2173c5452ae00000000"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
 <p>Code samples</p>
 </blockquote>
-<pre class="highlight shell tab-shell"><code>curl -request PUT https://atomic.org/api/general/v1/users/<span class="o">{</span>user-id<span class="o">}</span>/payments/<span class="o">{</span>payment-id<span class="o">}</span> <span class="se">\ </span>
+<pre class="highlight shell tab-shell"><code>curl -request PUT https://atomic.org/api/general/v1/users/<span class="o">{</span>user-id<span class="o">}</span>/payments/<span class="o">{</span>payment-id<span class="o">}</span>/confirm <span class="se">\ </span>
 -H <span class="s1">'Content-Type: application/json'</span> --data <span class="s1">'{ \
-    "fully-signed-pay-transaction": \
-    "02000000000101fea70fbb492e7814ce3a31639c64a7819a95ee43580867cc751a3e83438289fb01000000232200200818c20455783996fd6c4d753751f4c3f49d9a474fed9a65c3ddb31a48afa7f8ffffffff0200e1f5050000000017a9144f22a11a711f126454fd24e9d589529ed592c93387b800a3350000000017a914e90e71bb600bb67ac5c67b0f512c521dc1d7eceb87030047304402206f67c13ae9c8ad897090f8660993adabec91c1a221558f7a0fd46fe5054d911d02205c28139ab369be614588923742ea9b3922701240c1e19ab27983a1755ca8653c01255121032cea817f794f4afa7061a1187bb8108bfff0096c61f69468ce800629cebec87951ae00000000", \
-    "partially-signed-escrow-transaction": \ 
-     "0200000001fea70fbb492e7814ce3a31639c64a7819a95ee43580867cc751a3e83438289fb00000000b400483045022100c37d9f6bef9575be912e1963815f50efaa269779d7edcc72333044f14b3c52500220785d9bb8636125e30ca20a3b300b02f9566b33e0d5610b49393187a9c9ea603d01004c675241041256ae5095da25836abbe95f06f54ec27a745d66df3baa98f7ca1c54bfd12e26b279680220f779d059c3f168a7bbbc35344f5ff82b58d8329e920daba2586b3121032cea817f794f4afa7061a1187bb8108bfff0096c61f69468ce800629cebec87952aeffffffff0200c2eb0b0000000017a9144f22a11a711f126454fd24e9d589529ed592c93387dc13ae2f0000000017a914119cd81d4e3c2fab3e7edb5556ddaf5d1df893248700000000" }'</span>
-</code></pre><h4 id='return-codes-8'>Return Codes</h4>
+    "fully-signed-pay-tx": "020000000001013f2bf4dda666fba203bf134ff0089fa9bedd822ba0e4e3201cc951766435280600000000171600143042968fb09feccebab20f8d96d625272ffce6dfffffffff020065cd1d0000000017a91400b65de04f3a8dc0be83d14749ccee3c99d7c78587ee12380c0100000017a914614bb7051bf0802e01574760e594fdbd3505997787024730440220247c702c2ad6ea5e1bcac6b0fd91df33d49054ad802e5111eef59b265458dd5202204126ad02aaaef77304dccdf58deae311e4fa8a4e54757eadef1d99940d1145800121023f66527707b3b528e7075ad7942b5b0e63a174a24e4b7e8db333965ba0ceaf2400000000", \
+    "partially-signed-primary-escrow-tx": "02000000000101d17c10b7486d1a6da4128802f533a361d4dd160152752c7c585827e5c05af7c90000000023220020ba1535217938a9c8ff2deb3d3d5f08d07e882b0f6b969e4586b55e031b17c9abffffffff0212dfcd1d0000000017a914779208bacd21597a2fbed8f739d384bf7663600a87dcce9cd00000000017a914c437ad520cc819d7e6bd480c739139b0b33226d887040047304402202aae02aa182a13c54ff8bda594882899452d77df76481be22101c4fc61769bde02201b113db024198719a3805beefb55bf9a6009dc34e094a7df443980684d8d4d3e010047522103720bb3b7ecbf2a5c14fafe380a777c17199b6b8df2d7850ab4de4653bdb115532103d55a1526cd6aad84103722e952ade3ac7b969c5a576ef74ed367f814a2173c5452ae00000000", \
+    "partially-signed-secondary-escrow-tx": "02000000000101633205ee45c4312abad7d20377a4ffbbdec8bad2d65dc60deb6090ec48a02fe20000000023220020ebc41ba034dc92cc5e01f5becaa8c91d2d77f632f914f6be7c690ab60ed1d7baffffffff010065cd1d0000000017a91400b65de04f3a8dc0be83d14749ccee3c99d7c78587040047304402205d5d1b98a13c99da24dd3d2bb9e4da4aaf6c72eb102ed98c8da5986593e0a5fb02204e59b817fa69553e2e51f6d0e4e67ccab17c2be01fbdf8332a95ce2b21a15ca7010047522103286234c63a8db5b66d089976468fade14f15d44df5c19cdd80694e74f5139a502103d55a1526cd6aad84103722e952ade3ac7b969c5a576ef74ed367f814a2173c5452ae00000000", \
+    "partially-signed-return-escrow-tx": "02000000000101633205ee45c4312abad7d20377a4ffbbdec8bad2d65dc60deb6090ec48a02fe20000000023220020ebc41ba034dc92cc5e01f5becaa8c91d2d77f632f914f6be7c690ab60ed1d7baffffffff010065cd1d0000000017a914c437ad520cc819d7e6bd480c739139b0b33226d887040047304402202cec801f3066ad54015d9aaee7eb2da1ef31c6fe9fb8eea2956442cc15dd9ae3022076121c89b2834947bcd3e30040182dec3a85b0724947f9e9e28c43a3aa2dd5cb010047522103286234c63a8db5b66d089976468fade14f15d44df5c19cdd80694e74f5139a502103d55a1526cd6aad84103722e952ade3ac7b969c5a576ef74ed367f814a2173c5452ae00000000"}'</span>
+</code></pre><h4 id='return-codes-7'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
@@ -850,7 +928,7 @@ ATOMIC will provide the raw escrow transaction, as well as the required details 
 </tr>
 </tbody></table>
 <h2 id='general-information'>General Information</h2>
-<p>Genarl information from ATOMIC P2P Collateral Guarantees Service</p>
+<p>General information from ATOMIC P2P Collateral Guarantees Service</p>
 <h3 id='get-atomic-generic-information'>Get ATOMIC Generic Information</h3>
 <p>Get general ATOMIC information</p>
 
@@ -869,7 +947,7 @@ ATOMIC will provide the raw escrow transaction, as well as the required details 
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"api-version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"v1"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h4 id='return-codes-9'>Return Codes</h4>
+</span></code></pre><h4 id='return-codes-8'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
@@ -923,7 +1001,7 @@ ATOMIC will provide the raw escrow transaction, as well as the required details 
      "escrow-amount": 1010000000, \
      "escrow-address": "2NF1qc9L4j1tyfqzzLdRzRqoVftHznSeC6K" \
      }'</span>
-</code></pre><h4 id='return-codes-10'>Return Codes</h4>
+</code></pre><h4 id='return-codes-9'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
@@ -972,7 +1050,7 @@ If the order is currently in an active deal - will also return the payment ID
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IN_DEAL"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"payment-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d290f1ee-6c54-4b01-90e6-d701748f0300"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h4 id='return-codes-11'>Return Codes</h4>
+</span></code></pre><h4 id='return-codes-10'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
@@ -1000,7 +1078,7 @@ If the order is currently in an active deal - will also return the payment ID
 <p>Code samples</p>
 </blockquote>
 <pre class="highlight shell tab-shell"><code>curl -request DELETE https://atomic.org/api/trades/v1/users/<span class="o">{</span>user-id<span class="o">}</span>/orders/<span class="o">{</span>order-id<span class="o">}</span>
-</code></pre><h4 id='return-codes-12'>Return Codes</h4>
+</code></pre><h4 id='return-codes-11'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
@@ -1033,7 +1111,7 @@ If the order is currently in an active deal - will also return the payment ID
 <p>List of supported coins</p>
 
 <aside class="success">
-by default all pairs are supported
+By deafult, trade between all coins is supported
 </aside>
 
 <p><code>GET /api/trades/v1/coins</code></p>
@@ -1049,7 +1127,7 @@ by default all pairs are supported
 <p>200 Response</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-   </span><span class="p">[</span><span class="err">BTC</span><span class="p">,</span><span class="w"> </span><span class="err">LTC</span><span class="p">,</span><span class="w"> </span><span class="err">DASH</span><span class="p">,</span><span class="w"> </span><span class="err">BSV</span><span class="p">,</span><span class="w"> </span><span class="err">DOGE</span><span class="p">,</span><span class="w"> </span><span class="err">BCH</span><span class="p">,</span><span class="w"> </span><span class="err">ETC</span><span class="p">,</span><span class="w"> </span><span class="err">ETH</span><span class="p">]</span><span class="w"> 
+   </span><span class="p">[</span><span class="s2">"BTC"</span><span class="p">,</span><span class="w"> </span><span class="s2">"LTC"</span><span class="p">,</span><span class="w"> </span><span class="s2">"DASH"</span><span class="p">,</span><span class="w"> </span><span class="s2">"BSV"</span><span class="p">,</span><span class="w"> </span><span class="s2">"DOGE"</span><span class="p">,</span><span class="w"> </span><span class="s2">"BCH"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ETC"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ETH"</span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='get-generic-info'>Get Generic Info</h3>
 <p>Generic info from the P2P trading platform</p>
@@ -1107,7 +1185,7 @@ Returns a payment ID in case such is required
     </span><span class="s2">"coin-type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"payment-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d290f1ee-6c54-4b01-90e6-d701748f0300"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h4 id='return-codes-13'>Return Codes</h4>
+</span></code></pre><h4 id='return-codes-12'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
@@ -1128,7 +1206,7 @@ Returns a payment ID in case such is required
 <tr>
 <td>403</td>
 <td>Forbidden</td>
-<td>Can&#39;t update Credit Line to be lower than existing</td>
+<td>Credit Line is lower than existing</td>
 </tr>
 <tr>
 <td>409</td>
@@ -1161,7 +1239,7 @@ Returns a payment ID in case such is required
     </span><span class="s2">"coin-type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"payment-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d290f1ee-6c54-4b01-90e6-d701748f0300"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h4 id='return-codes-14'>Return Codes</h4>
+</span></code></pre><h4 id='return-codes-13'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
@@ -1189,7 +1267,7 @@ Returns a payment ID in case such is required
 <p>Code samples</p>
 </blockquote>
 <pre class="highlight shell tab-shell"><code>curl -request DELETE https://atomic.org/api/credit-line/v1/users/<span class="o">{</span>user-id<span class="o">}</span>/credits/<span class="o">{</span>credit-id<span class="o">}</span>
-</code></pre><h4 id='return-codes-15'>Return Codes</h4>
+</code></pre><h4 id='return-codes-14'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
@@ -1240,7 +1318,7 @@ Returns a payment ID in case such is required
         </span><span class="s2">"payment-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d290f1ee-6c54-4b01-90e6-d701748f0300"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre><h4 id='return-codes-16'>Return Codes</h4>
+</span></code></pre><h4 id='return-codes-15'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
@@ -1274,10 +1352,10 @@ Returns a payment ID in case such is required
 
 <p>200 Response</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="p">[</span><span class="err">BTC</span><span class="p">,</span><span class="w"> </span><span class="err">LTC</span><span class="p">,</span><span class="w"> </span><span class="err">DASH</span><span class="p">,</span><span class="w"> </span><span class="err">BSV</span><span class="p">,</span><span class="w"> </span><span class="err">DOGE</span><span class="p">,</span><span class="w"> </span><span class="err">BCH</span><span class="p">,</span><span class="w"> </span><span class="err">ETC</span><span class="p">,</span><span class="w"> </span><span class="err">ETH</span><span class="p">]</span><span class="w"> 
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='get-generic-info-2'>Get Generic Info</h3>
+<pre class="highlight plaintext"><code>{
+    ["BTC", "LTC", "DASH", "BSV", "DOGE", "BCH", "ETC", "ETH"]
+}
+</code></pre><h3 id='get-generic-info-2'>Get Generic Info</h3>
 <p>Generic info from the Credit Line provider</p>
 
 <p><code>GET /api/credit-line/v1/info</code></p>
@@ -1328,7 +1406,7 @@ Returns a payment ID in case such is required
          "max-interest": 7.1, \
          "loan-duration-in-days": 527 \
 }'</span>
-</code></pre><h4 id='return-codes-17'>Return Codes</h4>
+</code></pre><h4 id='return-codes-16'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
@@ -1389,7 +1467,7 @@ Returns a payment ID in case such is required
             </span><span class="s2">"expiration-date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1595697538</span><span class="w">
         </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h4 id='return-codes-18'>Return Codes</h4>
+</span></code></pre><h4 id='return-codes-17'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
@@ -1417,7 +1495,7 @@ Returns a payment ID in case such is required
 <p>Code samples</p>
 </blockquote>
 <pre class="highlight shell tab-shell"><code>curl -request DELETE https://atomic.org/api/loans/v1/borrowers/<span class="o">{</span>user-id<span class="o">}</span>/loans/<span class="o">{</span>loan-id<span class="o">}</span>
-</code></pre><h4 id='return-codes-19'>Return Codes</h4>
+</code></pre><h4 id='return-codes-18'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
@@ -1475,7 +1553,7 @@ Returns a payment ID in case such is required
             </span><span class="p">}</span><span class="w">
         </span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h4 id='return-codes-20'>Return Codes</h4>
+</span></code></pre><h4 id='return-codes-19'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
@@ -1522,7 +1600,7 @@ Returns a payment ID in case such is required
           "max-loan-duration-in-days": 527, \
           "expiration-date": 1737307138,    \
           "destination-address": "2NBkFMN1h5Jchqwh4Fp5JYcUEwNuXnU9cR2"}'</span>
-</code></pre><h4 id='return-codes-21'>Return Codes</h4>
+</code></pre><h4 id='return-codes-20'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
@@ -1582,7 +1660,7 @@ Returns a payment ID in case such is required
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h4 id='return-codes-22'>Return Codes</h4>
+</span></code></pre><h4 id='return-codes-21'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
@@ -1610,7 +1688,7 @@ Returns a payment ID in case such is required
 <p>Code samples</p>
 </blockquote>
 <pre class="highlight shell tab-shell"><code>curl -request DELETE https://atomic.org/api/loans/v1/investors/<span class="o">{</span>user-id<span class="o">}</span>/investments/<span class="o">{</span>investment-id<span class="o">}</span>
-</code></pre><h4 id='return-codes-23'>Return Codes</h4>
+</code></pre><h4 id='return-codes-22'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
@@ -1670,7 +1748,7 @@ Returns a payment ID in case such is required
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h4 id='return-codes-24'>Return Codes</h4>
+</span></code></pre><h4 id='return-codes-23'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
@@ -1705,7 +1783,7 @@ Returns a payment ID in case such is required
 <p>200 Response</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="p">[</span><span class="err">BTC</span><span class="p">,</span><span class="w"> </span><span class="err">LTC</span><span class="p">,</span><span class="w"> </span><span class="err">DASH</span><span class="p">,</span><span class="w"> </span><span class="err">BSV</span><span class="p">,</span><span class="w"> </span><span class="err">DOGE</span><span class="p">,</span><span class="w"> </span><span class="err">BCH</span><span class="p">,</span><span class="w"> </span><span class="err">ETC</span><span class="p">,</span><span class="w"> </span><span class="err">ETH</span><span class="p">]</span><span class="w"> 
+    </span><span class="p">[</span><span class="s2">"BTC"</span><span class="p">,</span><span class="w"> </span><span class="s2">"LTC"</span><span class="p">,</span><span class="w"> </span><span class="s2">"DASH"</span><span class="p">,</span><span class="w"> </span><span class="s2">"BSV"</span><span class="p">,</span><span class="w"> </span><span class="s2">"DOGE"</span><span class="p">,</span><span class="w"> </span><span class="s2">"BCH"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ETC"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ETH"</span><span class="p">]</span><span class="w"> 
 </span><span class="p">}</span><span class="w">
 </span></code></pre><h3 id='get-generic-info-3'>Get Generic Info</h3>
 <p>Generic info from the P2P Loans business</p>
@@ -1775,7 +1853,7 @@ Returns a payment ID in case such is required
                             "second-amount": 854320000 } \
                             ]}'</span>
 
-</code></pre><h4 id='return-codes-25'>Return Codes</h4>
+</code></pre><h4 id='return-codes-24'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
@@ -1820,7 +1898,7 @@ Returns a payment ID in case such is required
     </span><span class="s2">"deal-status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"READY"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"num-transactions"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h4 id='return-codes-26'>Return Codes</h4>
+</span></code></pre><h4 id='return-codes-25'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
@@ -1853,7 +1931,7 @@ Returns a payment ID in case such is required
 <p>Code samples</p>
 </blockquote>
 <pre class="highlight shell tab-shell"><code>curl -request DELETE https://atomic.org/api/deals/v1/businesses/<span class="o">{</span>business-id<span class="o">}</span>/deals/<span class="o">{</span>deal-id<span class="o">}</span>
-</code></pre><h4 id='return-codes-27'>Return Codes</h4>
+</code></pre><h4 id='return-codes-26'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
@@ -1897,7 +1975,7 @@ Returns a payment ID in case such is required
     </span><span class="s2">"user-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d290f1ee-6c54-4b01-90e6-d701748f0200"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"transaction-status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pending User Confirmation"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h4 id='return-codes-28'>Return Codes</h4>
+</span></code></pre><h4 id='return-codes-27'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
