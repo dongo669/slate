@@ -231,6 +231,9 @@
 			    <li>
 		              <a href="#get-user-39-s-information" class="toc-h3 toc-link" data-title="Get User's Information">Get User's Information</a>
 		            </li>
+			    <li>
+		              <a href="#unregister-user" class="toc-h3 toc-link" data-title="Unregister User">Unregister User</a>
+		            </li>
 			  </ul>
                   </li>
                   <li>
@@ -511,6 +514,43 @@ The refund address will be used for cases in which small remainder is left after
 <td>User not found</td>
 </tr>
 </tbody></table>
+<h3 id='unregister-user'>Unregister User</h3>
+<p>Unregister the user from ATOMIC</p>
+
+<p><code>DELETE /api/general/v1/users/{user-id}</code></p>
+
+<aside class="notice">
+Unregister will not be allowed as long as there are inflight transactions, or funds in the private-collateral address
+</aside>
+
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -request DELETE https://atomic.org/api/general/v1/users/<span class="o">{</span>user-id<span class="o">}</span>
+</code></pre><h4 id='return-codes-3'>Return Codes</h4>
+<table><thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+<td>Unregister not allowed</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+<td>User not found</td>
+</tr>
+</tbody></table>
 <h2 id='unlock-operations'>Unlock Operations</h2>
 <p>APIs for Unlocking funds from the user&#39;s primary private collateral</p>
 
@@ -585,7 +625,7 @@ NOTE: An on demand unlock cannot be processed during ongoing transactions
 </blockquote>
 <pre class="highlight shell tab-shell"><code>curl -request PUT https://atomic.org/api/general/v1/users/<span class="o">{</span>user-id<span class="o">}</span>/unlock/perform 
 -H <span class="s1">'Content-Type: application/json'</span> --data <span class="s1">'{"coin-type": "BTC", "partially-signed-unlock-tx": \ "02000000018e62016f5fe7fad1f7f343cdf900f8c6aad4cd1bef9c2a274334291c3999551c00000000b400483045022100de328bf0550164f0b6f1ae3bae78c6d417140808fa82f0da67be00cd8df41816022024b2fc2182789488fcca4984e7af3123bd3e680e4f4be8eaeb3e547f24ca31ea01004c675241043af1ba0a3429d7890d91a7f9ff280b7130c3b5edd1c02613e9f770a05ec1977a76646d7223ff17f3881f07e08a15f31cb23e79a7871202e52c678f5b9af6823021033f1654d3187087ad5f7f220814c94232945825663d55431345aca8a82746780552aefeffffff0118c69a3b0000000017a91455f415046dfb9e578426fbcbfb480a66b0782480876e000000"}'</span>
-</code></pre><h4 id='return-codes-3'>Return Codes</h4>
+</code></pre><h4 id='return-codes-4'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
@@ -657,7 +697,7 @@ Payment transactions will not be allowed near the target unlock time
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
       </span><span class="s2">"fully-signed-tx"</span><span class="p">:</span><span class="w"> </span><span class="s2">"020000000001016e069dc051125daa13babacc05cf1005d78af655a53f86749071246e8e5e735a0000000023220020d2a1b05864a583d696e155d9de3772dde728e059964443091f156c455d3dd835feffffff0118c69a3b0000000017a91470da9b3ae8884cedd69dd800c46b15fdeb840f3c87040047304402202a78c8d8e295fd20e00ed9315edc890c975d2439b5de7961662d62f44c3680c00220074e066490b6ecd0ba98fc4dc93cb6161979424b7c7b2ec20ce70a12edc10a8d014730440220075195504bddb720ffdaf3b76d4cd62e08503386466700c170864caf75bf5e220220597b9f6017d51784948f2c7835f50bfc2403850bf80aeea90fd359b26f87f66201475221037a2ce0416838155e9e6a486687e5bad626e5b6930796351dc6c65b2aa26805b82102cfee084d838e114e2b6489e82e77ebd6fffc84046a2656ca6b3367c0f6e5173552ae6e000000"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h4 id='return-codes-4'>Return Codes</h4>
+</span></code></pre><h4 id='return-codes-5'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
@@ -719,7 +759,7 @@ three escrow transactions, and a single payment transaction</p>
         </span><span class="s2">"raw-tx"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0200000001d17c10b7486d1a6da4128802f533a361d4dd160152752c7c585827e5c05af7c90000000000ffffffff0212dfcd1d0000000017a914779208bacd21597a2fbed8f739d384bf7663600a87dcce9cd00000000017a914c437ad520cc819d7e6bd480c739139b0b33226d88700000000"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h4 id='return-codes-5'>Return Codes</h4>
+</span></code></pre><h4 id='return-codes-6'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
@@ -843,7 +883,7 @@ The Input transaction for the secondary & return escrow transactions are the pri
     </span><span class="s2">"raw-tx"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0200000001633205ee45c4312abad7d20377a4ffbbdec8bad2d65dc60deb6090ec48a02fe20000000000ffffffff010065cd1d0000000017a914c437ad520cc819d7e6bd480c739139b0b33226d88700000000"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h4 id='return-codes-6'>Return Codes</h4>
+</span></code></pre><h4 id='return-codes-7'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
@@ -898,7 +938,7 @@ The Input transaction for the secondary & return escrow transactions are the pri
     "partially-signed-primary-escrow-tx": "02000000000101d17c10b7486d1a6da4128802f533a361d4dd160152752c7c585827e5c05af7c90000000023220020ba1535217938a9c8ff2deb3d3d5f08d07e882b0f6b969e4586b55e031b17c9abffffffff0212dfcd1d0000000017a914779208bacd21597a2fbed8f739d384bf7663600a87dcce9cd00000000017a914c437ad520cc819d7e6bd480c739139b0b33226d887040047304402202aae02aa182a13c54ff8bda594882899452d77df76481be22101c4fc61769bde02201b113db024198719a3805beefb55bf9a6009dc34e094a7df443980684d8d4d3e010047522103720bb3b7ecbf2a5c14fafe380a777c17199b6b8df2d7850ab4de4653bdb115532103d55a1526cd6aad84103722e952ade3ac7b969c5a576ef74ed367f814a2173c5452ae00000000", \
     "partially-signed-secondary-escrow-tx": "02000000000101633205ee45c4312abad7d20377a4ffbbdec8bad2d65dc60deb6090ec48a02fe20000000023220020ebc41ba034dc92cc5e01f5becaa8c91d2d77f632f914f6be7c690ab60ed1d7baffffffff010065cd1d0000000017a91400b65de04f3a8dc0be83d14749ccee3c99d7c78587040047304402205d5d1b98a13c99da24dd3d2bb9e4da4aaf6c72eb102ed98c8da5986593e0a5fb02204e59b817fa69553e2e51f6d0e4e67ccab17c2be01fbdf8332a95ce2b21a15ca7010047522103286234c63a8db5b66d089976468fade14f15d44df5c19cdd80694e74f5139a502103d55a1526cd6aad84103722e952ade3ac7b969c5a576ef74ed367f814a2173c5452ae00000000", \
     "partially-signed-return-escrow-tx": "02000000000101633205ee45c4312abad7d20377a4ffbbdec8bad2d65dc60deb6090ec48a02fe20000000023220020ebc41ba034dc92cc5e01f5becaa8c91d2d77f632f914f6be7c690ab60ed1d7baffffffff010065cd1d0000000017a914c437ad520cc819d7e6bd480c739139b0b33226d887040047304402202cec801f3066ad54015d9aaee7eb2da1ef31c6fe9fb8eea2956442cc15dd9ae3022076121c89b2834947bcd3e30040182dec3a85b0724947f9e9e28c43a3aa2dd5cb010047522103286234c63a8db5b66d089976468fade14f15d44df5c19cdd80694e74f5139a502103d55a1526cd6aad84103722e952ade3ac7b969c5a576ef74ed367f814a2173c5452ae00000000"}'</span>
-</code></pre><h4 id='return-codes-7'>Return Codes</h4>
+</code></pre><h4 id='return-codes-8'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
@@ -947,7 +987,7 @@ The Input transaction for the secondary & return escrow transactions are the pri
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"api-version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"v1"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h4 id='return-codes-8'>Return Codes</h4>
+</span></code></pre><h4 id='return-codes-9'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
@@ -1001,7 +1041,7 @@ The Input transaction for the secondary & return escrow transactions are the pri
      "escrow-amount": 1010000000, \
      "escrow-address": "2NF1qc9L4j1tyfqzzLdRzRqoVftHznSeC6K" \
      }'</span>
-</code></pre><h4 id='return-codes-9'>Return Codes</h4>
+</code></pre><h4 id='return-codes-10'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
@@ -1050,7 +1090,7 @@ If the order is currently in an active deal - will also return the payment ID
     </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IN_DEAL"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"payment-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d290f1ee-6c54-4b01-90e6-d701748f0300"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h4 id='return-codes-10'>Return Codes</h4>
+</span></code></pre><h4 id='return-codes-11'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
@@ -1078,7 +1118,7 @@ If the order is currently in an active deal - will also return the payment ID
 <p>Code samples</p>
 </blockquote>
 <pre class="highlight shell tab-shell"><code>curl -request DELETE https://atomic.org/api/trades/v1/users/<span class="o">{</span>user-id<span class="o">}</span>/orders/<span class="o">{</span>order-id<span class="o">}</span>
-</code></pre><h4 id='return-codes-11'>Return Codes</h4>
+</code></pre><h4 id='return-codes-12'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
@@ -1185,7 +1225,7 @@ Returns a payment ID in case such is required
     </span><span class="s2">"coin-type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"payment-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d290f1ee-6c54-4b01-90e6-d701748f0300"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h4 id='return-codes-12'>Return Codes</h4>
+</span></code></pre><h4 id='return-codes-13'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
@@ -1239,7 +1279,7 @@ Returns a payment ID in case such is required
     </span><span class="s2">"coin-type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"payment-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d290f1ee-6c54-4b01-90e6-d701748f0300"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h4 id='return-codes-13'>Return Codes</h4>
+</span></code></pre><h4 id='return-codes-14'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
@@ -1267,7 +1307,7 @@ Returns a payment ID in case such is required
 <p>Code samples</p>
 </blockquote>
 <pre class="highlight shell tab-shell"><code>curl -request DELETE https://atomic.org/api/credit-line/v1/users/<span class="o">{</span>user-id<span class="o">}</span>/credits/<span class="o">{</span>credit-id<span class="o">}</span>
-</code></pre><h4 id='return-codes-14'>Return Codes</h4>
+</code></pre><h4 id='return-codes-15'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
@@ -1318,7 +1358,7 @@ Returns a payment ID in case such is required
         </span><span class="s2">"payment-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d290f1ee-6c54-4b01-90e6-d701748f0300"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre><h4 id='return-codes-15'>Return Codes</h4>
+</span></code></pre><h4 id='return-codes-16'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
@@ -1406,7 +1446,7 @@ Returns a payment ID in case such is required
          "max-interest": 7.1, \
          "loan-duration-in-days": 527 \
 }'</span>
-</code></pre><h4 id='return-codes-16'>Return Codes</h4>
+</code></pre><h4 id='return-codes-17'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
@@ -1467,7 +1507,7 @@ Returns a payment ID in case such is required
             </span><span class="s2">"expiration-date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1595697538</span><span class="w">
         </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h4 id='return-codes-17'>Return Codes</h4>
+</span></code></pre><h4 id='return-codes-18'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
@@ -1495,7 +1535,7 @@ Returns a payment ID in case such is required
 <p>Code samples</p>
 </blockquote>
 <pre class="highlight shell tab-shell"><code>curl -request DELETE https://atomic.org/api/loans/v1/borrowers/<span class="o">{</span>user-id<span class="o">}</span>/loans/<span class="o">{</span>loan-id<span class="o">}</span>
-</code></pre><h4 id='return-codes-18'>Return Codes</h4>
+</code></pre><h4 id='return-codes-19'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
@@ -1553,7 +1593,7 @@ Returns a payment ID in case such is required
             </span><span class="p">}</span><span class="w">
         </span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h4 id='return-codes-19'>Return Codes</h4>
+</span></code></pre><h4 id='return-codes-20'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
@@ -1600,7 +1640,7 @@ Returns a payment ID in case such is required
           "max-loan-duration-in-days": 527, \
           "expiration-date": 1737307138,    \
           "destination-address": "2NBkFMN1h5Jchqwh4Fp5JYcUEwNuXnU9cR2"}'</span>
-</code></pre><h4 id='return-codes-20'>Return Codes</h4>
+</code></pre><h4 id='return-codes-21'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
@@ -1660,7 +1700,7 @@ Returns a payment ID in case such is required
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h4 id='return-codes-21'>Return Codes</h4>
+</span></code></pre><h4 id='return-codes-22'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
@@ -1688,7 +1728,7 @@ Returns a payment ID in case such is required
 <p>Code samples</p>
 </blockquote>
 <pre class="highlight shell tab-shell"><code>curl -request DELETE https://atomic.org/api/loans/v1/investors/<span class="o">{</span>user-id<span class="o">}</span>/investments/<span class="o">{</span>investment-id<span class="o">}</span>
-</code></pre><h4 id='return-codes-22'>Return Codes</h4>
+</code></pre><h4 id='return-codes-23'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
@@ -1748,7 +1788,7 @@ Returns a payment ID in case such is required
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h4 id='return-codes-23'>Return Codes</h4>
+</span></code></pre><h4 id='return-codes-24'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
@@ -1853,7 +1893,7 @@ Returns a payment ID in case such is required
                             "second-amount": 854320000 } \
                             ]}'</span>
 
-</code></pre><h4 id='return-codes-24'>Return Codes</h4>
+</code></pre><h4 id='return-codes-25'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
@@ -1898,7 +1938,7 @@ Returns a payment ID in case such is required
     </span><span class="s2">"deal-status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"READY"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"num-transactions"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h4 id='return-codes-25'>Return Codes</h4>
+</span></code></pre><h4 id='return-codes-26'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
@@ -1931,7 +1971,7 @@ Returns a payment ID in case such is required
 <p>Code samples</p>
 </blockquote>
 <pre class="highlight shell tab-shell"><code>curl -request DELETE https://atomic.org/api/deals/v1/businesses/<span class="o">{</span>business-id<span class="o">}</span>/deals/<span class="o">{</span>deal-id<span class="o">}</span>
-</code></pre><h4 id='return-codes-26'>Return Codes</h4>
+</code></pre><h4 id='return-codes-27'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
@@ -1975,7 +2015,7 @@ Returns a payment ID in case such is required
     </span><span class="s2">"user-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d290f1ee-6c54-4b01-90e6-d701748f0200"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"transaction-status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pending User Confirmation"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h4 id='return-codes-27'>Return Codes</h4>
+</span></code></pre><h4 id='return-codes-28'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
