@@ -132,6 +132,30 @@ Status|Meaning|Description
 200 | OK | OK
 404 | Not Found | User not found
 
+### Unregister User
+
+Unregister the user from ATOMIC
+
+`DELETE /api/general/v1/users/{user-id}`
+
+<aside class="notice">
+Unregister will not be allowed as long as there are inflight transactions, or funds in the private-collateral address
+</aside>
+
+> Code samples
+
+```shell
+curl -request DELETE https://atomic.org/api/general/v1/users/{user-id}
+```
+
+#### Return Codes
+Status|Meaning|Description
+---|---|---
+200 | OK | OK
+403| Forbidden | Unregister not allowed
+404 | Not Found | User not found
+
+
 ## Unlock Operations
 
 APIs for Unlocking funds from the user's primary private collateral
