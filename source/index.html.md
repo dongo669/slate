@@ -578,7 +578,7 @@ Status|Meaning|Description
 Retrieves the existing information for a specific order.
 
 <aside class="success">
-If the order is currently in an active deal - will also return the payment ID
+If the order is currently in an active deal(s)- will also return the payment ID(s)
 </aside>
 
 `GET /api/trades/v1/users/{user-id}/orders/{order-id}`
