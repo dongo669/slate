@@ -82,7 +82,7 @@ Status|Meaning|Description
 400 | Bad Request | Invalid request or conflict with existing user
 409 | Already Exist | User already exists
 
-### Get User's Information
+### Get User Information
 
 Retrieves existing information of a specific user
 
