@@ -48,11 +48,11 @@ Signature Public Key will be used to verify all the user's messages
     "refund-address": "2NF1qc9L4j1tyfqzzLdRzRqoVftHznSeC6K", \
     "timestamp": 1556524623, 
     "signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1
-qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
-BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
-Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
-GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
-ZBmI6P4nFDn+nox8ooUmtA=="
+                  qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
+                  BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
+                  Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
+                  GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
+                  ZBmI6P4nFDn+nox8ooUmtA=="
 }
 ```
 
@@ -68,12 +68,7 @@ curl -request PUT https://atomic.org/api/general/v1/users/{user-id} \
         "0369a692e655af812cde2abb9f23ef69d120fd26f9166714a6046fdaafe21fc4bd" \
          "refund-address": "2NF1qc9L4j1tyfqzzLdRzRqoVftHznSeC6K", \
          "timestamp": 1556524623, \
-         "signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1
-qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
-BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
-Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
-GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
-ZBmI6P4nFDn+nox8ooUmtA==" }'
+         "signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuqBTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjLVu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xSGVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacVZBmI6P4nFDn+nox8ooUmtA==" }'
 ```
 
 > Example responses
@@ -118,11 +113,11 @@ Retrieves existing information of a specific user
 {
     "timestamp": 1556524623,
     "signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1
-qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
-BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
-Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
-GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
-ZBmI6P4nFDn+nox8ooUmtA=="
+                  qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
+                  BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
+                  Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
+                  GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
+                  ZBmI6P4nFDn+nox8ooUmtA=="
 }
 ```
 
@@ -130,12 +125,7 @@ ZBmI6P4nFDn+nox8ooUmtA=="
 
 ```shell
 curl -request POST https://atomic.org/api/general/v1/users/{user-id} -H 'Content-Type: application/json' --data \
-{  "timestamp": 1556524623, "signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1
-qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
-BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
-Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
-GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
-ZBmI6P4nFDn+nox8ooUmtA==" }
+{  "timestamp": 1556524623, "signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuqBTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjLVu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xSGVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacVZBmI6P4nFDn+nox8ooUmtA==" }
 ```
 
 > Example responses
@@ -193,11 +183,11 @@ Unregister will not be allowed as long as there are inflight transactions, or fu
 {
 "timestamp": 1556524623,
 "signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1
-qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
-BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
-Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
-GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
-ZBmI6P4nFDn+nox8ooUmtA=="
+              qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
+              BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
+              Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
+              GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
+              ZBmI6P4nFDn+nox8ooUmtA=="
 }
 ```
 
@@ -205,12 +195,7 @@ ZBmI6P4nFDn+nox8ooUmtA=="
 
 ```shell
 curl -request DELETE https://atomic.org/api/general/v1/users/{user-id} -H 'Content-Type: application/json' --data \
-{  "timestamp": 1556524623, "signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1
-qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
-BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
-Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
-GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
-ZBmI6P4nFDn+nox8ooUmtA==" }
+{  "timestamp": 1556524623, "signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuqBTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjLVu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xSGVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacVZBmI6P4nFDn+nox8ooUmtA==" }
 ```
 
 #### Return Codes
@@ -294,11 +279,11 @@ NOTE: An on demand unlock cannot be processed during ongoing transactions
     "partially-signed-unlock-tx": "02000000018e62016f5fe7fad1f7f343cdf900f8c6aad4cd1bef9c2a274334291c3999551c00000000b400483045022100de328bf0550164f0b6f1ae3bae78c6d417140808fa82f0da67be00cd8df41816022024b2fc2182789488fcca4984e7af3123bd3e680e4f4be8eaeb3e547f24ca31ea01004c675241043af1ba0a3429d7890d91a7f9ff280b7130c3b5edd1c02613e9f770a05ec1977a76646d7223ff17f3881f07e08a15f31cb23e79a7871202e52c678f5b9af6823021033f1654d3187087ad5f7f220814c94232945825663d55431345aca8a82746780552aefeffffff0118c69a3b0000000017a91455f415046dfb9e578426fbcbfb480a66b0782480876e000000",
     "timestamp": 1556524623,
     "signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1
-qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
-BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
-Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
-GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
-ZBmI6P4nFDn+nox8ooUmtA=="
+                  qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
+                  BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
+                  Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
+                  GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
+                  ZBmI6P4nFDn+nox8ooUmtA=="
 }
 ```
 
@@ -307,12 +292,7 @@ ZBmI6P4nFDn+nox8ooUmtA=="
 ```shell
 curl -request PUT https://atomic.org/api/general/v1/users/{user-id}/unlock/perform 
 -H 'Content-Type: application/json' --data '{"coin-type": "BTC", "partially-signed-unlock-tx": \ "02000000018e62016f5fe7fad1f7f343cdf900f8c6aad4cd1bef9c2a274334291c3999551c00000000b400483045022100de328bf0550164f0b6f1ae3bae78c6d417140808fa82f0da67be00cd8df41816022024b2fc2182789488fcca4984e7af3123bd3e680e4f4be8eaeb3e547f24ca31ea01004c675241043af1ba0a3429d7890d91a7f9ff280b7130c3b5edd1c02613e9f770a05ec1977a76646d7223ff17f3881f07e08a15f31cb23e79a7871202e52c678f5b9af6823021033f1654d3187087ad5f7f220814c94232945825663d55431345aca8a82746780552aefeffffff0118c69a3b0000000017a91455f415046dfb9e578426fbcbfb480a66b0782480876e000000", \
-"timestamp": 1556524623, "signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1
-qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
-BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
-Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
-GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
-ZBmI6P4nFDn+nox8ooUmtA=="}'
+"timestamp": 1556524623, "signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuqBTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjLVu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xSGVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacVZBmI6P4nFDn+nox8ooUmtA=="}'
 ```
 
 #### Return Codes
@@ -347,11 +327,11 @@ Payment transactions will not be allowed near the target unlock time
     "partially-signed-unlock-tx": "020000000001016e069dc051125daa13babacc05cf1005d78af655a53f86749071246e8e5e735a0000000023220020d2a1b05864a583d696e155d9de3772dde728e059964443091f156c455d3dd835feffffff0118c69a3b0000000017a91470da9b3ae8884cedd69dd800c46b15fdeb840f3c8704004730440220075195504bddb720ffdaf3b76d4cd62e08503386466700c170864caf75bf5e220220597b9f6017d51784948f2c7835f50bfc2403850bf80aeea90fd359b26f87f6620100475221037a2ce0416838155e9e6a486687e5bad626e5b6930796351dc6c65b2aa26805b82102cfee084d838e114e2b6489e82e77ebd6fffc84046a2656ca6b3367c0f6e5173552ae6e000000",
     "timestamp": 1556524623, 
     "signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1
-qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
-BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
-Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
-GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
-ZBmI6P4nFDn+nox8ooUmtA==" 
+                  qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
+                  BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
+                  Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
+                  GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
+                  ZBmI6P4nFDn+nox8ooUmtA==" 
 }
 ```
 
@@ -362,12 +342,7 @@ curl -request POST https://atomic.org/api/general/v1/users/{user-id}/unlock/time
 -H 'Content-Type: application/json' --data '{ \
       "coin-type": "BTC", \
       "partially-signed-tx": "020000000001016e069dc051125daa13babacc05cf1005d78af655a53f86749071246e8e5e735a0000000023220020d2a1b05864a583d696e155d9de3772dde728e059964443091f156c455d3dd835feffffff0118c69a3b0000000017a91470da9b3ae8884cedd69dd800c46b15fdeb840f3c8704004730440220075195504bddb720ffdaf3b76d4cd62e08503386466700c170864caf75bf5e220220597b9f6017d51784948f2c7835f50bfc2403850bf80aeea90fd359b26f87f6620100475221037a2ce0416838155e9e6a486687e5bad626e5b6930796351dc6c65b2aa26805b82102cfee084d838e114e2b6489e82e77ebd6fffc84046a2656ca6b3367c0f6e5173552ae6e000000" \
-      "timestamp": 1556524623, "signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1
-qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
-BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
-Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
-GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
-ZBmI6P4nFDn+nox8ooUmtA==" \
+      "timestamp": 1556524623, "signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuqBTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjLVu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xSGVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacVZBmI6P4nFDn+nox8ooUmtA==" \
 }'  
 ```
 
@@ -411,11 +386,11 @@ In this phase - the wallet gets the "Primary Escrow Transaction"
 {
     "timestamp": 1556524623, 
     "signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1
-qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
-BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
-Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
-GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
-ZBmI6P4nFDn+nox8ooUmtA==" 
+                  qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
+                  BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
+                  Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
+                  GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
+                  ZBmI6P4nFDn+nox8ooUmtA==" 
 }
 ```
 
@@ -424,12 +399,7 @@ ZBmI6P4nFDn+nox8ooUmtA=="
 ```shell
 curl -request POST https://atomic.org/api/general/v1/users/{user-id}/payments/{payment-id}/prepare \
 -H 'Content-Type: application/json' --data \
-{  "timestamp": 1556524623, "signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1
-qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
-BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
-Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
-GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
-ZBmI6P4nFDn+nox8ooUmtA==" } 
+{  "timestamp": 1556524623, "signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuqBTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjLVu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xSGVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacVZBmI6P4nFDn+nox8ooUmtA==" } 
 ```
 
 > Example responses
@@ -477,11 +447,11 @@ The Input transaction for the secondary & return escrow transactions are the pri
     "partially-signed-primary-escrow-tx": "02000000000101d17c10b7486d1a6da4128802f533a361d4dd160152752c7c585827e5c05af7c90000000023220020ba1535217938a9c8ff2deb3d3d5f08d07e882b0f6b969e4586b55e031b17c9abffffffff0212dfcd1d0000000017a914779208bacd21597a2fbed8f739d384bf7663600a87dcce9cd00000000017a914c437ad520cc819d7e6bd480c739139b0b33226d887040047304402202aae02aa182a13c54ff8bda594882899452d77df76481be22101c4fc61769bde02201b113db024198719a3805beefb55bf9a6009dc34e094a7df443980684d8d4d3e010047522103720bb3b7ecbf2a5c14fafe380a777c17199b6b8df2d7850ab4de4653bdb115532103d55a1526cd6aad84103722e952ade3ac7b969c5a576ef74ed367f814a2173c5452ae00000000",
     "timestamp": 1556524623, 
     "signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1
-qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
-BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
-Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
-GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
-ZBmI6P4nFDn+nox8ooUmtA=="
+                  qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
+                  BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
+                  Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
+                  GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
+                  ZBmI6P4nFDn+nox8ooUmtA=="
 }
 ```
 
@@ -492,12 +462,7 @@ ZBmI6P4nFDn+nox8ooUmtA=="
 curl -request POST https://atomic.org/api/general/v1/users/{user-id}/payments/{payment-id} \
 -H 'Content-Type: application/json' --data '{ \
     "partially-signed-primary-escrow-tx": "02000000000101d17c10b7486d1a6da4128802f533a361d4dd160152752c7c585827e5c05af7c90000000023220020ba1535217938a9c8ff2deb3d3d5f08d07e882b0f6b969e4586b55e031b17c9abffffffff0212dfcd1d0000000017a914779208bacd21597a2fbed8f739d384bf7663600a87dcce9cd00000000017a914c437ad520cc819d7e6bd480c739139b0b33226d887040047304402202aae02aa182a13c54ff8bda594882899452d77df76481be22101c4fc61769bde02201b113db024198719a3805beefb55bf9a6009dc34e094a7df443980684d8d4d3e010047522103720bb3b7ecbf2a5c14fafe380a777c17199b6b8df2d7850ab4de4653bdb115532103d55a1526cd6aad84103722e952ade3ac7b969c5a576ef74ed367f814a2173c5452ae00000000" \
-     "timestamp": 1556524623, "signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1
-qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
-BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
-Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
-GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
-ZBmI6P4nFDn+nox8ooUmtA==" \
+     "timestamp": 1556524623, "signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuqBTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjLVu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xSGVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacVZBmI6P4nFDn+nox8ooUmtA==" \
 }'
 ```
 
@@ -596,11 +561,11 @@ In this phase - the wallet submites all the requried transactions, and by doing 
     "partially-signed-return-escrow-tx": "02000000000101633205ee45c4312abad7d20377a4ffbbdec8bad2d65dc60deb6090ec48a02fe20000000023220020ebc41ba034dc92cc5e01f5becaa8c91d2d77f632f914f6be7c690ab60ed1d7baffffffff010065cd1d0000000017a914c437ad520cc819d7e6bd480c739139b0b33226d887040047304402202cec801f3066ad54015d9aaee7eb2da1ef31c6fe9fb8eea2956442cc15dd9ae3022076121c89b2834947bcd3e30040182dec3a85b0724947f9e9e28c43a3aa2dd5cb010047522103286234c63a8db5b66d089976468fade14f15d44df5c19cdd80694e74f5139a502103d55a1526cd6aad84103722e952ade3ac7b969c5a576ef74ed367f814a2173c5452ae00000000", 
     "timestamp": 1556524623,
     "signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1
-qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
-BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
-Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
-GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
-ZBmI6P4nFDn+nox8ooUmtA=="
+                  qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
+                  BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
+                  Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
+                  GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
+                  ZBmI6P4nFDn+nox8ooUmtA=="
 }
 ```
 
@@ -613,12 +578,7 @@ curl -request PUT https://atomic.org/api/general/v1/users/{user-id}/payments/{pa
     "partially-signed-primary-escrow-tx": "02000000000101d17c10b7486d1a6da4128802f533a361d4dd160152752c7c585827e5c05af7c90000000023220020ba1535217938a9c8ff2deb3d3d5f08d07e882b0f6b969e4586b55e031b17c9abffffffff0212dfcd1d0000000017a914779208bacd21597a2fbed8f739d384bf7663600a87dcce9cd00000000017a914c437ad520cc819d7e6bd480c739139b0b33226d887040047304402202aae02aa182a13c54ff8bda594882899452d77df76481be22101c4fc61769bde02201b113db024198719a3805beefb55bf9a6009dc34e094a7df443980684d8d4d3e010047522103720bb3b7ecbf2a5c14fafe380a777c17199b6b8df2d7850ab4de4653bdb115532103d55a1526cd6aad84103722e952ade3ac7b969c5a576ef74ed367f814a2173c5452ae00000000", \
     "partially-signed-secondary-escrow-tx": "02000000000101633205ee45c4312abad7d20377a4ffbbdec8bad2d65dc60deb6090ec48a02fe20000000023220020ebc41ba034dc92cc5e01f5becaa8c91d2d77f632f914f6be7c690ab60ed1d7baffffffff010065cd1d0000000017a91400b65de04f3a8dc0be83d14749ccee3c99d7c78587040047304402205d5d1b98a13c99da24dd3d2bb9e4da4aaf6c72eb102ed98c8da5986593e0a5fb02204e59b817fa69553e2e51f6d0e4e67ccab17c2be01fbdf8332a95ce2b21a15ca7010047522103286234c63a8db5b66d089976468fade14f15d44df5c19cdd80694e74f5139a502103d55a1526cd6aad84103722e952ade3ac7b969c5a576ef74ed367f814a2173c5452ae00000000", \
     "partially-signed-return-escrow-tx": "02000000000101633205ee45c4312abad7d20377a4ffbbdec8bad2d65dc60deb6090ec48a02fe20000000023220020ebc41ba034dc92cc5e01f5becaa8c91d2d77f632f914f6be7c690ab60ed1d7baffffffff010065cd1d0000000017a914c437ad520cc819d7e6bd480c739139b0b33226d887040047304402202cec801f3066ad54015d9aaee7eb2da1ef31c6fe9fb8eea2956442cc15dd9ae3022076121c89b2834947bcd3e30040182dec3a85b0724947f9e9e28c43a3aa2dd5cb010047522103286234c63a8db5b66d089976468fade14f15d44df5c19cdd80694e74f5139a502103d55a1526cd6aad84103722e952ade3ac7b969c5a576ef74ed367f814a2173c5452ae00000000" \
-     "timestamp": 1556524623, "signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1
-qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
-BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
-Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
-GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
-ZBmI6P4nFDn+nox8ooUmtA==" }'
+     "timestamp": 1556524623, "signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuqBTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjLVu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xSGVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacVZBmI6P4nFDn+nox8ooUmtA==" }'
 ```
 
 #### Return Codes
@@ -686,11 +646,11 @@ Status|Meaning|Description
     "escrow-address": "2NF1qc9L4j1tyfqzzLdRzRqoVftHznSeC6K",
     "timestamp": 1556524623, 
     "signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1
-qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
-BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
-Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
-GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
-ZBmI6P4nFDn+nox8ooUmtA=="
+                  qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
+                  BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
+                  Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
+                  GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
+                  ZBmI6P4nFDn+nox8ooUmtA=="
 }
 ```
 
@@ -708,12 +668,7 @@ ZBmI6P4nFDn+nox8ooUmtA=="
      "escrow-amount": 1010000000, \
      "escrow-address": "2NF1qc9L4j1tyfqzzLdRzRqoVftHznSeC6K" \
      "timestamp": 1556524623,  \
-     "signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1
-qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
-BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
-Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
-GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
-ZBmI6P4nFDn+nox8ooUmtA==" \
+     "signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuqBTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjLVu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xSGVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacVZBmI6P4nFDn+nox8ooUmtA==" \
      }'
  ```
  
@@ -741,11 +696,11 @@ If the order is currently in an active deal(s)- will also return the payment ID(
 {
     "timestamp": 1556524623, 
     "signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1
-qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
-BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
-Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
-GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
-ZBmI6P4nFDn+nox8ooUmtA=="
+                  qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
+                  BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
+                  Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
+                  GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
+                  ZBmI6P4nFDn+nox8ooUmtA=="
 }
 ```
 
@@ -753,12 +708,7 @@ ZBmI6P4nFDn+nox8ooUmtA=="
 
 ```shell
 curl -request POST https://atomic.org/api/trades/v1/users/{user-id}/orders/{order-id} -H 'Content-Type: application/json' \
---data '{ "timestamp": 1556524623, "signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1
-qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
-BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
-Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
-GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
-ZBmI6P4nFDn+nox8ooUmtA==" }' 
+--data '{ "timestamp": 1556524623, "signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuqBTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjLVu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xSGVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacVZBmI6P4nFDn+nox8ooUmtA==" }' 
 ```
 
 > Example responses
@@ -794,11 +744,11 @@ Deletes a given order, if allowed
 {
     "timestamp": 1556524623, 
     "signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1
-qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
-BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
-Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
-GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
-ZBmI6P4nFDn+nox8ooUmtA=="
+                  qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
+                  BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
+                  Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
+                  GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
+                  ZBmI6P4nFDn+nox8ooUmtA=="
 }
 ```
 
@@ -807,12 +757,7 @@ ZBmI6P4nFDn+nox8ooUmtA=="
 
 ```shell
 curl -request DELETE https://atomic.org/api/trades/v1/users/{user-id}/orders/{order-id} -H 'Content-Type: application/json' \
---data '{ "timestamp": 1556524623, "signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1
-qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
-BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
-Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
-GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
-ZBmI6P4nFDn+nox8ooUmtA==" }' 
+--data '{ "timestamp": 1556524623, "signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuqBTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjLVu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xSGVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacVZBmI6P4nFDn+nox8ooUmtA==" }' 
 ```
 
 #### Return Codes
@@ -895,11 +840,11 @@ Returns a payment ID in case such is required
     "amount": 1050000000,
     "timestamp": 1556524623, 
     "signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1
-qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
-BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
-Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
-GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
-ZBmI6P4nFDn+nox8ooUmtA=="
+                  qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
+                  BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
+                  Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
+                  GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
+                  ZBmI6P4nFDn+nox8ooUmtA=="
 }
 ```
 
@@ -908,12 +853,7 @@ ZBmI6P4nFDn+nox8ooUmtA=="
 ```shell
 curl -request PUT https://atomic.org/api/credit-line/v1/users/{user-id}/credits/{credit-id} \
 -H 'Content-Type: application/json' --data '{ "coin-type": "BTC", "amount": 1050000000, \
-"timestamp": 1556524623, "signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1
-qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
-BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
-Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
-GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
-ZBmI6P4nFDn+nox8ooUmtA=="}'
+"timestamp": 1556524623, "signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuqBTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjLVu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xSGVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacVZBmI6P4nFDn+nox8ooUmtA=="}'
 ```
 
 > Example responses
@@ -954,11 +894,11 @@ Returns a payment ID in case such is required
 {
     "timestamp": 1556524623, 
     "signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1
-qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
-BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
-Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
-GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
-ZBmI6P4nFDn+nox8ooUmtA=="
+                  qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
+                  BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
+                  Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
+                  GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
+                  ZBmI6P4nFDn+nox8ooUmtA=="
 }
 ```
 
@@ -966,12 +906,7 @@ ZBmI6P4nFDn+nox8ooUmtA=="
 
 ```shell
 curl -request POST https://atomic.org/api/credit-line/v1/users/{user-id}/credits/{credit-id} -H 'Content-Type: application/json' --data '{  \
-"timestamp": 1556524623, "signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1
-qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
-BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
-Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
-GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
-ZBmI6P4nFDn+nox8ooUmtA=="}'
+"timestamp": 1556524623, "signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuqBTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjLVu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xSGVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacVZBmI6P4nFDn+nox8ooUmtA=="}'
 ```
 
 > Example responses
@@ -1006,11 +941,11 @@ Request to remove a specific Credit Line
 {
     "timestamp": 1556524623, 
     "signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1
-qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
-BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
-Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
-GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
-ZBmI6P4nFDn+nox8ooUmtA=="
+                  qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
+                  BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
+                  Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
+                  GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
+                  ZBmI6P4nFDn+nox8ooUmtA=="
 }
 ```
 
@@ -1018,12 +953,7 @@ ZBmI6P4nFDn+nox8ooUmtA=="
 
 ```shell
 curl -request DELETE https://atomic.org/api/credit-line/v1/users/{user-id}/credits/{credit-id} -H 'Content-Type: application/json' --data '{  \
-"timestamp": 1556524623, "signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1
-qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
-BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
-Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
-GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
-ZBmI6P4nFDn+nox8ooUmtA=="}'
+"timestamp": 1556524623, "signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuqBTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjLVu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xSGVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacVZBmI6P4nFDn+nox8ooUmtA=="}'
 ```
 
 #### Return Codes
@@ -1045,11 +975,11 @@ Gets the list of all lines of credit for a given user
 {
     "timestamp": 1556524623, 
     "signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1
-qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
-BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
-Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
-GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
-ZBmI6P4nFDn+nox8ooUmtA=="
+                  qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
+                  BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
+                  Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
+                  GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
+                  ZBmI6P4nFDn+nox8ooUmtA=="
 }
 ```
 
@@ -1057,12 +987,7 @@ ZBmI6P4nFDn+nox8ooUmtA=="
 
 ```shell
 curl -request POST https://atomic.org/api/credit-line/v1/users/{user-id} -H 'Content-Type: application/json' --data '{  \
-"timestamp": 1556524623, "signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1
-qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
-BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
-Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
-GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
-ZBmI6P4nFDn+nox8ooUmtA=="}'
+"timestamp": 1556524623, "signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuqBTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjLVu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xSGVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacVZBmI6P4nFDn+nox8ooUmtA=="}'
 ```
 
 > Example responses
@@ -1155,11 +1080,11 @@ Request a new loan or update an existing loan
     "loan-duration-in-days": 527,
     "timestamp": 1556524623, 
     "signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1
-qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
-BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
-Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
-GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
-ZBmI6P4nFDn+nox8ooUmtA=="
+                  qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
+                  BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
+                  Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
+                  GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
+                  ZBmI6P4nFDn+nox8ooUmtA=="
 }
 ```
 
@@ -1175,12 +1100,7 @@ curl -request PUT https://atomic.org/api/loans/v1/borrowers/{user-id}/loans/{loa
          "max-interest": 7.1, \
          "loan-duration-in-days": 527 ,
          "timestamp": 1556524623, \ 
-         "signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1
-qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
-BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
-Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
-GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
-ZBmI6P4nFDn+nox8ooUmtA==" \
+         "signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuqBTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjLVu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xSGVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacVZBmI6P4nFDn+nox8ooUmtA==" \
 }'
 ```
 
@@ -1205,11 +1125,11 @@ Gets the user's loan information
 {
     "timestamp": 1556524623, 
     "signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1
-qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
-BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
-Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
-GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
-ZBmI6P4nFDn+nox8ooUmtA=="
+                  qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
+                  BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
+                  Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
+                  GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
+                  ZBmI6P4nFDn+nox8ooUmtA=="
 }
 ```
 
@@ -1218,12 +1138,7 @@ ZBmI6P4nFDn+nox8ooUmtA=="
 ```shell
 curl -request POST https://atomic.org/api/loans/v1/borrowers/{user-id}/loans/{loan-id} -H 'Content-Type: application/json' --data '{ \
 "timestamp": 1556524623, \ 
-"signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1
-qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
-BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
-Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
-GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
-ZBmI6P4nFDn+nox8ooUmtA==" }'
+"signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuqBTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjLVu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xSGVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacVZBmI6P4nFDn+nox8ooUmtA==" }'
 ```
 
 > Example responses
@@ -1270,11 +1185,11 @@ Request to delete a user's loan
 {
     "timestamp": 1556524623, 
     "signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1
-qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
-BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
-Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
-GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
-ZBmI6P4nFDn+nox8ooUmtA=="
+                  qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
+                  BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
+                  Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
+                  GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
+                  ZBmI6P4nFDn+nox8ooUmtA=="
 }
 ```
 
@@ -1283,12 +1198,7 @@ ZBmI6P4nFDn+nox8ooUmtA=="
 ```shell
 curl -request DELETE https://atomic.org/api/loans/v1/borrowers/{user-id}/loans/{loan-id}  -H 'Content-Type: application/json' \
 --data '{ "timestamp": 1556524623, \ 
-"signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1
-qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
-BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
-Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
-GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
-ZBmI6P4nFDn+nox8ooUmtA==" }'
+"signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuqBTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjLVu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xSGVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacVZBmI6P4nFDn+nox8ooUmtA==" }'
 ```
 
 #### Return Codes
@@ -1310,11 +1220,11 @@ Gets the user's loans information
 {
     "timestamp": 1556524623, 
     "signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1
-qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
-BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
-Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
-GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
-ZBmI6P4nFDn+nox8ooUmtA=="
+                  qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
+                  BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
+                  Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
+                  GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
+                  ZBmI6P4nFDn+nox8ooUmtA=="
 }
 ```
 
@@ -1323,12 +1233,7 @@ ZBmI6P4nFDn+nox8ooUmtA=="
 ```shell
 curl -request POST https://atomic.org/api/loans/v1/borrowers/{user-id}  -H 'Content-Type: application/json' \
 --data '{ "timestamp": 1556524623, \ 
-"signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1
-qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
-BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
-Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
-GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
-ZBmI6P4nFDn+nox8ooUmtA==" }'
+"signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuqBTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjLVu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xSGVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacVZBmI6P4nFDn+nox8ooUmtA==" }'
 ```
 
 > Example responses
@@ -1381,11 +1286,11 @@ Create a new investment/Update an existing investment
     "destination-address": "2NBkFMN1h5Jchqwh4Fp5JYcUEwNuXnU9cR2",
     "timestamp": 1556524623, 
     "signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1
-qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
-BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
-Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
-GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
-ZBmI6P4nFDn+nox8ooUmtA=="
+                  qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
+                  BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
+                  Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
+                  GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
+                  ZBmI6P4nFDn+nox8ooUmtA=="
 }
 ```
 
@@ -1401,12 +1306,7 @@ curl -request PUT https://atomic.org/api/loans/v1/investors/{user-id}/investment
           "expiration-date": 1737307138,    \
           "destination-address": "2NBkFMN1h5Jchqwh4Fp5JYcUEwNuXnU9cR2" \
           "timestamp": 1556524623, \ 
-          "signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1
-qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
-BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
-Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
-GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
-ZBmI6P4nFDn+nox8ooUmtA=="}'
+          "signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuqBTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjLVu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xSGVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacVZBmI6P4nFDn+nox8ooUmtA=="}'
 ```
 
 #### Return Codes
@@ -1430,11 +1330,11 @@ Gets the user's investment information
 {
     "timestamp": 1556524623, 
     "signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1
-qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
-BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
-Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
-GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
-ZBmI6P4nFDn+nox8ooUmtA=="
+                  qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
+                  BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
+                  Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
+                  GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
+                  ZBmI6P4nFDn+nox8ooUmtA=="
 }
 ```
 
@@ -1444,12 +1344,7 @@ ZBmI6P4nFDn+nox8ooUmtA=="
 ```shell
 curl -request POST https://atomic.org/api/loans/v1/investors/{user-id}/investments/{investment-id} -H 'Content-Type: application/json' \
 --data '{ "timestamp": 1556524623, \ 
-"signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1
-qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
-BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
-Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
-GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
-ZBmI6P4nFDn+nox8ooUmtA==" }'
+"signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuqBTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjLVu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xSGVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacVZBmI6P4nFDn+nox8ooUmtA==" }'
 ```
 
 > Example responses
@@ -1494,11 +1389,11 @@ Request to delete a user's investment
 {
     "timestamp": 1556524623, 
     "signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1
-qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
-BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
-Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
-GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
-ZBmI6P4nFDn+nox8ooUmtA=="
+                  qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
+                  BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
+                  Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
+                  GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
+                  ZBmI6P4nFDn+nox8ooUmtA=="
 }
 ```
 
@@ -1507,12 +1402,7 @@ ZBmI6P4nFDn+nox8ooUmtA=="
 ```shell
 curl -request DELETE https://atomic.org/api/loans/v1/investors/{user-id}/investments/{investment-id}  -H 'Content-Type: application/json' \
 --data '{ "timestamp": 1556524623, \ 
-"signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1
-qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
-BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
-Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
-GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
-ZBmI6P4nFDn+nox8ooUmtA==" }'
+"signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuqBTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjLVu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xSGVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacVZBmI6P4nFDn+nox8ooUmtA==" }'
 ```
 
 #### Return Codes
@@ -1535,11 +1425,11 @@ Gets the user's investments information
 {
     "timestamp": 1556524623, 
     "signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1
-qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
-BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
-Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
-GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
-ZBmI6P4nFDn+nox8ooUmtA=="
+                  qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
+                  BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
+                  Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
+                  GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
+                  ZBmI6P4nFDn+nox8ooUmtA=="
 }
 ```
 
@@ -1548,12 +1438,7 @@ ZBmI6P4nFDn+nox8ooUmtA=="
 ```shell
 curl -request POST https://atomic.org/api/loans/v1/investors/{user-id} -H 'Content-Type: application/json' \
 --data '{ "timestamp": 1556524623, \ 
-"signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1
-qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
-BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
-Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
-GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
-ZBmI6P4nFDn+nox8ooUmtA==" }'
+"signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuqBTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjLVu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xSGVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacVZBmI6P4nFDn+nox8ooUmtA==" }'
 ```
 
 > Example responses
