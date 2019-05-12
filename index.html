@@ -285,7 +285,7 @@
 		              <a href="#get-supported-coins" class="toc-h3 toc-link" data-title="Get Supported Coins">Get Supported Coins</a>
 		            </li>
 			    <li>
-		              <a href="#get-generic-info" class="toc-h3 toc-link" data-title="Get Generic Info">Get Generic Info</a>
+		              <a href="#get-generic-information" class="toc-h3 toc-link" data-title="Get Generic Information">Get Generic Information</a>
 		            </li>
 			  </ul>
                   </li>
@@ -308,7 +308,7 @@
 		              <a href="#get-supported-coins-2" class="toc-h3 toc-link" data-title="Get Supported Coins">Get Supported Coins</a>
 		            </li>
 			    <li>
-		              <a href="#get-generic-info-2" class="toc-h3 toc-link" data-title="Get Generic Info">Get Generic Info</a>
+		              <a href="#get-generic-information-2" class="toc-h3 toc-link" data-title="Get Generic Information">Get Generic Information</a>
 		            </li>
 			  </ul>
                   </li>
@@ -343,7 +343,7 @@
 		              <a href="#get-supported-coins-3" class="toc-h3 toc-link" data-title="Get Supported Coins">Get Supported Coins</a>
 		            </li>
 			    <li>
-		              <a href="#get-generic-info-3" class="toc-h3 toc-link" data-title="Get Generic Info">Get Generic Info</a>
+		              <a href="#get-generic-information-3" class="toc-h3 toc-link" data-title="Get Generic Information">Get Generic Information</a>
 		            </li>
 			  </ul>
                   </li>
@@ -362,10 +362,16 @@
 		              <a href="#get-deal-details" class="toc-h3 toc-link" data-title="Get Deal Details">Get Deal Details</a>
 		            </li>
 			    <li>
-		              <a href="#abort-deal" class="toc-h3 toc-link" data-title="Abort Deal">Abort Deal</a>
+		              <a href="#activate-deal" class="toc-h3 toc-link" data-title="Activate Deal">Activate Deal</a>
 		            </li>
 			    <li>
 		              <a href="#get-transaction-details" class="toc-h3 toc-link" data-title="Get Transaction Details">Get Transaction Details</a>
+		            </li>
+			    <li>
+		              <a href="#abort-deal" class="toc-h3 toc-link" data-title="Abort Deal">Abort Deal</a>
+		            </li>
+			    <li>
+		              <a href="#get-transaction-details-2" class="toc-h3 toc-link" data-title="Get Transaction Details">Get Transaction Details</a>
 		            </li>
 			  </ul>
                   </li>
@@ -646,7 +652,7 @@ curl -request POST https://atomic.org/api/general/v1/users/{user-id}/unlock \
 Status|Meaning|Description
 ---|---|---
 200 | OK | On demand unlock transaction created
-403 | Forbidden | Cannot perform on-demand unlock at this time
+403 | Forbidden | Cannot perform on-demand unlock at this time or invalid unlock amount requested
 404 | Not Found | User not found
 -->
 <h3 id='submit-an-on-demand-unlock'>Submit An On-Demand Unlock</h3>
@@ -702,7 +708,7 @@ NOTE: An on demand unlock cannot be processed during ongoing transactions
 <tr>
 <td>403</td>
 <td>Forbidden</td>
-<td>Cannot perform unlock at this time</td>
+<td>Cannot perform unlock at this time or invalid unlock amount requested</td>
 </tr>
 <tr>
 <td>404</td>
@@ -1303,8 +1309,8 @@ By deafult, trade between all coins is supported
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
    </span><span class="p">[</span><span class="s2">"BTC"</span><span class="p">,</span><span class="w"> </span><span class="s2">"LTC"</span><span class="p">,</span><span class="w"> </span><span class="s2">"DASH"</span><span class="p">,</span><span class="w"> </span><span class="s2">"BSV"</span><span class="p">,</span><span class="w"> </span><span class="s2">"DOGE"</span><span class="p">,</span><span class="w"> </span><span class="s2">"BCH"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ETC"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ETH"</span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='get-generic-info'>Get Generic Info</h3>
-<p>Generic info from the P2P trading platform</p>
+</span></code></pre><h3 id='get-generic-information'>Get Generic Information</h3>
+<p>Generic information from the P2P trading platform</p>
 
 <p><code>GET /api/trades/v1/info</code></p>
 
@@ -1579,8 +1585,8 @@ Returns a payment ID in case such is required
 <pre class="highlight plaintext"><code>{
     ["BTC", "LTC", "DASH", "BSV", "DOGE", "BCH", "ETC", "ETH"]
 }
-</code></pre><h3 id='get-generic-info-2'>Get Generic Info</h3>
-<p>Generic info from the Credit Line provider</p>
+</code></pre><h3 id='get-generic-information-2'>Get Generic Information</h3>
+<p>Generic information from the Credit Line provider</p>
 
 <p><code>GET /api/credit-line/v1/info</code></p>
 
@@ -1660,7 +1666,7 @@ Returns a payment ID in case such is required
 <tr>
 <td>403</td>
 <td>Forbidden</td>
-<td>Can&#39;t update loan to an amount lower than already received</td>
+<td>Loan request is lower than existing</td>
 </tr>
 <tr>
 <td>409</td>
@@ -1906,9 +1912,9 @@ Returns a payment ID in case such is required
 <td>Invalid input</td>
 </tr>
 <tr>
-<td>406</td>
-<td>Not Acceptable</td>
-<td>Cannot update amount to be less than amount in active loans</td>
+<td>403</td>
+<td>Forbidden</td>
+<td>Investment request is lower than existing</td>
 </tr>
 <tr>
 <td>409</td>
@@ -2117,8 +2123,8 @@ Returns a payment ID in case such is required
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
     </span><span class="p">[</span><span class="s2">"BTC"</span><span class="p">,</span><span class="w"> </span><span class="s2">"LTC"</span><span class="p">,</span><span class="w"> </span><span class="s2">"DASH"</span><span class="p">,</span><span class="w"> </span><span class="s2">"BSV"</span><span class="p">,</span><span class="w"> </span><span class="s2">"DOGE"</span><span class="p">,</span><span class="w"> </span><span class="s2">"BCH"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ETC"</span><span class="p">,</span><span class="w"> </span><span class="s2">"ETH"</span><span class="p">]</span><span class="w"> 
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h3 id='get-generic-info-3'>Get Generic Info</h3>
-<p>Generic info from the P2P Loans business</p>
+</span></code></pre><h3 id='get-generic-information-3'>Get Generic Information</h3>
+<p>Generic information from the P2P Loans business</p>
 
 <p><code>GET /api/loans/v1/info</code></p>
 
@@ -2150,7 +2156,8 @@ Returns a payment ID in case such is required
 <p>Body parameter</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-</span><span class="s2">"num-transactions"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"deal-activation-type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AUTOMATIC"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"num-transactions"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="s2">"transaction-info"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
         </span><span class="s2">"user-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d290f1ee-6c54-4b01-90e6-d701748f0200"</span><span class="p">,</span><span class="w">
@@ -2161,7 +2168,11 @@ Returns a payment ID in case such is required
         </span><span class="s2">"collateral"</span><span class="p">:</span><span class="w"> </span><span class="mi">854320000</span><span class="p">,</span><span class="w">
         </span><span class="s2">"fee"</span><span class="p">:</span><span class="w"> </span><span class="mi">5123</span><span class="p">,</span><span class="w">
         </span><span class="s2">"second-target-address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2NBkFMN1h5Jchqwh4Fp5JYcUEwNuXnU9cR2"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"second-amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">854320000</span><span class="w">
+        </span><span class="s2">"second-amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">854320000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"payment-type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"FULL"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"confirmation-phase"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"submit-phase-wallet"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"submit-phase-deal"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -2171,7 +2182,8 @@ Returns a payment ID in case such is required
 </blockquote>
 <pre class="highlight shell tab-shell"><code>curl -request PUT https://atomic.org/api/deals/v1/businesses/<span class="o">{</span>business-id<span class="o">}</span>/deals/<span class="o">{</span>deal-id<span class="o">}</span> <span class="se">\</span>
 -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\ </span>
-              --data <span class="s1">'{ "num-transactions": 1, \
+        --data <span class="s1">'{ "deal-activation-type" : "AUTOMATIC", \
+                        "num-transactions": 1, \
                         "transaction-info": [ \
                             {  \
                             "user-id": "d290f1ee-6c54-4b01-90e6-d701748f0200", \
@@ -2182,7 +2194,11 @@ Returns a payment ID in case such is required
                             "collateral": 854320000, \
                             "fee": 5123, \
                             "second-target-address": "2NBkFMN1h5Jchqwh4Fp5JYcUEwNuXnU9cR2", \
-                            "second-amount": 854320000 } \
+                            "second-amount": 854320000, \
+                            "payment-type" : "FULL", \
+                            "confirmation-phase": 0, \
+                            "submit-phase-wallet": 0, \
+                            "submit-phase-deal": 0 } \
                             ]}'</span>
 
 </code></pre><h4 id='return-codes-25'>Return Codes</h4>
@@ -2254,6 +2270,88 @@ Returns a payment ID in case such is required
 <td>Business/Deal not found</td>
 </tr>
 </tbody></table>
+<h3 id='activate-deal'>Activate Deal</h3>
+<p>Activate deal if the deal is of manual activation type, and in the right status</p>
+
+<p><code>POST /api/v1/businesses/{business-id}/deals/{deal-id}/activate</code></p>
+
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -request POST https://atomic.org/api/deals/v1/businesses/<span class="o">{</span>business-id<span class="o">}</span>/deals/<span class="o">{</span>deal-id<span class="o">}</span>/activate
+</code></pre><h4 id='return-codes-27'>Return Codes</h4>
+<table><thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+<td>Deal activated successfully</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+<td>Invalid input</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+<td>Deal activation isn&#39;t allowed</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+<td>Deal not found</td>
+</tr>
+</tbody></table>
+<h3 id='get-transaction-details'>Get Transaction Details</h3>
+<p>Gets a deal&#39;s transaction information</p>
+
+<p><code>GET /api/v1/businesses/{business-id}/deals/{deal-id}/transactions/{transaction-index}</code></p>
+
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -request GET https://atomic.org/api/deals/v1/businesses/<span class="o">{</span>business-id<span class="o">}</span>/deals/<span class="o">{</span>deal-id<span class="o">}</span>/transactions/<span class="o">{</span>transaction-index<span class="o">}</span>
+
+</code></pre>
+<blockquote>
+<p>Example responses</p>
+
+<p>200 Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="s2">"user-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d290f1ee-6c54-4b01-90e6-d701748f0200"</span><span class="p">,</span><span class="w">
+</span><span class="s2">"transaction-status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pending User Confirmation"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h4 id='return-codes-28'>Return Codes</h4>
+<table><thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+<td>Invalid input</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+<td>Business/Deal/Transaction not found</td>
+</tr>
+</tbody></table>
 <h3 id='abort-deal'>Abort Deal</h3>
 <p>Aborts a deal, if allowed</p>
 
@@ -2263,7 +2361,7 @@ Returns a payment ID in case such is required
 <p>Code samples</p>
 </blockquote>
 <pre class="highlight shell tab-shell"><code>curl -request DELETE https://atomic.org/api/deals/v1/businesses/<span class="o">{</span>business-id<span class="o">}</span>/deals/<span class="o">{</span>deal-id<span class="o">}</span>
-</code></pre><h4 id='return-codes-27'>Return Codes</h4>
+</code></pre><h4 id='return-codes-29'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
@@ -2286,8 +2384,13 @@ Returns a payment ID in case such is required
 <td>Forbidden</td>
 <td>Deal already in execution phase, abort isn&#39;t allowed</td>
 </tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+<td>Deal not found</td>
+</tr>
 </tbody></table>
-<h3 id='get-transaction-details'>Get Transaction Details</h3>
+<h3 id='get-transaction-details-2'>Get Transaction Details</h3>
 <p>Gets a deal&#39;s transaction information</p>
 
 <p><code>GET /api/v1/businesses/{business-id}/deals/{deal-id}/transactions/{transaction-index}</code></p>
@@ -2307,7 +2410,7 @@ Returns a payment ID in case such is required
     </span><span class="s2">"user-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d290f1ee-6c54-4b01-90e6-d701748f0200"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"transaction-status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pending User Confirmation"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h4 id='return-codes-28'>Return Codes</h4>
+</span></code></pre><h4 id='return-codes-30'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
