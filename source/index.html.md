@@ -254,7 +254,7 @@ curl -request POST https://atomic.org/api/general/v1/users/{user-id}/unlock \
 Status|Meaning|Description
 ---|---|---
 200 | OK | On demand unlock transaction created
-403 | Forbidden | Cannot perform on-demand unlock at this time
+403 | Forbidden | Cannot perform on-demand unlock at this time or invalid unlock amount requested
 404 | Not Found | User not found
 -->
 
@@ -300,7 +300,7 @@ Status|Meaning|Description
 --------- |  ----------- | -----------
 201| Created|Unlock command recieved
 400| Bad Request | Invalid input
-403| Forbidden|Cannot perform unlock at this time
+403| Forbidden|Cannot perform unlock at this time or invalid unlock amount requested
 404 |Not Found | User not found
 409| Conflict | Another unlock already in progress
 
@@ -794,9 +794,9 @@ curl -request GET https://atomic.org/api/trades/v1/coins'
 }
 ```
 
-### Get Generic Info
+### Get Generic Information
 
-Generic info from the P2P trading platform
+Generic information from the P2P trading platform
 
 `GET /api/trades/v1/info`
 
@@ -1034,9 +1034,9 @@ curl -request GET https://atomic.org/api/credit-line/v1/coins
 }
 ```
 
-### Get Generic Info
+### Get Generic Information
 
-Generic info from the Credit Line provider
+Generic information from the Credit Line provider
 
 `GET /api/credit-line/v1/info`
 
@@ -1109,7 +1109,7 @@ Status|Meaning|Description
 ---|---|---
 201| Created | Loan request created
 400| Bad Request | Invalid input
-403| Forbidden | Can't update loan to an amount lower than already received
+403| Forbidden | Loan request is lower than existing
 409| Conflict | Loan already exists
 
 
@@ -1314,7 +1314,7 @@ Status|Meaning|Description
 ---|---|---
 201 | Created | Investment created/updated
 400 | Bad Request | Invalid input
-406 | Not Acceptable | Cannot update amount to be less than amount in active loans
+403 | Forbidden | Investment request is lower than existing
 409 | Conflict | Investment is up to date
 
 
@@ -1497,9 +1497,9 @@ curl -request GET https://atomic.org/api/loans/v1/coins
 }
 ```
 
-### Get Generic Info
+### Get Generic Information
 
-Generic info from the P2P Loans business
+Generic information from the P2P Loans business
 
 `GET /api/loans/v1/info`
 
@@ -1539,7 +1539,8 @@ Create a new deal
 
 ```json
 {
-"num-transactions": 1,
+    "deal-activation-type": "AUTOMATIC",
+    "num-transactions": 1,
     "transaction-info": [
         {
         "user-id": "d290f1ee-6c54-4b01-90e6-d701748f0200",
@@ -1550,7 +1551,11 @@ Create a new deal
         "collateral": 854320000,
         "fee": 5123,
         "second-target-address": "2NBkFMN1h5Jchqwh4Fp5JYcUEwNuXnU9cR2",
-        "second-amount": 854320000
+        "second-amount": 854320000,
+        "payment-type" : "FULL",
+        "confirmation-phase": 0,
+        "submit-phase-wallet": 0,
+        "submit-phase-deal": 0
         }
     ]
 }
@@ -1561,7 +1566,8 @@ Create a new deal
 ```shell
 curl -request PUT https://atomic.org/api/deals/v1/businesses/{business-id}/deals/{deal-id} \
 -H 'Content-Type: application/json' \ 
-              --data '{ "num-transactions": 1, \
+        --data '{ "deal-activation-type" : "AUTOMATIC", \
+                        "num-transactions": 1, \
                         "transaction-info": [ \
                             {  \
                             "user-id": "d290f1ee-6c54-4b01-90e6-d701748f0200", \
@@ -1572,7 +1578,11 @@ curl -request PUT https://atomic.org/api/deals/v1/businesses/{business-id}/deals
                             "collateral": 854320000, \
                             "fee": 5123, \
                             "second-target-address": "2NBkFMN1h5Jchqwh4Fp5JYcUEwNuXnU9cR2", \
-                            "second-amount": 854320000 } \
+                            "second-amount": 854320000, \
+                            "payment-type" : "FULL", \
+                            "confirmation-phase": 0, \
+                            "submit-phase-wallet": 0, \
+                            "submit-phase-deal": 0 } \
                             ]}'
 
 ```
@@ -1617,6 +1627,57 @@ Status|Meaning|Description
 400 | Bad Request | Invalid input
 404 | Not Found | Business/Deal not found
 
+### Activate Deal
+
+Activate deal if the deal is of manual activation type, and in the right status
+
+`POST /api/v1/businesses/{business-id}/deals/{deal-id}/activate`
+
+> Code samples
+
+```shell
+curl -request POST https://atomic.org/api/deals/v1/businesses/{business-id}/deals/{deal-id}/activate
+```
+
+#### Return Codes
+Status|Meaning|Description
+---|---|---
+200 | OK | Deal activated successfully
+400 | Bad Request | Invalid input
+403 | Forbidden | Deal activation isn't allowed
+404 | Not Found | Deal not found
+
+
+### Get Transaction Details
+
+Gets a deal's transaction information
+
+`GET /api/v1/businesses/{business-id}/deals/{deal-id}/transactions/{transaction-index}`
+
+> Code samples
+
+```shell
+curl -request GET https://atomic.org/api/deals/v1/businesses/{business-id}/deals/{deal-id}/transactions/{transaction-index}
+
+```
+
+> Example responses
+
+> 200 Response
+
+```json
+{
+"user-id": "d290f1ee-6c54-4b01-90e6-d701748f0200",
+"transaction-status": "Pending User Confirmation"
+}
+```
+
+#### Return Codes
+Status|Meaning|Description
+---|---|---
+200 | OK | OK
+400 | Bad Request | Invalid input
+404 | Not Found  | Business/Deal/Transaction not found
 
 ### Abort Deal
 
@@ -1636,7 +1697,7 @@ Status|Meaning|Description
 200 | OK | Deal aborted successfully
 400 | Bad Request | Invalid input
 403 | Forbidden | Deal already in execution phase, abort isn't allowed
-
+404 | Not Found | Deal not found
 
 ### Get Transaction Details
 
