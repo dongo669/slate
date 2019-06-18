@@ -279,6 +279,9 @@
 		              <a href="#get-order-details" class="toc-h3 toc-link" data-title="Get Order Details">Get Order Details</a>
 		            </li>
 			    <li>
+		              <a href="#get-all-user-orders" class="toc-h3 toc-link" data-title="Get All User Orders">Get All User Orders</a>
+		            </li>
+			    <li>
 		              <a href="#cancel-order" class="toc-h3 toc-link" data-title="Cancel Order">Cancel Order</a>
 		            </li>
 			    <li>
@@ -1240,6 +1243,79 @@ If the order is currently in an active deal(s)- will also return the payment ID(
 <td>Order not found</td>
 </tr>
 </tbody></table>
+<h3 id='get-all-user-orders'>Get All User Orders</h3>
+<p>Retrieves all the existing orders for the given user</p>
+
+<p><code>POST /api/trades/v1/users/{user-id}/orders</code></p>
+
+<blockquote>
+<p>Body parameters</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1556524623</span><span class="p">,</span><span class="w"> 
+    </span><span class="s2">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1
+    qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
+    BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
+    Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
+    GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
+    ZBmI6P4nFDn+nox8ooUmtA=="</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -request POST https://atomic.org/api/trades/v1/users/<span class="o">{</span>user-id<span class="o">}</span>/orders -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+--data <span class="s1">'{ "timestamp": 1556524623, "signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuqBTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjLVu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xSGVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacVZBmI6P4nFDn+nox8ooUmtA==" }'</span> 
+</code></pre>
+<blockquote>
+<p>Example responses</p>
+
+<p>200 Response</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"order-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d290f1ee-6c54-4b01-90e6-d701748f0100"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"source-coin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"source-amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1010000000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"target-coin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETH"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"target-amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">300500000000000000000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"target-address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0xe8e49e84480edd95aaae50a340422cb30057963b"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IN_DEAL"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"payment-ids"</span><span class="p">:</span><span class="w"> 
+        </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="s2">"payment-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d290f1ee-6c54-4b01-90e6-d701748f0300"</span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="s2">"payment-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d290f1ee-6c54-4b01-90e6-d701748f0200"</span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"order-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abcdefee-efac-1234-90e6-d701748f0100"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"source-coin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LTC"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"source-amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1210000000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"target-coin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ETC"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"target-amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">300500000000000000000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"target-address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0xb932c076d4c371913a632ceb34601063079f6ad7"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IN_QUEUE"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre><h4 id='return-codes-12'>Return Codes</h4>
+<table><thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+<td>User found</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+<td>User not found</td>
+</tr>
+</tbody></table>
 <h3 id='cancel-order'>Cancel Order</h3>
 <p>Deletes a given order, if allowed</p>
 
@@ -1263,7 +1339,7 @@ If the order is currently in an active deal(s)- will also return the payment ID(
 </blockquote>
 <pre class="highlight shell tab-shell"><code>curl -request DELETE https://atomic.org/api/trades/v1/users/<span class="o">{</span>user-id<span class="o">}</span>/orders/<span class="o">{</span>order-id<span class="o">}</span> -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
 --data <span class="s1">'{ "timestamp": 1556524623, "signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuqBTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjLVu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xSGVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacVZBmI6P4nFDn+nox8ooUmtA==" }'</span> 
-</code></pre><h4 id='return-codes-12'>Return Codes</h4>
+</code></pre><h4 id='return-codes-13'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
@@ -1378,7 +1454,7 @@ Returns a payment ID in case such is required
     </span><span class="s2">"coin-type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"payment-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d290f1ee-6c54-4b01-90e6-d701748f0300"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h4 id='return-codes-13'>Return Codes</h4>
+</span></code></pre><h4 id='return-codes-14'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
@@ -1446,7 +1522,7 @@ Returns a payment ID in case such is required
     </span><span class="s2">"coin-type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BTC"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"payment-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d290f1ee-6c54-4b01-90e6-d701748f0300"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h4 id='return-codes-14'>Return Codes</h4>
+</span></code></pre><h4 id='return-codes-15'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
@@ -1488,7 +1564,7 @@ Returns a payment ID in case such is required
 </blockquote>
 <pre class="highlight shell tab-shell"><code>curl -request DELETE https://atomic.org/api/credit-line/v1/users/<span class="o">{</span>user-id<span class="o">}</span>/credits/<span class="o">{</span>credit-id<span class="o">}</span> -H <span class="s1">'Content-Type: application/json'</span> --data <span class="s1">'{  \
 "timestamp": 1556524623, "signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuqBTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjLVu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xSGVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacVZBmI6P4nFDn+nox8ooUmtA=="}'</span>
-</code></pre><h4 id='return-codes-15'>Return Codes</h4>
+</code></pre><h4 id='return-codes-16'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
@@ -1553,7 +1629,7 @@ Returns a payment ID in case such is required
         </span><span class="s2">"payment-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d290f1ee-6c54-4b01-90e6-d701748f0300"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre><h4 id='return-codes-16'>Return Codes</h4>
+</span></code></pre><h4 id='return-codes-17'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
@@ -1650,7 +1726,7 @@ Returns a payment ID in case such is required
          "timestamp": 1556524623, \ 
          "signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuqBTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjLVu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xSGVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacVZBmI6P4nFDn+nox8ooUmtA==" \
 }'</span>
-</code></pre><h4 id='return-codes-17'>Return Codes</h4>
+</code></pre><h4 id='return-codes-18'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
@@ -1726,7 +1802,7 @@ Returns a payment ID in case such is required
             </span><span class="s2">"expiration-date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1595697538</span><span class="w">
         </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h4 id='return-codes-18'>Return Codes</h4>
+</span></code></pre><h4 id='return-codes-19'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
@@ -1769,7 +1845,7 @@ Returns a payment ID in case such is required
 <pre class="highlight shell tab-shell"><code>curl -request DELETE https://atomic.org/api/loans/v1/borrowers/<span class="o">{</span>user-id<span class="o">}</span>/loans/<span class="o">{</span>loan-id<span class="o">}</span>  -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
 --data <span class="s1">'{ "timestamp": 1556524623, \ 
 "signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuqBTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjLVu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xSGVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacVZBmI6P4nFDn+nox8ooUmtA==" }'</span>
-</code></pre><h4 id='return-codes-19'>Return Codes</h4>
+</code></pre><h4 id='return-codes-20'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
@@ -1842,7 +1918,7 @@ Returns a payment ID in case such is required
             </span><span class="p">}</span><span class="w">
         </span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
-</span></code></pre><h4 id='return-codes-20'>Return Codes</h4>
+</span></code></pre><h4 id='return-codes-21'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
@@ -1898,7 +1974,7 @@ Returns a payment ID in case such is required
           "target-address": "2NBkFMN1h5Jchqwh4Fp5JYcUEwNuXnU9cR2" \
           "timestamp": 1556524623, \ 
           "signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuqBTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjLVu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xSGVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacVZBmI6P4nFDn+nox8ooUmtA=="}'</span>
-</code></pre><h4 id='return-codes-21'>Return Codes</h4>
+</code></pre><h4 id='return-codes-22'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
@@ -1973,7 +2049,7 @@ Returns a payment ID in case such is required
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h4 id='return-codes-22'>Return Codes</h4>
+</span></code></pre><h4 id='return-codes-23'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
@@ -2016,7 +2092,7 @@ Returns a payment ID in case such is required
 <pre class="highlight shell tab-shell"><code>curl -request DELETE https://atomic.org/api/loans/v1/investors/<span class="o">{</span>user-id<span class="o">}</span>/investments/<span class="o">{</span>investment-id<span class="o">}</span>  -H <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
 --data <span class="s1">'{ "timestamp": 1556524623, \ 
 "signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuqBTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjLVu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xSGVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacVZBmI6P4nFDn+nox8ooUmtA==" }'</span>
-</code></pre><h4 id='return-codes-23'>Return Codes</h4>
+</code></pre><h4 id='return-codes-24'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
@@ -2091,7 +2167,7 @@ Returns a payment ID in case such is required
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h4 id='return-codes-24'>Return Codes</h4>
+</span></code></pre><h4 id='return-codes-25'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
@@ -2206,7 +2282,7 @@ Returns a payment ID in case such is required
                             "submit-phase-deal": 0 } \
                             ]}'</span>
 
-</code></pre><h4 id='return-codes-25'>Return Codes</h4>
+</code></pre><h4 id='return-codes-26'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
@@ -2251,7 +2327,7 @@ Returns a payment ID in case such is required
     </span><span class="s2">"deal-status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"READY"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"num-transactions"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h4 id='return-codes-26'>Return Codes</h4>
+</span></code></pre><h4 id='return-codes-27'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
@@ -2284,7 +2360,7 @@ Returns a payment ID in case such is required
 <p>Code samples</p>
 </blockquote>
 <pre class="highlight shell tab-shell"><code>curl -request POST https://atomic.org/api/deals/v1/businesses/<span class="o">{</span>business-id<span class="o">}</span>/deals/<span class="o">{</span>deal-id<span class="o">}</span>/activate
-</code></pre><h4 id='return-codes-27'>Return Codes</h4>
+</code></pre><h4 id='return-codes-28'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
@@ -2333,7 +2409,7 @@ Returns a payment ID in case such is required
 </span><span class="s2">"user-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d290f1ee-6c54-4b01-90e6-d701748f0200"</span><span class="p">,</span><span class="w">
 </span><span class="s2">"transaction-status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pending User Confirmation"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h4 id='return-codes-28'>Return Codes</h4>
+</span></code></pre><h4 id='return-codes-29'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
@@ -2366,7 +2442,7 @@ Returns a payment ID in case such is required
 <p>Code samples</p>
 </blockquote>
 <pre class="highlight shell tab-shell"><code>curl -request DELETE https://atomic.org/api/deals/v1/businesses/<span class="o">{</span>business-id<span class="o">}</span>/deals/<span class="o">{</span>deal-id<span class="o">}</span>
-</code></pre><h4 id='return-codes-29'>Return Codes</h4>
+</code></pre><h4 id='return-codes-30'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
@@ -2415,7 +2491,7 @@ Returns a payment ID in case such is required
     </span><span class="s2">"user-id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"d290f1ee-6c54-4b01-90e6-d701748f0200"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"transaction-status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pending User Confirmation"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h4 id='return-codes-30'>Return Codes</h4>
+</span></code></pre><h4 id='return-codes-31'>Return Codes</h4>
 <table><thead>
 <tr>
 <th>Status</th>
