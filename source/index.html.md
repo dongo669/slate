@@ -737,6 +737,71 @@ Status|Meaning|Description
 200 | OK | Order found
 404 | Not Found | Order not found
 
+### Get All User Orders
+
+Retrieves all the existing orders for the given user
+
+`POST /api/trades/v1/users/{user-id}/orders`
+
+> Body parameters
+
+```json
+{
+    "timestamp": 1556524623, 
+    "signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1
+    qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
+    BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
+    Vu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xS
+    GVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacV
+    ZBmI6P4nFDn+nox8ooUmtA=="
+}
+```
+
+> Code samples
+
+```shell
+curl -request POST https://atomic.org/api/trades/v1/users/{user-id}/orders -H 'Content-Type: application/json' \
+--data '{ "timestamp": 1556524623, "signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuqBTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjLVu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xSGVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacVZBmI6P4nFDn+nox8ooUmtA==" }' 
+```
+
+> Example responses
+
+> 200 Response
+
+```json
+[
+    {
+        "order-id": "d290f1ee-6c54-4b01-90e6-d701748f0100",
+        "source-coin": "BTC",
+        "source-amount": 1010000000,
+        "target-coin": "ETH",
+        "target-amount": 300500000000000000000,
+        "target-address": "0xe8e49e84480edd95aaae50a340422cb30057963b",
+        "status": "IN_DEAL",
+        "payment-ids": 
+        [
+            {"payment-id": "d290f1ee-6c54-4b01-90e6-d701748f0300"},
+            {"payment-id": "d290f1ee-6c54-4b01-90e6-d701748f0200"}
+        ]
+    },
+    {
+        "order-id": "abcdefee-efac-1234-90e6-d701748f0100",
+        "source-coin": "LTC",
+        "source-amount": 1210000000,
+        "target-coin": "ETC",
+        "target-amount": 300500000000000000000,
+        "target-address": "0xb932c076d4c371913a632ceb34601063079f6ad7",
+        "status": "IN_QUEUE"
+    }
+]
+```
+
+#### Return Codes
+Status|Meaning|Description
+---|---|---
+200 | OK | User found
+404 | Not Found | User not found
+
 ### Cancel Order
 
 Deletes a given order, if allowed
