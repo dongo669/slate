@@ -150,7 +150,7 @@ curl -request POST https://atomic.org/api/general/v1/users/{user-id} -H 'Content
         "private-collateral-script-pub-key":"a914d56b1867f1e93c800a775886eb961e8284f3b60887"
     },
   "private-collateral-confirmed-balance": "102340000",
-  "priavte-collateral-in-use": "5006250",
+  "private-collateral-in-use": "5006250",
   "inflight-transactions": [
     {
       "coin-type": "BTC",
