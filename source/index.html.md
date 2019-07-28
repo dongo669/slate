@@ -645,7 +645,8 @@ Status|Meaning|Description
     "escrow-coin": "BTC",
     "escrow-amount": 1010000000,
     "escrow-address": "2NF1qc9L4j1tyfqzzLdRzRqoVftHznSeC6K",
-    "timestamp": 1556524623, 
+    "timestamp": 1556524623,
+    "good-for-sec": 3600,
     "signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1
                   qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuq
                   BTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjL
@@ -669,6 +670,7 @@ Status|Meaning|Description
      "escrow-amount": 1010000000, \
      "escrow-address": "2NF1qc9L4j1tyfqzzLdRzRqoVftHznSeC6K" \
      "timestamp": 1556524623,  \
+     "good-for-sec": 3600, \
      "signature": "N7xiQCTxULDGkxFWSTkJVUNVl7FTKpstmYCBd5AAutEp7YNTmOhXheDCiL7rmIG1qzUa1oo+I6MWD5SZWWk8C8H6XIR7KpblMY1Fd3+Hha7ObGfnjz3WCUybffx4JDuqBTa4MXPgSpZz6XaCve8WVcxsckVMRThNmEGPDxA2EAZ2F9dd6F9ItJMc/NcoXxjLVu0vyyBPcOvdPg3donmTXPghmX//ldOYe5P2xCYvC1d39kDeJznVNDEjF3wBV5xSGVrUpGdznRN2woATmB6tyTBz8jVpgrz8NIBxdIlYrJQjUFexIlxhVkqn88g4wacVZBmI6P4nFDn+nox8ooUmtA==" \
      }'
  ```
